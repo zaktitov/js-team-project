@@ -6,7 +6,9 @@
   "homepage": "https://zaktitov.github.io/js-team-project",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /js-team-project/"
+    "build": "parcel build src/*.html --public-url /js-team-project/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,5 +26,8 @@
     "parcel-plugin-nuke-dist": "^1.0.1",
     "posthtml-include": "^1.6.2",
     "sass": "^1.32.8"
+  },
+  "dependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
