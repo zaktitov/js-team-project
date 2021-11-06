@@ -1,4 +1,38 @@
-.footer{
-  background-color:powderblue;
+.footer {
   padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+// .footer-container {
+// }
+
+.footer-text {
+  color: #545454;
+  font-size: 16px;
+  line-height: 1.19;
+  text-align: center;
+}
+
+.footer-text-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/*------ MODAL WINDOW -----*/
+
+.footer-lightbox {
+  width: 100%;
+  height: 100%;
+}
+
+.footer-lightbox-overlay {
+  width: 400px;
+  height: 400px;
+  color: black;
+}
+
+.footer-lightbox-window {
+  background-color: tomato;
+  width: 200px;
+  height: 200px;
 }
