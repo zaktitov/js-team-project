@@ -1,0 +1,72 @@
+.list {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.film-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  border-radius: 5px;
+}
+
+.film-content {
+  margin-top: 10px;
+}
+
+.film-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+.film-descr {
+  display: flex;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  color: #ff6b08;
+}
+
+.film-descr-item:not(:last-child) {
+  margin-right: 10px;
+}
+
+.film-genres {
+  display: flex;
+}
+
+.film-vote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  min-width: 36px;
+  background: #ff6b01;
+  border-radius: 5px;
+}
+
+.film-vote-span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+
+  color: #ffffff;
+  padding: 0;
+}
