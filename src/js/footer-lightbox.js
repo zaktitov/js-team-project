@@ -2,7 +2,7 @@ const refs = {
     footerLightbox: document.querySelector('.js-footer-light-box'),
     footerLightboxOverlay: document.querySelector('.js-footer-light-box-overlay'),
     footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
-    footerLightboxOpenBtn: document.querySelector('.footer-lightbox-open-btn'),
+    footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
     footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
 }
 

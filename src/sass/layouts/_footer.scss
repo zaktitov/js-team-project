@@ -3,17 +3,28 @@
   padding-bottom: 30px;
 }
 
-// .footer-container {
-// }
-
-.footer-text {
-  color: #545454;
-  font-size: 16px;
-  line-height: 1.19;
-  text-align: center;
+.footer-container {
+  @media screen and(max-width:768px) {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.footer-text-link {
+.footer-text {
+  width: 236px;
+
+  color: #545454;
+  font-size: 14px;
+  line-height: 1.19;
+  text-align: center;
+
+  @media screen and(min-width:768px) {
+    font-size: 16px;
+    width: 100%;
+  }
+}
+
+.modal-open-btn {
   color: inherit;
   text-decoration: underline;
 }
@@ -21,18 +32,44 @@
 /*------ MODAL WINDOW -----*/
 
 .footer-lightbox {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: initial;
+  }
 }
 
 .footer-lightbox-overlay {
-  width: 400px;
-  height: 400px;
-  color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .footer-lightbox-window {
-  background-color: tomato;
-  width: 200px;
+  background-color: white;
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
   height: 200px;
+  width: 300px;
+  border-radius: 4px;
+  padding: 40px;
+  margin-left: 15px;
+  margin-left: 15px;
+  overflow: auto;
+
+  transform: translate(50%, 50%);
 }
