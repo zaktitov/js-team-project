@@ -5,7 +5,7 @@ export default class NewApiService {
   constructor() {
     this.page = 1;
     this.searchQuery = '';
-    this.movieId = "123";
+    this.movieId = '123';
   }
 
   fetchTrends() {
@@ -24,7 +24,7 @@ export default class NewApiService {
       });
   }
 
-  fetchByKeyWord() {
+  async fetchByKeyWord() {
     const searchParams = new URLSearchParams({
       api_key: KEY,
       language: `ru`,
@@ -34,13 +34,10 @@ export default class NewApiService {
     });
 
     const url = `${BASE_URL}/search/movie?${searchParams}`;
-
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log(`It's keyword fetch`, data);
-        return data;
-      });
+    const response = await fetch(url);
+    const data = await response.json();
+    this.incrementPage();
+    return data.results;
   }
 
   fetchFullInfo() {
@@ -59,7 +56,7 @@ export default class NewApiService {
       });
   }
 
-  increasePage() {
+  incrementPage() {
     this.page += 1;
   }
 
