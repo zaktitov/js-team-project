@@ -1,19 +1,22 @@
+import filmCardsTpl from '../templates/film-template.hbs';
 import NewApiService from './apiClass';
 import { debounce, find } from 'lodash';
 import { refs } from './refs.js';
-const { input } = refs;
+const { input, filmCards, loadMore } = refs;
 const newApiService = new NewApiService();
+const filmsElements = filmCards.children;
 
 input.addEventListener('input', debounce(findFilmByWord, 500));
 
 function findFilmByWord(e) {
-  newApiService.query = e.target.value;
-  console.log(newApiService.query);
+  newApiService.query = e.target.value.trim();
 
   if (newApiService.query !== '') {
-    newApiService.fetchByKeyWord().catch(error => {
-      console.log(error);
-    });
+    newApiService.resetPage();
+    observer.observe(loadMore);
+  } else {
+    error => console.log(error);
+    observer.unobserve(loadMore);
   }
 }
 
@@ -36,3 +39,34 @@ function getFilmsByDefault() {
   }
 }
 getFilmsByDefault();
+
+async function fetchFilms() {
+  try {
+    appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
+
+    if (filmsElements.length === 0) {
+      error => console.log(error);
+    }
+  } catch {
+    error => console.log(error);
+  }
+}
+
+function appendFilmCardsMarkup(films) {
+  filmCards.insertAdjacentHTML('beforeend', filmCardsTpl(films));
+}
+
+// Lazy Loader
+function onEntry(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      fetchFilms();
+    }
+  });
+}
+
+const options = {
+  rootMargin: '300px',
+};
+
+const observer = new IntersectionObserver(onEntry, options);
