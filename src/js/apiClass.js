@@ -4,8 +4,8 @@ const KEY = `d4b4feb49258af79577d4fcd29006df0`;
 export default class NewApiService {
   constructor() {
     this.page = 1;
-    this.searchQuery = 'a';
-    this.movieId = 123;
+    this.searchQuery = '';
+    this.movieId = "123";
   }
 
   fetchTrends() {
