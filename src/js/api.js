@@ -17,10 +17,12 @@ function findFilmByWord(e) {
 
   if (newApiService.query !== '') {
     newApiService.resetPage();
-    observer.observe(loadMore);
+    fetchFilms();
+    // observer.observe(loadMore);
   } else {
-    error => console.log(error);
-    observer.unobserve(loadMore);
+    getFilmsByDefault();
+    // error => console.log(error);
+    // observer.unobserve(loadMore);
   }
 }
 
@@ -34,13 +36,16 @@ function findFilmById(e) {
   }
 }
 
-function getFilmsByDefault() {
-  newApiService.query = input.value;
-  if (newApiService.query === '') {
-    newApiService.fetchTrends().catch(error => {
-      console.log(error);
-    });
+
+async function getFilmsByDefault() {
+  try {
+    appendFilmCardsMarkup(await newApiService.fetchTrends());
     notifications.showTrends();
+    if (filmsElements.length === 0) {
+      error => console.log(error);
+    }
+  } catch {
+    error => console.log(error);
   }
 }
 getFilmsByDefault();
@@ -61,17 +66,17 @@ function appendFilmCardsMarkup(films) {
   filmCards.insertAdjacentHTML('beforeend', filmCardsTpl(films));
 }
 
-// Lazy Loader
-function onEntry(entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      fetchFilms();
-    }
-  });
-}
+// // Lazy Loader
+// function onEntry(entries) {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       // fetchFilms();
+//     }
+//   });
+// }
 
-const options = {
-  rootMargin: '300px',
-};
+// const options = {
+//   rootMargin: '300px',
+// };
 
-const observer = new IntersectionObserver(onEntry, options);
+// const observer = new IntersectionObserver(onEntry, options);

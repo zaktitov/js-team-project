@@ -1,24 +1,48 @@
 {{#each this}}
-<li class='film-item js-film-item list'>
+  <li class='film-item js-film-item list'>
     <div class='film-card js-film-card'>
-        <img class='film-image js-film-image' src='https://image.tmdb.org/t/p/w342{{poster_path}}' alt='{{tagline}}' />
+      <img
+        class='film-image js-film-image'
+        src='https://image.tmdb.org/t/p/w342{{poster_path}}'
+        alt='{{tagline}}'
+      />
 
-        <div class='film-content js-film-content'>
-            <h2 class='film-title js-film-title'>{{title}}</h2>
-            <ul class="film-descr js-film-descr list">
-                <li class="film-descr-item">
-                    <ul class='film-genres js-film-genres list'>
-                        {{#each genre_ids}}
-                        <li class='film-genre js-film-genre'>{{this}}</li>
-                        {{/each}}
-                    </ul>
-                </li>
-                <li class="film-descr-item film-release js-film-release">{{release_date}}</li>
-                <li class="film-descr-item film-vote js-film-vote"><span class="film-vote-span">{{vote_average}}</span>
-                </li>
+      <div class='film-content js-film-content'>
+        {{#if title}}
+          <h2 class='film-title js-film-title'>{{title}}</h2>
+        {{else}}
+          {{#if original_title}}
+            <h2 class='film-title js-film-title'>{{original_title}}</h2>
+          {{else}}
+            {{#if name}}
+              <h2 class='film-title js-film-title'>{{name}}</h2>
+            {{else}}
+              {{#if original_name}}
+                <h2 class='film-title js-film-title'>{{original_name}}</h2>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+        <ul class='film-descr js-film-descr list'>
+          <li class='film-descr-item'>
+            <ul class='film-genres js-film-genres list'>
+              {{#each genre_ids}}
+                <li class='film-genre js-film-genre'>{{this}}</li>
+              {{/each}}
             </ul>
+          </li>
+          {{#if release_date}}
+            <li class='film-descr-item film-release js-film-release'>{{release_date}}</li>
+          {{else}}
+            <li class='film-descr-item film-release js-film-release'>{{first_air_date}}</li>
+          {{/if}}
+          <li class='film-descr-item film-vote js-film-vote'><span
+              class='film-vote-span'
+            >{{vote_average}}</span>
+          </li>
+        </ul>
 
-        </div>
+      </div>
     </div>
-</li>
+  </li>
 {{/each}}
