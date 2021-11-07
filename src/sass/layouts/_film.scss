@@ -1,3 +1,12 @@
+.main-film-section {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
 .list {
   list-style: none;
   margin-top: 0;
@@ -5,18 +14,41 @@
   padding-left: 0;
 }
 
-.film-image {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.film-list-card { 
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 30px;
+  }
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
 
+.film-item {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    &:not(:last-child) {
+      margin-bottom: 0px;
+    }
+    align-self: end;
+  }
+}
+
+// .film-card { 
+// }
+.film-image {
+  min-height: 300px;
+  background: url(https://i.imgur.com/NI2NcSe.gif);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
-
-.film-content {
-  margin-top: 10px;
-}
-
+// .film-content {
+// }
 .film-title {
   margin-top: 0;
   margin-bottom: 5px;
@@ -26,7 +58,6 @@
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
-
   color: #000000;
 }
 .film-descr {
