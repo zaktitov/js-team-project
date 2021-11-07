@@ -6,7 +6,7 @@ const { input, filmCards, loadMore } = refs;
 const newApiService = new NewApiService();
 const filmsElements = filmCards.children;
 
-input.addEventListener('input', debounce(findFilmByWord, 500));
+input.addEventListener('input', debounce(findFilmByWord, 250));
 
 function findFilmByWord(e) {
   newApiService.query = e.target.value.trim();

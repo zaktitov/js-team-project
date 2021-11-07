@@ -5,13 +5,14 @@ export default class NewApiService {
   constructor() {
     this.page = 1;
     this.searchQuery = '';
-    this.movieId = '123';
+    this.movieId = '';
+    this.language = "en-US"
   }
 
   fetchTrends() {
     const searchParams = new URLSearchParams({
       api_key: KEY,
-      language: 'ru',
+      language: this.language,
     });
 
     const url = `${BASE_URL}/trending/all/day?${searchParams}`;
@@ -27,7 +28,7 @@ export default class NewApiService {
   async fetchByKeyWord() {
     const searchParams = new URLSearchParams({
       api_key: KEY,
-      language: `ru`,
+      language: this.language,
       query: this.searchQuery,
       page: this.page,
       include_adult: false,
@@ -43,7 +44,7 @@ export default class NewApiService {
   fetchFullInfo() {
     const searchParams = new URLSearchParams({
       api_key: KEY,
-      language: `ru`,
+      language: this.language,
     });
 
     const url = `${BASE_URL}/movie/${this.movieId}?${searchParams}`;
