@@ -9,7 +9,7 @@ const newApiService = new NewApiService();
 const filmsElements = filmCards.children;
 const notifications = new Notifications();
 
-input.addEventListener('input', debounce(findFilmByWord, 250));
+input.addEventListener('input', debounce(findFilmByWord, 1200));
 
 function findFilmByWord(e) {
   newApiService.query = e.target.value.trim();
@@ -66,7 +66,7 @@ function appendFilmCardsMarkup(films) {
   filmCards.insertAdjacentHTML('beforeend', filmCardsTpl(films));
 }
 
-// // Lazy Loader
+// Intersection_Obsrv.
 // function onEntry(entries) {
 //   entries.forEach(entry => {
 //     if (entry.isIntersecting) {

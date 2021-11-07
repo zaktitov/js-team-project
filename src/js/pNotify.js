@@ -9,8 +9,8 @@ export default class Notifications {
     notice({
       text: 'Please, enter some text 🔤',
       hide: true,
-      delay: 2000,
-      animateSpeed: 'slow',
+      delay: 1000,
+      animateSpeed: 'fast',
       shadow: true,
       closer: true,
     });
@@ -20,7 +20,7 @@ export default class Notifications {
     error({
       text: 'Oops, something wrong!',
       hide: true,
-      delay: 2000,
+      delay: 1000,
       animateSpeed: 'slow',
       shadow: true,
       closer: true,
@@ -30,10 +30,10 @@ export default class Notifications {
   showSuccess() {
     success({
       text: 'Found awesome films for you 🎞️',
-      delay: 2000,
+      delay: 1000,
       hide: true,
       animateSpeed: 'slow',
-      shadow: true,
+      shadow: false,
       closer: true,
     });
   }
@@ -41,7 +41,7 @@ export default class Notifications {
   showTrends() {
     success({
       text: 'Trends for today 🍿',
-      delay: 2000,
+      delay: 1000,
       hide: true,
       animateSpeed: 'slow',
       shadow: true,
