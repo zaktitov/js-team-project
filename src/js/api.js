@@ -9,7 +9,11 @@ const newApiService = new NewApiService();
 const filmsElements = filmCards.children;
 const notifications = new Notifications();
 
+
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
 input.addEventListener('input', debounce(findFilmByWord, 1200));
+
 
 function findFilmByWord(e) {
   newApiService.query = e.target.value.trim();
@@ -63,10 +67,34 @@ async function fetchFilms() {
 }
 
 function appendFilmCardsMarkup(films) {
-  filmCards.insertAdjacentHTML('beforeend', filmCardsTpl(films));
+  filmCards.innerHTML = filmCardsTpl(films);
 }
 
-// Intersection_Obsrv.
+
+/* ----- PAGINATION ------ */
+
+const options = {
+  totalItems: 20000,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  centerAlign: true,
+  template: {
+     currentPage: '<strong class="tui-page-btn tui-is-selected" style="background-color: #ff6b01; border-radius: 5px;">{{page}}</strong>'
+  }
+};
+
+const pagination = new Pagination('pagination', options);
+
+pagination.on('afterMove', function(eventData) {
+  newApiService.page = eventData.page;
+  getFilmsByDefault()
+  filmCards.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+    });
+    });
+
+// // IntersObserv
 // function onEntry(entries) {
 //   entries.forEach(entry => {
 //     if (entry.isIntersecting) {
