@@ -10,6 +10,7 @@ input.addEventListener('input', debounce(findFilmByWord, 500));
 
 function findFilmByWord(e) {
   newApiService.query = e.target.value.trim();
+  filmCards.innerHTML = '';
 
   if (newApiService.query !== '') {
     newApiService.resetPage();

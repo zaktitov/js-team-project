@@ -56,6 +56,18 @@ export default class NewApiService {
       });
   }
 
+  async fetchGenresList() {
+    const searchParams = new URLSearchParams({
+      api_key: KEY,
+    });
+
+    const url = `${BASE_URL}/genre/movie/list?${searchParams}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return data.genres;
+  }
+
   incrementPage() {
     this.page += 1;
   }
