@@ -6,10 +6,10 @@ export default class NewApiService {
     this.page = 1;
     this.searchQuery = '';
     this.movieId = '';
-    this.language = "en-US"
+    this.language = 'en-US';
   }
 
-  fetchTrends() {
+  async fetchTrends() {
     const searchParams = new URLSearchParams({
       api_key: KEY,
       language: this.language,
@@ -17,12 +17,10 @@ export default class NewApiService {
 
     const url = `${BASE_URL}/trending/all/day?${searchParams}`;
 
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log(`It's trends fetch`, data);
-        return data;
-      });
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return data.results;
   }
 
   async fetchByKeyWord() {
