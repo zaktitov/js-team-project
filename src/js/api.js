@@ -1,6 +1,6 @@
 import filmCardsTpl from '../templates/film-template.hbs';
 import NewApiService from './apiClass';
-import { debounce, find } from 'lodash';
+import { debounce, toNumber } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
 
@@ -21,11 +21,9 @@ function findFilmByWord(e) {
     newApiService.resetPage();
     fetchFilms();
     notifications.showSuccess();
-    // observer.observe(loadMore);
   } else {
     getFilmsByDefault();
     // error => console.log(error);
-    // observer.unobserve(loadMore);
   }
 }
 
@@ -43,11 +41,10 @@ async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
     if (newApiService.query === '') {
-      notifications.showTrends()
+      notifications.showTrends();
     } else {
-      notifications.showSuccess()
+      notifications.showSuccess();
     }
-
 
     if (filmsElements.length === 0) {
       error => console.log(error);
@@ -72,6 +69,7 @@ async function fetchFilms() {
 
 function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
+  getGenres();
 }
 
 /* ----- PAGINATION ------ */
@@ -98,17 +96,29 @@ pagination.on('afterMove', function (eventData) {
   });
 });
 
-// // IntersObserv
-// function onEntry(entries) {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting) {
-//       // fetchFilms();
-//     }
-//   });
-// }
+/* ----- GENRES ------ */
 
-// const options = {
-//   rootMargin: '300px',
-// };
+async function getGenres() {
+  const genresList = await newApiService.fetchGenresList();
 
-// const observer = new IntersectionObserver(onEntry, options);
+  //Заміняє ID на жанр
+  const filmGenre = filmCards.querySelectorAll('.js-film-genre');
+  const filmGenresArray = [...filmGenre];
+  filmGenresArray.map(filmGenre => {
+    genresList.map(genreObject => {
+      if (toNumber(filmGenre.textContent) === genreObject.id) {
+        filmGenre.textContent = genreObject.name;
+      }
+    });
+  });
+
+  // Обрізає жанри якщо їх більше як 2
+  const filmGenres = filmCards.querySelectorAll('.js-film-genres');
+  const filmGenreArray = [...filmGenres];
+  filmGenreArray.map(genreArr => {
+    if (genreArr.children.length > 2) {
+      [...genreArr.children].splice(0, 2);
+    }
+  });
+}
+
