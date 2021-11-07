@@ -36,9 +36,11 @@ function findFilmById(e) {
   }
 }
 
+
 async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
+    notifications.showTrends();
     if (filmsElements.length === 0) {
       error => console.log(error);
     }
@@ -51,6 +53,7 @@ getFilmsByDefault();
 async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
+    notifications.showSuccess()
     if (filmsElements.length === 0) {
       error => console.log(error);
     }

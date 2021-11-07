@@ -18,7 +18,7 @@ export default class Notifications {
 
   showError() {
     error({
-      text: 'Please, do NOT use empty values!',
+      text: 'Oops, something wrong!',
       hide: true,
       delay: 2000,
       animateSpeed: 'slow',
@@ -29,7 +29,18 @@ export default class Notifications {
 
   showSuccess() {
     success({
-      text: 'We found numbers of films for you 🚀',
+      text: 'Found awesome films for you 🎞️',
+      delay: 2000,
+      hide: true,
+      animateSpeed: 'slow',
+      shadow: true,
+      closer: true,
+    });
+  }
+
+  showTrends() {
+    success({
+      text: 'Trends for today 🍿',
       delay: 2000,
       hide: true,
       animateSpeed: 'slow',
