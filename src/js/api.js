@@ -2,9 +2,12 @@ import filmCardsTpl from '../templates/film-template.hbs';
 import NewApiService from './apiClass';
 import { debounce, find } from 'lodash';
 import { refs } from './refs.js';
+import Notifications from './pNotify';
+
+const filmsElements = filmCards.children;
 const { input, filmCards, loadMore } = refs;
 const newApiService = new NewApiService();
-const filmsElements = filmCards.children;
+const notifications = new Notifications();
 
 input.addEventListener('input', debounce(findFilmByWord, 250));
 
@@ -44,7 +47,6 @@ getFilmsByDefault();
 async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
-
     if (filmsElements.length === 0) {
       error => console.log(error);
     }
