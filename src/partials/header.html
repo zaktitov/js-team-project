@@ -1,7 +1,33 @@
-<!-- тег header не пишите, он стоит в index.html -->
-<!-- тут header -->
-<header class="header">The header
-  <div class="input-wrapper">
-    <input type="text" id="input">
+<header class="header header-home" id="header">
+  <div class="container header__container">
+    <nav class="header__navigation">
+      <a href="" class="header-logo">
+        <svg class="header-logo__icon" width="24" height="24">
+          <use href="../src/images/sprite.svg#logo"></use>
+        </svg>
+        <span class="header-logo__text">Filmoteka</span>
+      </a>
+
+      <ul class="header__list">
+        <li class="header__item">
+          <a class="header__link current js-link-home" href="#">Home</a>
+        </li>
+        <li class="header__item">
+          <a class="header__link js-link-library" href="#">My library</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="js-input-wrapper header__input-wrapper">
+      <input class="header__input" type="text" id="input" placeholder="Поиск фильмов" />
+      <svg class="header__input-icon" width="12" height="12">
+        <use href="../src/images/sprite.svg#loupe"></use>
+      </svg>
+    </div>
+
+    <div class="js-button-wrapper header__btn-wrapper visually-hidden">
+      <button type="button" class="header__btn">watched</button>
+      <button type="button" class="header__btn">queue</button>
+    </div>
   </div>
 </header>
