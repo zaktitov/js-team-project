@@ -156,6 +156,10 @@ img {
   padding-left: 0;
 }
 
+.film-list-card {
+  margin-bottom: 46px;
+}
+
 @media screen and (min-width: 768px) {
   .film-list-card {
     display: -ms-grid;
