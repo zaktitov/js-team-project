@@ -40,6 +40,7 @@ function getFilmsByDefault() {
     newApiService.fetchTrends().catch(error => {
       console.log(error);
     });
+    notifications.showTrends();
   }
 }
 getFilmsByDefault();
@@ -47,6 +48,7 @@ getFilmsByDefault();
 async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
+    notifications.showSuccess()
     if (filmsElements.length === 0) {
       error => console.log(error);
     }
