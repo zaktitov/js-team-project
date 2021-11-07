@@ -78,6 +78,22 @@
   margin-right: 10px;
 }
 
+.film-genre:not(:last-child) {
+  margin-right: 5px;
+}
+
+.film-release::before {
+  content: '';
+  display: block;
+  margin-right: 5px;
+  width: 1px;
+  height: 100%;
+  background-color: #ff6b08;
+}
+.film-release {
+  display: flex;
+}
+
 .film-genres {
   display: flex;
 }
