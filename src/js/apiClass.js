@@ -13,13 +13,14 @@ export default class NewApiService {
     const searchParams = new URLSearchParams({
       api_key: KEY,
       language: this.language,
+      page: this.page,
     });
 
-    const url = `${BASE_URL}/trending/all/day?${searchParams}`;
+    const url = `${BASE_URL}/trending/movie/day?${searchParams}`;
 
     const response = await fetch(url);
     const data = await response.json();
-
+    console.log(data)
     return data.results;
   }
 
