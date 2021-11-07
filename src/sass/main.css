@@ -136,10 +136,16 @@ img {
           flex-direction: column;
 }
 
-.main {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+.main-film-section {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .main-film-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 }
 
 .main-film-section {
@@ -460,6 +466,9 @@ img {
 }
 
 .main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
   background-color: #fff;
 }
 
