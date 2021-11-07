@@ -121,3 +121,4 @@ async function getGenres() {
     }
   });
 }
+
