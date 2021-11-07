@@ -22,7 +22,6 @@ export default class Notifications {
       hide: true,
       delay: 1000,
       animateSpeed: 'slow',
-      shadow: true,
       closer: true,
     });
   }
@@ -33,8 +32,8 @@ export default class Notifications {
       delay: 1000,
       hide: true,
       animateSpeed: 'slow',
-      shadow: false,
       closer: true,
+      width: '280px',
     });
   }
 
@@ -44,8 +43,9 @@ export default class Notifications {
       delay: 1000,
       hide: true,
       animateSpeed: 'slow',
-      shadow: true,
       closer: true,
+      width:"210px"
+      
     });
   }
 }
