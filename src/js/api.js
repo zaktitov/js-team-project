@@ -9,10 +9,11 @@ const newApiService = new NewApiService();
 const filmsElements = filmCards.children;
 const notifications = new Notifications();
 
+
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+input.addEventListener('input', debounce(findFilmByWord, 1200));
 
-input.addEventListener('input', debounce(findFilmByWord, 250));
 
 function findFilmByWord(e) {
   newApiService.query = e.target.value.trim();
@@ -69,6 +70,7 @@ function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
 }
 
+
 /* ----- PAGINATION ------ */
 
 const options = {
@@ -92,7 +94,7 @@ pagination.on('afterMove', function(eventData) {
     });
     });
 
-// // Lazy Loader
+// // IntersObserv
 // function onEntry(entries) {
 //   entries.forEach(entry => {
 //     if (entry.isIntersecting) {
