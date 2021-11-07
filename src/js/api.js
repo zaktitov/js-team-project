@@ -4,9 +4,9 @@ import { debounce, find } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
 
-const filmsElements = filmCards.children;
 const { input, filmCards, loadMore } = refs;
 const newApiService = new NewApiService();
+const filmsElements = filmCards.children;
 const notifications = new Notifications();
 
 input.addEventListener('input', debounce(findFilmByWord, 250));
