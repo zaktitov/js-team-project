@@ -40,23 +40,29 @@
       margin-bottom: 0px;
     }
     align-self: auto;
+    overflow: hidden;
     // align-self: end;
   }
 }
 
+.img-wrap {
+  height: 396px;
+  overflow: hidden;
+  padding-bottom: 5px;
+}
 // .film-card {
 
 // }
 .film-image {
-  height: 400px;
+  height: 100%;
   background: url(https://i.imgur.com/NI2NcSe.gif);
   background-size: cover;
   background-position: center;
-  margin-bottom: 10px;
   border-radius: 5px;
 }
-// .film-content {
-// }
+.film-content {
+  padding: 5px 0 0 0;
+}
 .film-title {
   margin-top: 0;
   margin-bottom: 5px;
@@ -76,13 +82,18 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  padding-bottom: 5px;
 
   color: #ff6b08;
 }
 
+.film-genre{
+  max-height: 15px;
+}
 .film-descr-item:not(:last-child) {
   margin-right: 5px;
 }
+
 
 .film-genre:not(:last-child) {
   margin-right: 5px;
@@ -115,6 +126,7 @@
   text-transform: uppercase;
   min-width: 36px;
   min-height: 16px;
+
   background: #ff6b01;
   border-radius: 5px;
 }
