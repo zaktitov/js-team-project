@@ -5,7 +5,7 @@ export default class NewApiService {
   constructor() {
     this.page = 1;
     this.searchQuery = '';
-    this.movieId = '';
+    this.movieId = '123';
     this.language = 'en-US';
   }
 
@@ -13,13 +13,13 @@ export default class NewApiService {
     const searchParams = new URLSearchParams({
       api_key: KEY,
       language: this.language,
+      page: this.page,
     });
 
-    const url = `${BASE_URL}/trending/all/day?${searchParams}`;
+    const url = `${BASE_URL}/trending/movie/day?${searchParams}`;
 
     const response = await fetch(url);
     const data = await response.json();
-
     return data.results;
   }
 
@@ -39,7 +39,7 @@ export default class NewApiService {
     return data.results;
   }
 
-  fetchFullInfo() {
+  async fetchFullInfo() {
     const searchParams = new URLSearchParams({
       api_key: KEY,
       language: this.language,
@@ -47,12 +47,10 @@ export default class NewApiService {
 
     const url = `${BASE_URL}/movie/${this.movieId}?${searchParams}`;
 
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log(`It's full info fetch`, data);
-        return data;
-      });
+    const dataImages = await fetch(url);
+    const parseData = await dataImages.json();
+
+    return await parseData.results;
   }
 
   async fetchGenresList() {

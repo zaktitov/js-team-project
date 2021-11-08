@@ -1,6 +1,6 @@
 import filmCardsTpl from '../templates/film-template.hbs';
 import NewApiService from './apiClass';
-import { debounce, find } from 'lodash';
+import { debounce, toNumber } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
 
@@ -9,7 +9,9 @@ const newApiService = new NewApiService();
 const filmsElements = filmCards.children;
 const notifications = new Notifications();
 
-input.addEventListener('input', debounce(findFilmByWord, 250));
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+input.addEventListener('input', debounce(findFilmByWord, 1200));
 
 function findFilmByWord(e) {
   newApiService.query = e.target.value.trim();
@@ -18,11 +20,10 @@ function findFilmByWord(e) {
   if (newApiService.query !== '') {
     newApiService.resetPage();
     fetchFilms();
-    // observer.observe(loadMore);
+    notifications.showSuccess();
   } else {
     getFilmsByDefault();
     // error => console.log(error);
-    // observer.unobserve(loadMore);
   }
 }
 
@@ -36,11 +37,15 @@ function findFilmById(e) {
   }
 }
 
-
 async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
-    notifications.showTrends();
+    if (newApiService.query === '') {
+      notifications.showTrends();
+    } else {
+      notifications.showSuccess();
+    }
+
     if (filmsElements.length === 0) {
       error => console.log(error);
     }
@@ -53,7 +58,7 @@ getFilmsByDefault();
 async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
-    notifications.showSuccess()
+
     if (filmsElements.length === 0) {
       error => console.log(error);
     }
@@ -63,20 +68,57 @@ async function fetchFilms() {
 }
 
 function appendFilmCardsMarkup(films) {
-  filmCards.insertAdjacentHTML('beforeend', filmCardsTpl(films));
+  filmCards.innerHTML = filmCardsTpl(films);
+  getGenres();
 }
 
-// // Lazy Loader
-// function onEntry(entries) {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting) {
-//       // fetchFilms();
-//     }
-//   });
-// }
+/* ----- PAGINATION ------ */
 
-// const options = {
-//   rootMargin: '300px',
-// };
+const options = {
+  totalItems: 20000,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  centerAlign: true,
+  template: {
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected" style="background-color: #ff6b01; border-radius: 5px;">{{page}}</strong>',
+  },
+};
 
-// const observer = new IntersectionObserver(onEntry, options);
+const pagination = new Pagination('pagination', options);
+
+pagination.on('afterMove', function (eventData) {
+  newApiService.page = eventData.page;
+  getFilmsByDefault();
+  filmCards.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+});
+
+/* ----- GENRES ------ */
+
+async function getGenres() {
+  const genresList = await newApiService.fetchGenresList();
+
+  //Заміняє ID на жанр
+  const filmGenre = filmCards.querySelectorAll('.js-film-genre');
+  const filmGenresArray = [...filmGenre];
+  filmGenresArray.map(filmGenre => {
+    genresList.map(genreObject => {
+      if (toNumber(filmGenre.textContent) === genreObject.id) {
+        filmGenre.textContent = genreObject.name;
+      }
+    });
+  });
+
+  // Обрізає жанри якщо їх більше як 2
+  const filmGenres = filmCards.querySelectorAll('.js-film-genres');
+  const filmGenreArray = [...filmGenres];
+  filmGenreArray.map(genreArr => {
+    if (genreArr.children.length > 2) {
+      [...genreArr.children].splice(0, 2);
+    }
+  });
+}
+

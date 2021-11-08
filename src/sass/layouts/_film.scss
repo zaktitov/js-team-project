@@ -14,14 +14,16 @@
   padding-left: 0;
 }
 
-.film-list-card { 
+.film-list-card {
+  margin-bottom: 46px;
+
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 30px;
   }
   @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -37,7 +39,7 @@
   }
 }
 
-// .film-card { 
+// .film-card {
 // }
 .film-image {
   min-height: 300px;
@@ -74,6 +76,22 @@
 
 .film-descr-item:not(:last-child) {
   margin-right: 10px;
+}
+
+.film-genre:not(:last-child) {
+  margin-right: 5px;
+}
+
+.film-release::before {
+  content: '';
+  display: block;
+  margin-right: 5px;
+  width: 1px;
+  height: 100%;
+  background-color: #ff6b08;
+}
+.film-release {
+  display: flex;
 }
 
 .film-genres {
