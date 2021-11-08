@@ -73,6 +73,7 @@ async function fetchFilms() {
 function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
   getGenres();
+  getFilmDate();
 }
 
 /* ----- PAGINATION ------ */
@@ -115,12 +116,25 @@ async function getGenres() {
     });
   });
 
-  // Обрізає жанри якщо їх більше як 2
-  const filmGenres = filmCards.querySelectorAll('.js-film-genres');
-  const filmGenreArray = [...filmGenres];
-  filmGenreArray.map(genreArr => {
-    if (genreArr.children.length > 2) {
-      [...genreArr.children].splice(0, 2);
-    }
+  // Обрізає жанри якщо їх більше як 2 (поки що не працює.....)
+
+  // const filmGenres = filmCards.querySelectorAll('.js-film-genres');
+  // const filmGenreArray = [...filmGenres];
+  // filmGenreArray.map(genreArr => {
+  //   if (genreArr.children.length > 2) {
+  //     [...genreArr.children].splice(0, 2);
+  //   }
+  // });
+}
+
+/* -------- YEAR -------- */
+
+function getFilmDate() {
+  const filmFullDate = filmCards.querySelectorAll('.js-film-release');
+  const filmDateArray = [...filmFullDate];
+  filmDateArray.map(releaseDate => {
+    const myDate = new Date(releaseDate.textContent);
+    const year = myDate.getFullYear();
+    isNaN(year) ? (releaseDate.textContent = '') : (releaseDate.textContent = year);
   });
 }
