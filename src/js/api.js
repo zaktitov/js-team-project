@@ -3,6 +3,7 @@ import NewApiService from './apiClass';
 import { debounce, toNumber } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
+import bindModalToFilmsCard from './modal';
 
 const { input, filmCards, loadMore, searchForm } = refs;
 const newApiService = new NewApiService();
@@ -74,6 +75,7 @@ function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
   getGenres();
   getFilmDate();
+  bindModalToFilmsCard();
 }
 
 /* ----- PAGINATION ------ */
