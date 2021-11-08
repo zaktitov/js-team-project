@@ -19,11 +19,15 @@
 
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 30px;
+
+    // grid-template-columns: repeat(2, 1fr);
+    grid-template: repeat(7, 440px) / repeat(2, 274px);
+    column-gap: 30px;
+    row-gap: 31px;
   }
   @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template: repeat(7, 440px) / repeat(3, 274px);
   }
 }
 
@@ -35,14 +39,16 @@
     &:not(:last-child) {
       margin-bottom: 0px;
     }
-    align-self: end;
+    align-self: auto;
+    // align-self: end;
   }
 }
 
 // .film-card {
+  
 // }
 .film-image {
-  min-height: 300px;
+  height: 400px;
   background: url(https://i.imgur.com/NI2NcSe.gif);
   background-size: cover;
   background-position: center;
@@ -83,7 +89,7 @@
 }
 
 .film-release::before {
-  content: '';
+  content: "";
   display: block;
   margin-right: 5px;
   width: 1px;
