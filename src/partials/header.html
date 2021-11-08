@@ -1,4 +1,3 @@
-
 <header class="header header-home" id="header">
   <div class="container header__container">
     <nav class="header__navigation">
@@ -11,25 +10,35 @@
 
       <ul class="header__list">
         <li class="header__item">
-          <a class="header__link current js-link-home" href="#">Home</a>
+          <a class="header__link current js-link-home" href="">Home</a>
         </li>
         <li class="header__item">
-          <a class="header__link js-link-library" href="#">My library</a>
+          <a class="header__link js-link-library" href="">My library</a>
         </li>
       </ul>
     </nav>
 
     <div class="js-input-wrapper header__input-wrapper">
-      <input class="header__input" type="text" id="input" placeholder="Поиск фильмов" />
-      <svg class="header__input-icon" width="12" height="12">
-        <use href="../src/images/sprite.svg#loupe"></use>
-      </svg>
+      <form id="search-form">
+        <input
+          class="header__input"
+          type="text"
+          id="input"
+          name="query"
+          autocomplete="off"
+          placeholder="Поиск фильмов"
+        />
+        <button class="header__input-btn js-input-btn" type="submit">
+          <svg class="header__input-icon" width="12" height="12">
+            <use href="../src/images/sprite.svg#loupe"></use>
+          </svg>
+        </button>
+      </form>
     </div>
 
     <div class="js-button-wrapper header__btn-wrapper visually-hidden">
       <button type="button" class="header__btn">watched</button>
       <button type="button" class="header__btn">queue</button>
     </div>
-
   </div>
 </header>

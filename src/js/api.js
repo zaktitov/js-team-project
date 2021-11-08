@@ -4,18 +4,21 @@ import { debounce, toNumber } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
 
-const { input, filmCards, loadMore } = refs;
+const { input, filmCards, loadMore, searchForm } = refs;
 const newApiService = new NewApiService();
 const filmsElements = filmCards.children;
 const notifications = new Notifications();
 
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-input.addEventListener('input', debounce(findFilmByWord, 1200));
+searchForm.addEventListener('submit', findFilmByWord);
 
 function findFilmByWord(e) {
-  newApiService.query = e.target.value.trim();
+  e.preventDefault();
+
+  newApiService.query = e.currentTarget.elements.query.value;
   filmCards.innerHTML = '';
+  searchForm.reset();
 
   if (newApiService.query !== '') {
     newApiService.resetPage();
@@ -121,4 +124,3 @@ async function getGenres() {
     }
   });
 }
-
