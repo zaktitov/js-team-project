@@ -1,24 +1,20 @@
-
 import { refs } from './refs.js';
 import modalTemplate from '../templates/modal-template.hbs';
 import NewApiService from './apiClass';
 
 const newApiService = new NewApiService();
-const {filmCards,  body, backdrop, modal, closeBtn, homeLink } = refs;
-
-
-
-
-homeLink.addEventListener('click', onFilmCardClick);
+const { filmCards, body, backdrop, modal, closeBtn, homeLink } = refs;
+// homeLink.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
 
-
 function onFilmCardClick(e) {
-    newApiService.fetchTrends().then(response => {
-        const result = response[4]
-     
-renderModal(result)
-    })
+  e.preventDefault();
+
+  newApiService.fetchTrends().then(response => {
+    const result = response[4];
+
+    renderModal(result);
+  });
 
   toggleModal();
 }
@@ -28,19 +24,20 @@ function renderModal(obj) {
 }
 
 function onCloseButtonClick(e) {
-    toggleModal();
-    const poster = document.querySelector('.modal__poster-container')
-    const data = document.querySelector('.modal__data-container')
+  toggleModal();
+  const poster = document.querySelector('.modal__poster-container');
+  const data = document.querySelector('.modal__data-container');
 
-    poster.innerHTML = ''
-    data.innerHTML = ''
-    
+  poster.innerHTML = '';
+  data.innerHTML = '';
 }
-
-
-
 
 function toggleModal() {
   body.classList.toggle('is-open');
   backdrop.classList.toggle('is-hidden');
+}
+
+export default function bindModalToFilmsCard() {
+  const filmsCardLinks = [...filmCards.querySelectorAll('.js-film-link')];
+  filmsCardLinks.map(filmLink => filmLink.addEventListener('click', onFilmCardClick));
 }
