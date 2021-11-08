@@ -9,13 +9,11 @@
 }
 
 .header-home {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/header/home-mobile.jpeg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/header/home-mobile.jpeg);
 }
 
 .header-library {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/header/library-mobile.jpeg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/header/library-mobile.jpeg);
 }
 
 @media (min-device-pixel-ratio: 2) and (max-width: 767px),
@@ -40,6 +38,12 @@
 
 .header-logo {
   cursor: pointer;
+  transition: transform $animation;
+}
+
+.header-logo:hover,
+.header-logo:focus {
+  transform: scale(1.1);
 }
 
 @media screen and (max-width: 767px) {
@@ -79,6 +83,9 @@
 .header__input {
   width: 100%;
   padding-bottom: 4px;
+  padding-top: 4px;
+  padding-right: 25px;
+  font-size: 15px;
   border: none;
   border-bottom: 0.5px solid $mainBackgroundColor;
   background-color: transparent;
@@ -93,10 +100,18 @@
 
 .header__input-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  width: 40px;
+  height: 40px;
+  top: -6px;
+  right: -10px;
   background-color: transparent;
   border: none;
+  transition: transfrom $animation;
+}
+
+.header__input-btn:hover,
+.header__input-btn:focus {
+  transform: scale(1.1) ;
 }
 
 .header__btn-wrapper {
@@ -113,6 +128,7 @@
   background-color: transparent;
   border-radius: 5px;
   border: 1px solid $mainBackgroundColor;
+  transition: all $animation;
 
   color: $secondaryTextColor;
   text-transform: uppercase;
@@ -132,8 +148,7 @@
 
 @media screen and (min-width: 768px) {
   .header-home {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/header/home-tablet.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/header/home-tablet.jpeg);
   }
 
   .header-library {
@@ -142,7 +157,7 @@
   }
 
   .header-logo__icon {
-    margin-right: 10px;
+    margin-right: 3px;
   }
 
   .header-logo__text {
@@ -177,8 +192,7 @@
 
 @media screen and (min-width: 1200px) {
   .header-home {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/header/home-desktop.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/header/home-desktop.jpeg);
   }
 
   .header-library {
