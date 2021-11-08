@@ -2,8 +2,8 @@
   <li class='film-item js-film-item list'>
     <a class='film-link js-film-link' href='#'>
       <div class='film-card js-film-card'>
-
-        <picture class='film-picture js-film-picture'>
+        <div class="img-wrap">
+          <picture class='film-picture js-film-picture'>
           <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
           <img
             class='film-image js-film-image'
@@ -11,6 +11,8 @@
             alt='{{tagline}}'
           />
         </picture>
+        </div>
+        
 
         <div class='film-content js-film-content'>
           {{#if title}}
