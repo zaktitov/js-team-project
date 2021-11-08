@@ -91,11 +91,12 @@
   }
 }
 
-.header__input-icon {
+.header__input-btn {
   position: absolute;
-  display: block;
   top: 0;
   right: 0;
+  background-color: transparent;
+  border: none;
 }
 
 .header__btn-wrapper {

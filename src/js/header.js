@@ -3,9 +3,7 @@ import { refs } from './refs';
 refs.homeLink.addEventListener('click', onChangeHomeLink);
 refs.libraryLink.addEventListener('click', onChangeLibraryLink);
 
-function onChangeHomeLink(event) {
-  event.preventDefault();
-
+function onChangeHomeLink() {
   refs.libraryLink.classList.remove('current');
   refs.homeLink.classList.add('current');
 
