@@ -75,7 +75,7 @@ function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
   getGenres();
   getFilmDate();
-  bindModalToFilmsCard();
+  // bindModalToFilmsCard();
 }
 
 /* ----- PAGINATION ------ */
@@ -104,7 +104,7 @@ pagination.on('afterMove', function (eventData) {
 
 /* ----- GENRES ------ */
 
-async function getGenres() {
+ async function getGenres() {
   const genresList = await newApiService.fetchGenresList();
 
   //Заміняє ID на жанр

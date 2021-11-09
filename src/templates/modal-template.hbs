@@ -1,28 +1,33 @@
+<div>
+    
+</div>
 
     <div class="modal__poster-container"><img class="modal__poster" src='https://image.tmdb.org/t/p/w342{{poster_path}}'
             alt='poster' /></div>
     <div class="modal__data-container">
         <h1 class="modal__main-title">{{original_title}}</h1>
-        <table class="modal__table">
+        <table class="modal__table" >
     
     
             <tr class="modal__data-row">
-                <td class="modal__data-title">Vote/Votes</td>
+                <td class="modal__data-title">Vote &nbsp;/ &nbsp;Votes</td>
     
     
-                <td class="modal__data-description">{{vote_average}}/{{vote_count}}</td>
+                <td class="modal__data-description"> <span class="modal__data-description modal__data-description--average">{{vote_average}}</span> / <span class="modal__data-description modal__data-description--count">{{vote_count}}</span> </td>
             </tr>
             <tr class="modal__data-row">
                 <td class="modal__data-title">Popularity</td>
-                <td class="modal__data-description">{{popularity}}</td>
+                <td class="modal__data-description popularity-js">{{popularity}}</td>
             </tr>
             <tr class="modal__data-row">
                 <td class="modal__data-title">Original Title</td>
-                <td class="modal__data-description">{{original_title}}</td>
+                <td class="modal__data-description modal__data-description--title">{{original_title}}</td>
             </tr>
             <tr class="modal__data-row">
                 <td class="modal__data-title">Genre</td>
-                <td class="modal__data-description"></td>
+                {{#each genre_ids}}
+                <td class="modal__data-description genre-js">{{this}}</td>
+                {{/each}}
             </tr>
     
         </table>

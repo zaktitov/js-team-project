@@ -3,28 +3,47 @@ import modalTemplate from '../templates/modal-template.hbs';
 import NewApiService from './apiClass';
 
 const newApiService = new NewApiService();
-const { filmCards, body, backdrop, modal, closeBtn, homeLink } = refs;
-// homeLink.addEventListener('click', onFilmCardClick);
+
+const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
+
+window.addEventListener('click', onFilmCardClick)
 closeBtn.addEventListener('click', onCloseButtonClick);
 
-function onFilmCardClick(e) {
-  e.preventDefault();
+  function onFilmCardClick(e) {
+      
+        if (e.target.nodeName === 'IMG') {
+         renderModalWindow()
+       }
+    }
 
-  newApiService.fetchTrends().then(response => {
-    const result = response[4];
+function renderModalWindow(e) {
+    //   e.preventDefault();
 
-    renderModal(result);
-  });
+    newApiService.fetchTrends().then(response => {
+        const result = response[7];
 
-  toggleModal();
+        modalMarkup(result);
+        const popularity = document.querySelector('.popularity-js')
+        const closeButton = document.querySelector('.modal-close.js')
+        popularity.textContent = Math.round(popularity.textContent)
+ getGenres()
+        // const filmGenre = document.querySelectorAll('.genre-js');
+        // console.log(filmGenre)
+    });
+    
+    toggleModal();
 }
 
-function renderModal(obj) {
-  modal.insertAdjacentHTML('afterbegin', modalTemplate(obj));
+
+function modalMarkup(obj) {
+    modal.insertAdjacentHTML('afterbegin', modalTemplate(obj));
+
 }
 
 function onCloseButtonClick(e) {
-  toggleModal();
+    toggleModal();
+    
+    // modal.innerHTML = '';
   const poster = document.querySelector('.modal__poster-container');
   const data = document.querySelector('.modal__data-container');
 
@@ -37,7 +56,26 @@ function toggleModal() {
   backdrop.classList.toggle('is-hidden');
 }
 
-export default function bindModalToFilmsCard() {
-  const filmsCardLinks = [...filmCards.querySelectorAll('.js-film-link')];
-  filmsCardLinks.map(filmLink => filmLink.addEventListener('click', onFilmCardClick));
+
+async function getGenres() {
+    const genresList =  await newApiService.fetchGenresList();
+
+    //Заміняє ID на жанр
+    const filmGenre = document.querySelectorAll('.genre-js');
+  
+    const filmGenresArray = [...filmGenre];
+    console.log(filmGenresArray)
+    filmGenresArray.map(filmGenre => {
+        genresList.map(genreObject => {
+            if (Number(filmGenre.textContent) === genreObject.id) {
+                filmGenre.textContent = genreObject.name;
+            }
+        });
+    });
 }
+
+
+// export default function bindModalToFilmsCard() {
+//   const filmsCardLinks = [...filmCards.querySelectorAll('.js-film-link')];
+//   filmsCardLinks.map(filmLink => filmLink.addEventListener('click', onFilmCardClick));
+// }

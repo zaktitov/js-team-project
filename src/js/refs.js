@@ -15,4 +15,5 @@ export const refs = {
   backdrop: document.querySelector('.modal-overlay'),
   modal: document.querySelector('.modal-js'),
   closeBtn: document.querySelector('.modal-close-js'),
+  main: document.querySelector('.wrapper')
 };
