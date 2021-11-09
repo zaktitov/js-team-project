@@ -17,8 +17,7 @@ const notifications = new Notifications();
 const filmGenres = new FilmGenres();
 
 
-// import { } from './currentPage'
-import myCurrentPage from './currentPage'
+
 searchForm.addEventListener('submit', findFilmByWord);
 
 function findFilmByWord(e) {
