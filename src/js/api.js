@@ -27,6 +27,7 @@ function findFilmByWord(e) {
   newApiService.query = e.currentTarget.elements.query.value;
   filmCards.innerHTML = '';
   searchForm.reset();
+  pagination.reset(200);
 
   if (newApiService.query !== '') {
     newApiService.resetPage();
@@ -51,6 +52,9 @@ function findFilmById(e) {
 async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
+
+    pagination.setTotalItems(newApiService.results);
+
     if (newApiService.query === '') {
       notifications.showTrends();
     } else {
@@ -70,8 +74,11 @@ async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
 
+    pagination.setTotalItems(newApiService.results);
+
     if (filmsElements.length === 0) {
       error => console.log(error);
+      pagination.reset(0);
     }
   } catch {
     error => console.log(error);
@@ -91,7 +98,7 @@ function appendFilmCardsMarkup(films) {
 /* ----- PAGINATION ------ */
 
 const options = {
-  totalItems: 20000,
+  totalItems: 200,
   itemsPerPage: 20,
   visiblePages: 5,
   centerAlign: true,
@@ -105,7 +112,11 @@ const pagination = new Pagination('pagination', options);
 
 pagination.on('afterMove', function (eventData) {
   newApiService.page = eventData.page;
-  getFilmsByDefault();
+  if (newApiService.searchType === 'byName') {
+    fetchFilms();
+  } else {
+    getFilmsByDefault();
+  }
   filmCards.scrollIntoView({
     behavior: 'smooth',
     block: 'start',
