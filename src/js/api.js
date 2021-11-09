@@ -16,6 +16,9 @@ const newApiService = new NewApiService();
 const notifications = new Notifications();
 const filmGenres = new FilmGenres();
 
+
+// import { } from './currentPage'
+import myCurrentPage from './currentPage'
 searchForm.addEventListener('submit', findFilmByWord);
 
 function findFilmByWord(e) {
@@ -82,6 +85,7 @@ function appendFilmCardsMarkup(films) {
   getFilmFullYear();
   myCurrentPage(films);
   // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
+
 }
 
 /* ----- PAGINATION ------ */
