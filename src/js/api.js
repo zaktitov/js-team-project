@@ -73,7 +73,7 @@ async function fetchFilms() {
 
 function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
-  getGenres();
+  getFilmGenres();
   getFilmDate();
   bindModalToFilmsCard();
 }
@@ -104,10 +104,8 @@ pagination.on('afterMove', function (eventData) {
 
 /* ----- GENRES ------ */
 
-async function getGenres() {
+async function getFilmGenres() {
   const genresList = await newApiService.fetchGenresList();
-
-  //Заміняє ID на жанр
   const filmGenre = filmCards.querySelectorAll('.js-film-genre');
   const filmGenresArray = [...filmGenre];
   filmGenresArray.map(filmGenre => {
@@ -118,15 +116,28 @@ async function getGenres() {
     });
   });
 
-  // Обрізає жанри якщо їх більше як 2 (поки що не працює.....)
-
-  // const filmGenres = filmCards.querySelectorAll('.js-film-genres');
-  // const filmGenreArray = [...filmGenres];
-  // filmGenreArray.map(genreArr => {
-  //   if (genreArr.children.length > 2) {
-  //     [...genreArr.children].splice(0, 2);
-  //   }
-  // });
+  const filmGenres = filmCards.querySelectorAll('.js-film-genres');
+  const filmGenreArray = [...filmGenres];
+  filmGenreArray.map(genreArr => {
+    if (genreArr.children.length > 3) {
+      genreArr.children[2].textContent = 'Other';
+    }
+    if (genreArr.children.length === 4) {
+      genreArr.children[2].textContent = 'Other';
+      genreArr.children[3].textContent = '';
+    }
+    if (genreArr.children.length === 5) {
+      genreArr.children[2].textContent = 'Other';
+      genreArr.children[3].textContent = '';
+      genreArr.children[4].textContent = '';
+    }
+    if (genreArr.children.length === 6) {
+      genreArr.children[2].textContent = 'Other';
+      genreArr.children[3].textContent = '';
+      genreArr.children[4].textContent = '';
+      genreArr.children[5].textContent = '';
+    }
+  });
 }
 
 /* -------- YEAR -------- */

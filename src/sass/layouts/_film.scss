@@ -91,7 +91,7 @@
   max-height: 15px;
 }
 .film-descr-item:not(:last-child) {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 
@@ -100,11 +100,11 @@
 }
 
 .film-release::before {
-  content: "";
+  content: '';
   display: block;
   margin-right: 5px;
   width: 1px;
-  height: 100%;
+  height: 80%;
   background-color: #ff6b08;
 }
 .film-release {
@@ -114,6 +114,9 @@
 .film-genres {
   display: flex;
 }
+// .film-genre:not(:last-child)::after {
+//   content: ',';
+// }
 
 .film-vote {
   display: flex;
@@ -121,8 +124,9 @@
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-  min-width: 26px;
-  max-height: 12px;
+  min-width: 36px;
+  min-height: 16px;
+
   background: #ff6b01;
   border-radius: 5px;
 }
