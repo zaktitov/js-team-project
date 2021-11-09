@@ -1,21 +1,24 @@
 import filmCardsTpl from '../templates/film-template.hbs';
 import NewApiService from './apiClass';
-import { debounce, toNumber } from 'lodash';
+// import { debounce, throttle } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
-import bindModalToFilmsCard from './modal';
-
-const { input, filmCards, loadMore, searchForm } = refs;
-const newApiService = new NewApiService();
-const filmsElements = filmCards.children;
-const notifications = new Notifications();
-
+import getFilmFullYear from './film-full-year';
+import FilmGenres from './film-genres';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import myCurrentPage from './currentPage';
+
+const { input, filmCards, searchForm } = refs;
+const filmsElements = filmCards.children;
+
+const newApiService = new NewApiService();
+const notifications = new Notifications();
+const filmGenres = new FilmGenres();
+
 
 // import { } from './currentPage'
 import myCurrentPage from './currentPage'
-
 searchForm.addEventListener('submit', findFilmByWord);
 
 function findFilmByWord(e) {
@@ -31,7 +34,7 @@ function findFilmByWord(e) {
     notifications.showSuccess();
   } else {
     getFilmsByDefault();
-    // error => console.log(error);
+    notifications.showNotice();
   }
 }
 
@@ -77,11 +80,12 @@ async function fetchFilms() {
 
 function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
-  getFilmGenres();
-  getFilmDate();
-  myCurrentPage(films)
- 
-  // bindModalToFilmsCard();
+  filmGenres.getFilmGenres();
+  filmGenres.cutFilmGenres();
+  getFilmFullYear();
+  myCurrentPage(films);
+  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
+
 }
 
 /* ----- PAGINATION ------ */
@@ -107,52 +111,3 @@ pagination.on('afterMove', function (eventData) {
     block: 'start',
   });
 });
-
-/* ----- GENRES ------ */
-async function getFilmGenres() {
-  const genresList = await newApiService.fetchGenresList();
-  const filmGenre = filmCards.querySelectorAll('.js-film-genre');
-  const filmGenresArray = [...filmGenre];
-  filmGenresArray.map(filmGenre => {
-    genresList.map(genreObject => {
-      if (toNumber(filmGenre.textContent) === genreObject.id) {
-        filmGenre.textContent = genreObject.name;
-      }
-    });
-  });
-
-  const filmGenres = filmCards.querySelectorAll('.js-film-genres');
-  const filmGenreArray = [...filmGenres];
-  filmGenreArray.map(genreArr => {
-    if (genreArr.children.length > 3) {
-      genreArr.children[2].textContent = 'Other';
-    }
-    if (genreArr.children.length === 4) {
-      genreArr.children[2].textContent = 'Other';
-      genreArr.children[3].textContent = '';
-    }
-    if (genreArr.children.length === 5) {
-      genreArr.children[2].textContent = 'Other';
-      genreArr.children[3].textContent = '';
-      genreArr.children[4].textContent = '';
-    }
-    if (genreArr.children.length === 6) {
-      genreArr.children[2].textContent = 'Other';
-      genreArr.children[3].textContent = '';
-      genreArr.children[4].textContent = '';
-      genreArr.children[5].textContent = '';
-    }
-  });
-}
-
-/* -------- YEAR -------- */
-
-function getFilmDate() {
-  const filmFullDate = filmCards.querySelectorAll('.js-film-release');
-  const filmDateArray = [...filmFullDate];
-  filmDateArray.map(releaseDate => {
-    const myDate = new Date(releaseDate.textContent);
-    const year = myDate.getFullYear();
-    isNaN(year) ? (releaseDate.textContent = '') : (releaseDate.textContent = year);
-  });
-}
