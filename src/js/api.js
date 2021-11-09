@@ -12,6 +12,8 @@ const notifications = new Notifications();
 
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+
+import myCurrentPage from './currentPage'
 searchForm.addEventListener('submit', findFilmByWord);
 
 function findFilmByWord(e) {
@@ -75,6 +77,8 @@ function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
   getFilmGenres();
   getFilmDate();
+  myCurrentPage(films)
+  console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
   // bindModalToFilmsCard();
 }
 
