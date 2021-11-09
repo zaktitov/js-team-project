@@ -10,18 +10,28 @@ window.addEventListener('click', onFilmCardClick)
 closeBtn.addEventListener('click', onCloseButtonClick);
 
   function onFilmCardClick(e) {
+      const currentIndex = Number(e.target.id)
+      const [currentFilmList] = JSON.parse(localStorage.getItem('CurrentPageFilmList'))
+      currentFilmList.forEach (e => {
+          if (currentIndex === e.id) {
+                renderModalWindow(e)
+          }
+      })
+        
+     
       
-        if (e.target.nodeName === 'IMG') {
-         renderModalWindow()
-       }
+     
+    //   if (e.target.nodeName === 'IMG') {
+    //      renderModalWindow()
+    //    }
     }
 
 function renderModalWindow(e) {
-    //   e.preventDefault();
+        //   e.preventDefault();
 
-    newApiService.fetchTrends().then(response => {
-        const result = response[7];
-
+    //  newApiService.fetchTrends().then(response => {
+         const result = e
+    
         modalMarkup(result);
         const popularity = document.querySelector('.popularity-js')
         const closeButton = document.querySelector('.modal-close.js')
@@ -29,7 +39,7 @@ function renderModalWindow(e) {
  getGenres()
         // const filmGenre = document.querySelectorAll('.genre-js');
         // console.log(filmGenre)
-    });
+    
     
     toggleModal();
 }
@@ -64,7 +74,7 @@ async function getGenres() {
     const filmGenre = document.querySelectorAll('.genre-js');
   
     const filmGenresArray = [...filmGenre];
-    console.log(filmGenresArray)
+    // console.log(filmGenresArray)
     filmGenresArray.map(filmGenre => {
         genresList.map(genreObject => {
             if (Number(filmGenre.textContent) === genreObject.id) {

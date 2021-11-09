@@ -3,5 +3,9 @@ export default function myCurrentPage(film) {
     localStorage.setItem('CurrentPageFilmList', '')
     myCurrentPageFilmList.push(film)
     localStorage.setItem('CurrentPageFilmList', JSON.stringify(myCurrentPageFilmList))
-    //myStartPageFilmList = JSON.parse(localStorage.getItem('CurrentPageFilmList'))
- }
+   
+}
+
+
+//  let myStartPageFilmList = JSON.parse(localStorage.getItem('CurrentPageFilmList'))
+//  console.log(myStartPageFilmList)
