@@ -1,9 +1,10 @@
 .main-film-section {
   padding-top: 20px;
   padding-bottom: 40px;
+
   @media screen and (min-width: 768px) {
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 50px;
   }
 }
 
@@ -16,56 +17,138 @@
 
 .film-list-card {
   margin-bottom: 46px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: baseline;
+
 
   @media screen and (min-width: 768px) {
     display: grid;
-
-    // grid-template-columns: repeat(2, 1fr);
     grid-template: repeat(7, 440px) / repeat(2, 274px);
-    column-gap: 30px;
-    row-gap: 31px;
+    gap: 30px;
+    justify-content: center;
   }
+
   @media screen and (min-width: 1024px) {
-    // grid-template-columns: repeat(3, 1fr);
     grid-template: repeat(7, 440px) / repeat(3, 274px);
   }
 }
 
 .film-item {
-  &:not(:last-child) {
-    margin-bottom: 20px;
+  height: 100%;
+  
+  @media screen and (max-width: 767px) {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
   @media screen and (min-width: 768px) {
-    &:not(:last-child) {
-      margin-bottom: 0px;
-    }
     align-self: auto;
+    align-items: center;
     overflow: hidden;
-    // align-self: end;
+    background: url(https://media.giphy.com/media/TDXXa9DMTOGtBC4U81/giphy.gif);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: inherit;
   }
 }
 
 .img-wrap {
-  height: 396px;
+  max-height: 396px;
+  margin-bottom: 10px;
   overflow: hidden;
-  padding-bottom: 5px;
 }
-// .film-card {
 
-// }
-.film-image {
+:root {
+  --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  };
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
+}
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
   height: 100%;
-  background: url(https://i.imgur.com/NI2NcSe.gif);
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.film-image {
+  
   border-radius: 5px;
+
 }
+
 .film-content {
-  padding: 5px 0 0 0;
+  padding: 0;
 }
+
 .film-title {
-  margin-top: 0;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -74,41 +157,22 @@
   text-transform: uppercase;
   color: #000000;
 }
+
 .film-descr {
   display: flex;
+  flex-wrap: wrap;
 
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  padding-bottom: 5px;
 
   color: #ff6b08;
 }
 
-.film-genre{
-  max-height: 15px;
-}
 .film-descr-item:not(:last-child) {
   margin-right: 5px;
-}
-
-
-.film-genre:not(:last-child) {
-  margin-right: 5px;
-}
-
-.film-release::before {
-  content: '';
-  display: block;
-  margin-right: 5px;
-  width: 1px;
-  height: 80%;
-  background-color: #ff6b08;
-}
-.film-release {
-  display: flex;
 }
 
 .film-genres {
@@ -118,14 +182,33 @@
 //   content: ',';
 // }
 
+.film-genre {
+  max-height: 12px;
+  // &:not(:last-child) {
+  //   margin-right: 5px;
+  // }
+}
+
+.film-release {
+  display: flex;
+  
+  &::before {
+    content: '';
+    display: block;
+    margin-right: 5px;
+    width: 1px;
+    height: 80%;
+    background-color: #ff6b08;
+  }
+}
+
 .film-vote {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-  min-width: 36px;
-  min-height: 16px;
+  min-width: 30px;
 
   background: #ff6b01;
   border-radius: 5px;
@@ -136,7 +219,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.16;
+  line-height: 1.33;
 
   color: #ffffff;
   padding: 0;

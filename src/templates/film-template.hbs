@@ -1,16 +1,17 @@
 {{#each this}}
   <li class='film-item js-film-item list'>
     <a class='film-link js-film-link' href='#'>
+
       <div class='film-card js-film-card'>
         <div class="img-wrap">
           <picture class='film-picture js-film-picture'>
-          <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
-          <img
-            class='film-image js-film-image'
-            src='https://image.tmdb.org/t/p/w342{{poster_path}}'
-            alt='{{tagline}}'
-          />
-        </picture>
+            <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
+            <img
+              class='film-image js-film-image'
+              src='https://image.tmdb.org/t/p/w342{{poster_path}}'
+              alt='{{tagline}}'
+            />
+          </picture>
         </div>
         
 
@@ -48,9 +49,9 @@
               >{{vote_average}}</span>
             </li>
           </ul>
-
         </div>
       </div>
+      
     </a>
   </li>
 {{/each}}
