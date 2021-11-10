@@ -10,6 +10,18 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+body.dark {
+  background-color: #292c32;
+}
+
+body.dark h2 {
+  color: white;
+}
+
+body.dark footer p {
+  color: white;
+}
+
 *:before,
 *:after {
   -moz-box-sizing: border-box;
@@ -116,4 +128,3 @@ img {
   display: flex;
   flex-direction: column;
 }
-
