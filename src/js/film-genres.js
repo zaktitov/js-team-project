@@ -1,19 +1,21 @@
-import { toNumber } from 'lodash';
-import NewApiService from './apiClass';
 import { refs } from './refs.js';
-const { filmCards } = refs;
+import NewApiService from './apiClass';
+
 const newApiService = new NewApiService();
 
 export default class FilmGenres {
   constructor() {}
 
-  async getFilmGenres() {
-    const genresList = await newApiService.fetchGenresList();
-    const filmGenre = filmCards.querySelectorAll('.js-film-genre');
-    const filmGenresArray = [...filmGenre];
+  setFilmGenresList(genre) {
+    localStorage.setItem('filmGenresList', JSON.stringify(genre));
+  }
+
+  async getFilmGenresList(sectionName, className) {
+    const genresList = JSON.parse(localStorage.getItem('filmGenresList'));
+    const filmGenresArray = [...sectionName.querySelectorAll(className)];
     filmGenresArray.map(filmGenre => {
       genresList.map(genreObject => {
-        if (toNumber(filmGenre.textContent) === genreObject.id) {
+        if (Number(filmGenre.textContent) === genreObject.id) {
           filmGenre.textContent = genreObject.name;
         }
       });
@@ -21,8 +23,7 @@ export default class FilmGenres {
   }
 
   async cutFilmGenres() {
-    const filmGenres = filmCards.querySelectorAll('.js-film-genres');
-    const filmGenreArray = [...filmGenres];
+    const filmGenreArray = [...refs.filmCards.querySelectorAll('.js-film-genres')];
     filmGenreArray.map(genreArr => {
       if (genreArr.children.length > 3) {
         genreArr.children[2].textContent = 'Other';
