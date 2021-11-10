@@ -1,4 +1,4 @@
-const input = document.getElementById('checkbox');
+const checkbox = document.getElementById('checkbox');
 const body = document.querySelector('body');
 
 const currentTheme = {
@@ -6,10 +6,10 @@ const currentTheme = {
   LIGHT: 'light-theme',
 };
 
-input.addEventListener('change', changeTheme);
+checkbox.addEventListener('change', changeTheme);
 
 function changeTheme(e) {
-  if (input.checked) {
+  if (checkbox.checked) {
     body.classList.toggle('dark');
     localStorage.setItem('theme', currentTheme.DARK);
   } else {
@@ -19,6 +19,6 @@ function changeTheme(e) {
 }
 
 if (localStorage.getItem('theme') === currentTheme.DARK) {
-  input.checked = true;
+  checkbox.checked = true;
   body.classList.toggle('dark');
 }
