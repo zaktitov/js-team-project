@@ -15,5 +15,9 @@ export const refs = {
   backdrop: document.querySelector('.modal-overlay'),
   modal: document.querySelector('.modal-js'),
   closeBtn: document.querySelector('.modal-close-js'),
-  main: document.querySelector('.wrapper')
+  main: document.querySelector('.wrapper'),
+
+  homePageContainer: document.querySelector('.js-home-page-container'),
+  libraryPageContainer: document.querySelector('.js-library-container'),
+  libraryFilmCards: document.querySelector('.js-library-film-cards'),
 };
