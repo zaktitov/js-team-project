@@ -55,7 +55,7 @@ async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
-    // pagination.setTotalItems(newApiService.results);
+    pagination.setTotalItems(newApiService.results);
 
     if (newApiService.query === '') {
       notifications.showTrends();
