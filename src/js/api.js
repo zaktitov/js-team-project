@@ -20,13 +20,16 @@ const filmGenres = new FilmGenres();
 
 searchForm.addEventListener('submit', findFilmByWord);
 
+let formSubmitted = false;
+
 function findFilmByWord(e) {
   e.preventDefault();
 
   newApiService.query = e.currentTarget.elements.query.value;
   filmCards.innerHTML = '';
   searchForm.reset();
-  pagination.reset(200);
+
+  formSubmitted = true;
 
   if (newApiService.query !== '') {
     newApiService.resetPage();
@@ -52,7 +55,7 @@ async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
-    pagination.setTotalItems(newApiService.results);
+    // pagination.setTotalItems(newApiService.results);
 
     if (newApiService.query === '') {
       notifications.showTrends();
@@ -73,7 +76,11 @@ async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
 
-    pagination.setTotalItems(newApiService.results);
+
+    if (formSubmitted) {
+      pagination.reset(newApiService.results)
+    } 
+    formSubmitted = false;
 
     if (filmsElements.length === 0) {
       error => console.log(error);
@@ -97,7 +104,7 @@ function appendFilmCardsMarkup(films) {
 /* ----- PAGINATION ------ */
 
 const options = {
-  totalItems: 200,
+  totalItems: 20000,
   itemsPerPage: 20,
   visiblePages: 5,
   centerAlign: true,
