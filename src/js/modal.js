@@ -1,6 +1,7 @@
 import { refs } from './refs.js';
 import modalTemplate from '../templates/modal-template.hbs';
 import NewApiService from './apiClass';
+import addToLocalArray from './library'
 
 const newApiService = new NewApiService();
 
@@ -39,8 +40,8 @@ function renderModalWindow(e) {
  getGenres()
         // const filmGenre = document.querySelectorAll('.genre-js');
         // console.log(filmGenre)
-    
-    
+
+    addToLocalArray(result)
     toggleModal();
 }
 
