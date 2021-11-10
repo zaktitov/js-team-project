@@ -16,8 +16,6 @@ const newApiService = new NewApiService();
 const notifications = new Notifications();
 const filmGenres = new FilmGenres();
 
-
-
 searchForm.addEventListener('submit', findFilmByWord);
 
 let formSubmitted = false;
@@ -53,9 +51,10 @@ function findFilmById(e) {
 
 async function getFilmsByDefault() {
   try {
+    filmGenres.setFilmGenresList(await newApiService.fetchGenresList());
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
-    // pagination.setTotalItems(newApiService.results);
+    pagination.setTotalItems(newApiService.results);
 
     if (newApiService.query === '') {
       notifications.showTrends();
@@ -76,10 +75,9 @@ async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
 
-
     if (formSubmitted) {
-      pagination.reset(newApiService.results)
-    } 
+      pagination.reset(newApiService.results);
+    }
     formSubmitted = false;
 
     if (filmsElements.length === 0) {
@@ -91,14 +89,16 @@ async function fetchFilms() {
   }
 }
 
-function appendFilmCardsMarkup(films) {
+async function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenres();
+  filmGenres.getFilmGenresList(refs.filmCards, '.js-film-genre');
+
+  myCurrentPage(films);
+
   filmGenres.cutFilmGenres();
   getFilmFullYear();
-  myCurrentPage(films);
-  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 
+  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 }
 
 /* ----- PAGINATION ------ */
