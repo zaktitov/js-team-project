@@ -8,35 +8,24 @@
   }
 }
 
-
 .film-list-card {
   padding-bottom: 46px;
+  display: grid;
+  place-items: center;
+  grid-gap: 20px;
+
   @media screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 290px 290px;
-    grid-auto-rows: 439px auto;
-    // grid-gap: 30px;
-    // grid-template: repeat(7, 439px) / repeat(2, 293px);
-    column-gap: 30px;
-    row-gap: 31px;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
   }
   @media screen and (min-width: 1024px) {
-    grid-template-columns: 274px 274px 274px;
-    grid-auto-rows: 440px auto;
-    // grid-template: repeat(7, 440px) / repeat(3, 274px);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .film-item {
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
   @media screen and (min-width: 768px) {
-    &:not(:last-child) {
-      margin-bottom: 0px;
-    }
     align-self: auto;
-    // align-self: end;
   }
 }
 
@@ -44,17 +33,18 @@
   height: 100%;
   &:hover,
   &:focus {
+
     & .film-card {
-      
-      z-index: 0;
       position: relative;
+      transform: scale(0.93);
+      z-index: 0;
       box-shadow: 0px 0px 8px 7px rgba(255, 107, 1, 0.2),
       2px 2px 4px 7px rgba(255, 107, 1, 0.3);
 
       &::after {
         position: absolute;
         content: "";
-        top: 21px;
+        top: 21.5px;
         left: 0;
         right: 0;
         z-index: -1;
@@ -62,38 +52,60 @@
         width: 100%;
         margin: 0 auto;
         transform: scale(1.0, 1.1);
-        filter: drop-shadow(0px 0px 20px red);
-        background: linear-gradient(270deg, #ffb90865, #ff6b08b5),
-        linear-gradient(120deg, #f3ff085c, #ff7f086c);
+        filter: drop-shadow(0px 0px 20px rgba(255, 0, 0, 0.8));
+        background: linear-gradient(270deg, #98ff08ae, #ff6b08b5),
+        linear-gradient(120deg, #f3ff08b6, #ff7f089c);
         background-size: 200% 200%;
-        animation: animateGlow 900ms cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+        animation: animateGlow 900ms $animationTiming infinite; 
         @keyframes animateGlow {
           0%{background-position:0% 50%}
           50%{background-position:100% 50%}
           100%{background-position:0% 50%}
         }
       }
-        & .img-wrap {
-        border-radius: 5px 5px 1px 1px;
-        }
-    }
-    & .film-content {
-     background-color: rgba(255, 90, 1, 0.2);
 
-      & .film-descr {    
-       animation: textColor 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        @keyframes textColor {
-          0% {
-            color: #ff6b08;
-          }
-          50% {
-            color: #ffa70fe7;
-          }
-          100% {
-            color: #ffe30fd4;
-          }
+      & .img-wrap {
+        border-radius: 5px 5px 1px 1px;
+      }
+    }
+    
+    & .film-content {
+      height: 50px;
+      min-width: 278px;
+      padding: 10px 1px 2px 3px;
+      background-color: #ff6b0871;
+
+      & .film-title {
+        animation: textColor1 2000ms $animationTiming infinite;
+        @keyframes textColor1 {
+          0% {color: $placeHolderColor;; }
+          25% {color: #c92a06e7;}
+          50% {color: $mainTextColor;}
+          75% {color: #c92a06e7;} 
+          100% {color: $placeHolderColor;}
         }
       }
+      & .film-descr,
+      & .film-vote-span {  
+       animation: textColor 2000ms $animationTiming infinite;
+        @keyframes textColor {
+          0% {color: $secondaryAccentColor; }
+          25% {
+            color: #c92a06e7;
+            font-size: 12.5px;
+          }
+          50% {color: $mainTextColor;}
+          75% {color: #c92a06e7;} 
+          100% {
+            color: $secondaryAccentColor;
+            font-size: 12px;
+          }
+        }
+        & .film-vote {
+          background-color: $placeHolderColor;
+        }
+      }
+     
     }
    
   }
@@ -101,23 +113,23 @@
 
 .film-card {
   border-radius: 5px;
-  color: blue;
+  transition: transform 900ms $animationTiming;
 }
-
 .img-wrap {
-  min-height: 402px;
   overflow: hidden;
   border-radius: 5px;
   background: url(https://media.giphy.com/media/TDXXa9DMTOGtBC4U81/giphy.gif);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-
+  z-index: 0;
+  @media screen and (min-width: 320px) {
+    min-height: 402px;
+  }
   @media screen and (min-width: 768px) {
     min-height: 398px;
   }
 }
-
 
 .film-content {
   padding: 10px 0 1px 1px;
@@ -134,6 +146,7 @@
   line-height: 1.33;
   text-transform: uppercase;
   color: #000000;
+  transition: color $animation;
 }
 
 .film-descr {
@@ -146,6 +159,8 @@
   font-size: 12px;
   line-height: 1.33;
   color: #ff6b08;
+  transition: color $animation,
+  font-size $animation;
 }
 
 .film-release {
@@ -157,9 +172,10 @@
     width: 1px;
     height: 80%;
     background-color: #ff6b08;
+    transition: background-color $animation,
+    font-size $animation;
   }
 }
-
 .film-descr-item:not(:last-child) {
   margin-right: 5px;
 }
@@ -179,13 +195,14 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-
   min-width: 34px;
-  min-height: 16px;
+  max-height: 16px;
 
   text-transform: uppercase;
-  background: #ff6b01;
+  background-color: #ff6b01;
   border-radius: 5px;
+  transition: background-color $animation,
+  font-size $animation;
 }
 
 .film-vote-span {
@@ -197,75 +214,10 @@
   font-size: 12px;
   line-height: 1.16;
   color: #ffffff; 
+  transition: color $animation;
 }
 
 
-/*
-.main-film-section {
-  padding-top: 20px;
-  padding-bottom: 40px;
-  @media screen and (min-width: 768px) {
-    padding-top: 60px;
-    padding-bottom: 50px;
-  }
-}
-
-.list {
-  list-style: none;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-}
-
-.film-list-card {
-  @media screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: auto auto;
-    // grid-template: repeat(7, auto) / repeat(2, auto);
-    row-gap: 10px;
-    column-gap: 30px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    grid-template-columns: auto auto auto;
-    // grid-template: repeat(7, aut) / repeat(3, auto);
-  }
-}
-
-.film-item {
-  text-align: center;
-  padding: 10px 0;
-  @media screen and (max-width: 767px) {
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-  }
-  @media screen and (min-width: 768px) {
-    align-self: auto;
-    align-items: center;
-  }
-}
-
-.film-link {
-  height: 100%;
-}
-
-.img-wrap {
-  position: relative;
-  &::before {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    content: "";
-    background: url(https://media.giphy.com/media/TDXXa9DMTOGtBC4U81/giphy.gif);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-}
 // ===============================================
 // .boxes_styling {
 //   display: flex;
@@ -396,83 +348,3 @@
 // 100% {top: 0px; left: 0px; background: #5ddcff;}
 // }
 
-// ===========================================================
-
-
-.film-image {
-  border-radius: 5px;
-}
-
-.film-content {
-  padding: 10px 2px 2px 2px;
-}
-
-.film-title {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  text-transform: uppercase;
-  color: #000000;
-}
-
-.film-descr {
-  display: flex;
-  flex-wrap: wrap;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-
-  color: #ff6b08;
-}
-
-.film-descr-item:not(:last-child) {
-  margin-right: 5px;
-}
-
-.film-genres {
-  display: flex;
-}
-// .film-genre {
-//   max-height: 12px;
-// }
-
-.film-release {
-  display: flex;
-  &::before {
-    content: '';
-    display: block;
-    margin-right: 5px;
-    width: 1px;
-    height: 80%;
-    background-color: #ff6b08;
-  }
-}
-
-.film-vote {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  text-transform: uppercase;
-  min-width: 30px;
-
-  background: #ff6b01;
-  border-radius: 5px;
-}
-
-.film-vote-span {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-
-  color: #ffffff;
-  padding: 0;
-}
-*/
