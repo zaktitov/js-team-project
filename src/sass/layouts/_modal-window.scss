@@ -95,7 +95,7 @@
 
   &__table-element {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
   &__table-element:not(:last-child) {
     margin-bottom: 10px;
@@ -114,6 +114,7 @@
   }
 
   &__data-description {
+    flex-shrink: 15;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
