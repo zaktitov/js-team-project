@@ -1,4 +1,3 @@
-
 import { refs } from './refs.js';
 import modalTemplate from '../templates/modal-template.hbs';
 import NewApiService from './apiClass';
@@ -8,14 +7,14 @@ const newApiService = new NewApiService();
 const filmGenres = new FilmGenres();
 const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
 
-main.addEventListener('click', onFilmCardClick);
+filmCards.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
 
 function onFilmCardClick(e) {
-  // e.preventDefault();
+  e.preventDefault();
 
-  //         window.addEventListener('keydown', onEscClick);
-  // backdrop.addEventListener('click', onCloseButtonClick);
+  window.addEventListener('keydown', onEscClick);
+  backdrop.addEventListener('click', onBackdropClick);
   const currentIndex = Number(e.target.id);
   const [currentFilmList] = JSON.parse(localStorage.getItem('CurrentPageFilmList'));
   currentFilmList.forEach(e => {
@@ -23,21 +22,18 @@ function onFilmCardClick(e) {
       renderModalWindow(e);
     }
   });
-
 }
 
 function renderModalWindow(e) {
-  const result = e;
+  modalMarkup(e);
 
-
-    
-  modalMarkup(result);
-  
   const popularity = document.querySelector('.popularity-js');
-  popularity.textContent = Math.round(popularity.textContent);
+  const popularityValue = Number(popularity.textContent).toFixed(1);
+
+  popularity.textContent = popularityValue;
   filmGenres.getFilmGenresList(document, '.genre-js');
 
-  addToLocalArray(result);
+  addToLocalArray(e);
   toggleModal();
 }
 
@@ -47,12 +43,12 @@ function modalMarkup(obj) {
 
 function onCloseButtonClick(e) {
   toggleModal();
-  window.removeEventListener('keydown', onEscClick);
-  backdrop.removeEventListener('click', onCloseButtonClick);
   const poster = document.querySelector('.modal__poster-container');
   const data = document.querySelector('.modal__data-container');
   poster.remove();
   data.remove();
+  window.removeEventListener('keydown', onEscClick);
+  backdrop.removeEventListener('click', onBackdropClick);
 }
 
 function onEscClick(e) {
@@ -61,8 +57,13 @@ function onEscClick(e) {
   }
 }
 
+function onBackdropClick(e) {
+  if (e.target === backdrop) {
+    onCloseButtonClick();
+  }
+}
+
 function toggleModal() {
   body.classList.toggle('is-open');
   backdrop.classList.toggle('is-hidden');
 }
-
