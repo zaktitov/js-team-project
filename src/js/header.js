@@ -3,7 +3,7 @@ import filmCardsTpl from '../templates/film-template.hbs';
 import FilmGenres from './film-genres';
 import getFilmFullYear from './film-full-year';
 import myCurrentPage from './currentPage';
-import { getFilmsByDefault } from './api'
+import { getFilmsByDefault, pagination } from './api'
 
 const filmGenres = new FilmGenres();
 console.log(refs.libraryFilmCards)
@@ -15,8 +15,8 @@ refs.headerWatchedBtn.addEventListener('click', onHeaderWatchedBtnClick);
 refs.headerQueueBtn.addEventListener('click', onHeaderQueueBtnClick);
 
 
-function onChangeHomeLink() {
-  preventDefault()
+function onChangeHomeLink(e) {
+  e.preventDefault()
   refs.libraryLink.classList.remove('current');
   refs.homeLink.classList.add('current');
 
@@ -26,7 +26,9 @@ function onChangeHomeLink() {
   refs.header.classList.remove('header-library');
   refs.header.classList.add('header-home');
 
+  
   getFilmsByDefault();
+  pagination.reset()
 
   refs.homePageContainer.classList.remove('visually-hidden');
   refs.libraryPageContainer.classList.add('visually-hidden');
@@ -46,6 +48,7 @@ function onChangeLibraryLink(event) {
   console.log(refs.homePageContainer)
   refs.homePageContainer.classList.add('visually-hidden');
   refs.libraryPageContainer.classList.remove('visually-hidden');
+  refs.headerWatchedBtn.classList.remove('current');
   refs.headerQueueBtn.classList.add('current');
   const films = getMoviesFromStorage('queueList');
   appendFilmCardsMarkup(films);
@@ -71,7 +74,6 @@ function appendFilmCardsMarkup(films) {
   filmGenres.cutFilmGenres();
   getFilmFullYear();
   myCurrentPage(films);
-  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 }
 
 function getMoviesFromStorage(list) {

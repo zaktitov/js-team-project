@@ -14,7 +14,7 @@ const filmsElements = filmCards.children;
 
 const newApiService = new NewApiService();
 const notifications = new Notifications();
-const filmGenres = new FilmGenres();
+export const filmGenres = new FilmGenres();
 
 
 
@@ -56,7 +56,7 @@ export async function getFilmsByDefault() {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
     pagination.setTotalItems(newApiService.results);
-
+    newApiService.resetPage()
     if (newApiService.query === '') {
       notifications.showTrends();
     } else {
@@ -91,7 +91,7 @@ async function fetchFilms() {
   }
 }
 
-export function appendFilmCardsMarkup(films) {
+function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
   filmGenres.getFilmGenres();
   filmGenres.cutFilmGenres();
@@ -114,7 +114,7 @@ const options = {
   },
 };
 
-const pagination = new Pagination('pagination', options);
+export const pagination = new Pagination('pagination', options);
 
 pagination.on('afterMove', function (eventData) {
   newApiService.page = eventData.page;
