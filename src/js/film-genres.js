@@ -45,6 +45,13 @@ export default class FilmGenres {
         child[4].style.display = 'none';
         child[5].style.display = 'none';
       }
+      if (length === 7) {
+        child[2].textContent = 'Other';
+        child[3].style.display = 'none';
+        child[4].style.display = 'none';
+        child[5].style.display = 'none';
+        child[6].style.display = 'none';
+      }
 
       child.forEach(el => {
         if (el.textContent === 'Other') {
