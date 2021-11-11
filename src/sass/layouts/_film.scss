@@ -33,17 +33,15 @@
   height: 100%;
   &:hover,
   &:focus {
-
     & .film-card {
       position: relative;
       transform: scale(0.93);
       z-index: 0;
-      box-shadow: 0px 0px 8px 7px rgba(255, 107, 1, 0.2),
-      2px 2px 4px 7px rgba(255, 107, 1, 0.3);
+      box-shadow: 0px 0px 8px 7px rgba(255, 107, 1, 0.2), 2px 2px 4px 7px rgba(255, 107, 1, 0.3);
 
       &::after {
         position: absolute;
-        content: "";
+        content: '';
         top: 21.5px;
         left: 0;
         right: 0;
@@ -51,16 +49,22 @@
         height: 90.5%;
         width: 100%;
         margin: 0 auto;
-        transform: scale(1.0, 1.1);
+        transform: scale(1, 1.1);
         filter: drop-shadow(0px 0px 20px rgba(255, 0, 0, 0.8));
         background: linear-gradient(270deg, #98ff08ae, #ff6b08b5),
-        linear-gradient(120deg, #f3ff08b6, #ff7f089c);
+          linear-gradient(120deg, #f3ff08b6, #ff7f089c);
         background-size: 200% 200%;
-        animation: animateGlow 900ms $animationTiming infinite; 
+        animation: animateGlow 900ms $animationTiming infinite;
         @keyframes animateGlow {
-          0%{background-position:0% 50%}
-          50%{background-position:100% 50%}
-          100%{background-position:0% 50%}
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
       }
 
@@ -68,7 +72,7 @@
         border-radius: 5px 5px 1px 1px;
       }
     }
-    
+
     & .film-content {
       height: 50px;
       min-width: 278px;
@@ -78,24 +82,40 @@
       & .film-title {
         animation: textColor1 2000ms $animationTiming infinite;
         @keyframes textColor1 {
-          0% {color: $placeHolderColor;; }
-          25% {color: #c92a06e7;}
-          50% {color: $mainTextColor;}
-          75% {color: #c92a06e7;} 
-          100% {color: $placeHolderColor;}
+          0% {
+            color: $placeHolderColor;
+          }
+          25% {
+            color: #c92a06e7;
+          }
+          50% {
+            color: $mainTextColor;
+          }
+          75% {
+            color: #c92a06e7;
+          }
+          100% {
+            color: $placeHolderColor;
+          }
         }
       }
       & .film-descr,
-      & .film-vote-span {  
-       animation: textColor 2000ms $animationTiming infinite;
+      & .film-vote-span {
+        animation: textColor 2000ms $animationTiming infinite;
         @keyframes textColor {
-          0% {color: $secondaryAccentColor; }
+          0% {
+            color: $secondaryAccentColor;
+          }
           25% {
             color: #c92a06e7;
             font-size: 12.5px;
           }
-          50% {color: $mainTextColor;}
-          75% {color: #c92a06e7;} 
+          50% {
+            color: $mainTextColor;
+          }
+          75% {
+            color: #c92a06e7;
+          }
           100% {
             color: $secondaryAccentColor;
             font-size: 12px;
@@ -105,9 +125,7 @@
           background-color: $placeHolderColor;
         }
       }
-     
     }
-   
   }
 }
 
@@ -159,8 +177,7 @@
   font-size: 12px;
   line-height: 1.33;
   color: #ff6b08;
-  transition: color $animation,
-  font-size $animation;
+  transition: color $animation, font-size $animation;
 }
 
 .film-release {
@@ -172,8 +189,7 @@
     width: 1px;
     height: 80%;
     background-color: #ff6b08;
-    transition: background-color $animation,
-    font-size $animation;
+    transition: background-color $animation, font-size $animation;
   }
 }
 .film-descr-item:not(:last-child) {
@@ -183,10 +199,22 @@
 .film-genres {
   display: flex;
 }
+
 .film-genre {
   max-height: 15px;
+
   &:not(:last-child) {
     margin-right: 5px;
+
+    &::after {
+      content: ',';
+    }
+  }
+
+  &.other-hide {
+    &::after {
+      display: none;
+    }
   }
 }
 
@@ -201,8 +229,7 @@
   text-transform: uppercase;
   background-color: #ff6b01;
   border-radius: 5px;
-  transition: background-color $animation,
-  font-size $animation;
+  transition: background-color $animation, font-size $animation;
 }
 
 .film-vote-span {
@@ -213,10 +240,9 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16;
-  color: #ffffff; 
+  color: #ffffff;
   transition: color $animation;
 }
-
 
 // ===============================================
 // .boxes_styling {
@@ -245,7 +271,7 @@
 //     filter: blur($spread);
 //     background: linear-gradient(270deg, $colorA, $colorB);
 //     background-size: 200% 200%;
-//     animation: animateGlow $duration ease infinite; 
+//     animation: animateGlow $duration ease infinite;
 //     @keyframes animateGlow {
 //       0%{background-position:0% 50%}
 //       50%{background-position:100% 50%}
@@ -276,7 +302,6 @@
 //     }
 //   }
 // }
-
 
 //   $rotate: 136deg;
 //   $card-height: 274px;
@@ -347,4 +372,3 @@
 // 75%  {top: 10px; left: 0px; background: #5ddcff;}
 // 100% {top: 0px; left: 0px; background: #5ddcff;}
 // }
-

@@ -55,7 +55,7 @@ export async function getFilmsByDefault() {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
     pagination.setTotalItems(newApiService.results);
-    newApiService.resetPage()
+    newApiService.resetPage();
     if (newApiService.query === '') {
       notifications.showTrends();
     } else {
@@ -96,7 +96,7 @@ async function appendFilmCardsMarkup(films) {
   myCurrentPage(films);
 
   filmGenres.cutFilmGenres();
-  getFilmFullYear();
+  getFilmFullYear('.js-film-release');
 
   // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 }
