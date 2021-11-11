@@ -2,23 +2,20 @@ import Notifications from './pNotify';
 const notifications = new Notifications();
 
 export default function (data) {
-  const addToWatched = document.querySelector('.modal__watch-list');
-  const addToQueue = document.querySelector('.modal__queue-list');
+  const addToWatched = document.querySelector('.modal__watch-list')
+  const addToQueue = document.querySelector('.modal__queue-list')
 
-  let watchedList = JSON.parse(localStorage.getItem(`watchedList`)) || [];
-  let queueList = JSON.parse(localStorage.getItem(`queueList`)) || [];
+  let watchedList = JSON.parse(localStorage.getItem(`watchedList`)) || []
+  let queueList = JSON.parse(localStorage.getItem(`queueList`)) || []
 
-  let indexOfElWatched = 0;
-  let indexOfElQueue = 0;
+  let indexOfElWatched = 0
+  let indexOfElQueue = 0
 
-  const checkButton = function () {
+  function checkButton() {
     watchedList.forEach((element, i) => {
       if (element.id === data.id) {
         addToWatched.textContent = 'REMOVE FROM WATCHED';
         indexOfElWatched = i;
-        setTimeout(e => {
-          notifications.addToWatched();
-        }, 1000);
       }
     });
 
@@ -32,7 +29,7 @@ export default function (data) {
 
   checkButton();
 
-  const addToLocalStorageWatched = function () {
+  function addToLocalStorageWatched() {
     if (addToWatched.textContent === 'REMOVE FROM WATCHED') {
       watchedList.splice(indexOfElWatched, 1);
       localStorage.setItem(`watchedList`, JSON.stringify(watchedList));
@@ -43,32 +40,59 @@ export default function (data) {
       }, 1000);
 
       checkButton();
-    } else {
-      watchedList.push(data);
-      let watchedStr = JSON.stringify(watchedList);
-      localStorage.setItem(`watchedList`, watchedStr);
-      checkButton();
-    }
+    } else
+      if (addToQueue.textContent === 'ADD TO QUEUE') {
+        watchedList.push(data);
+        let watchedStr = JSON.stringify(watchedList);
+        localStorage.setItem(`watchedList`, watchedStr);
+        setTimeout(e => {
+          notifications.addToWatched();
+        }, 1000);
+
+        checkButton();
+      } else
+        {setTimeout(e => {
+          notifications.alreadyInQuequed();
+        }, 1000);
+}
+  
   };
 
-  const addToLocalStorageQueue = function () {
+  function addToLocalStorageQueue () {
     if (addToQueue.textContent === 'REMOVE FROM QUEUE') {
       queueList.splice(indexOfElQueue, 1);
       localStorage.setItem(`queueList`, JSON.stringify(queueList));
       addToQueue.textContent = 'ADD TO QUEUE';
+      setTimeout(e => {
+        notifications.removeFromQueque();
+      }, 1000);
 
       checkButton();
-    } else {
-      queueList.push(data);
-      let queueStr = JSON.stringify(queueList);
-      localStorage.setItem(`queueList`, queueStr);
-      checkButton();
-    }
+    } else 
+      if (addToWatched.textContent === 'ADD TO WATCHED') {
+        queueList.push(data);
+        let queueStr = JSON.stringify(queueList);
+        localStorage.setItem(`queueList`, queueStr);
+        setTimeout(e => {
+          notifications.addToQueque();
+        }, 1000);
+
+        checkButton();
+      }
+     else {
+        setTimeout(e => {
+          notifications.alreadyInWatched();
+        }, 1000);
+
+      }
   };
 
+  
   addToWatched.addEventListener(`click`, addToLocalStorageWatched);
   addToQueue.addEventListener('click', addToLocalStorageQueue);
 
-  console.log('watchedList:', watchedList);
-  console.log('queueList:', queueList);
+
+  // console.log('watchedList:', watchedList);
+  // console.log('queueList:', queueList);
+
 }

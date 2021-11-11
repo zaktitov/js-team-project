@@ -75,4 +75,55 @@ export default class Notifications {
       minHeight: 18,
     });
   }
+
+  addToQueque() {
+    success({
+      text: 'The film was added to quequed 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+  removeFromQueque() {
+    error({
+      text: 'The film was removed from quequed 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+  alreadyInWatched() {
+    error({
+      text: 'This film is already in your Watched Library 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+alreadyInQuequed() {
+    error({
+      text: 'This film is already in your Queued Library 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
 }
+
+
