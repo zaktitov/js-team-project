@@ -1,3 +1,4 @@
+
 import { refs } from './refs.js';
 import modalTemplate from '../templates/modal-template.hbs';
 import NewApiService from './apiClass';
@@ -7,9 +8,14 @@ const newApiService = new NewApiService();
 const filmGenres = new FilmGenres();
 const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
 
-window.addEventListener('click', onFilmCardClick);
+main.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
+
 function onFilmCardClick(e) {
+  // e.preventDefault();
+
+  //         window.addEventListener('keydown', onEscClick);
+  // backdrop.addEventListener('click', onCloseButtonClick);
   const currentIndex = Number(e.target.id);
   const [currentFilmList] = JSON.parse(localStorage.getItem('CurrentPageFilmList'));
   currentFilmList.forEach(e => {
@@ -18,20 +24,16 @@ function onFilmCardClick(e) {
     }
   });
 
-  //   if (e.target.nodeName === 'IMG') {
-  //      renderModalWindow()
-  //    }
 }
 
 function renderModalWindow(e) {
-  //   e.preventDefault();
-
-  //  newApiService.fetchTrends().then(response => {
   const result = e;
 
+
+    
   modalMarkup(result);
+  
   const popularity = document.querySelector('.popularity-js');
-  const closeButton = document.querySelector('.modal-close.js');
   popularity.textContent = Math.round(popularity.textContent);
   filmGenres.getFilmGenresList(document, '.genre-js');
 
@@ -45,16 +47,22 @@ function modalMarkup(obj) {
 
 function onCloseButtonClick(e) {
   toggleModal();
-
-  // modal.innerHTML = '';
+  window.removeEventListener('keydown', onEscClick);
+  backdrop.removeEventListener('click', onCloseButtonClick);
   const poster = document.querySelector('.modal__poster-container');
   const data = document.querySelector('.modal__data-container');
+  poster.remove();
+  data.remove();
+}
 
-  poster.innerHTML = '';
-  data.innerHTML = '';
+function onEscClick(e) {
+  if (e.code === 'Escape') {
+    onCloseButtonClick();
+  }
 }
 
 function toggleModal() {
   body.classList.toggle('is-open');
   backdrop.classList.toggle('is-hidden');
 }
+

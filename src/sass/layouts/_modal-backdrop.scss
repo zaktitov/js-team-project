@@ -1,4 +1,8 @@
+
 .backdrop {
+  @media screen and(max-width:768px) {
+    padding: 20px;
+  }
   position: fixed;
   top: 0;
   left: 0;
