@@ -10,6 +10,30 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+body.dark {
+  background-color: #292c32;
+}
+
+body.dark h2 {
+  color: white;
+}
+
+body.dark footer p {
+  color: white;
+}
+
+body.dark.tui-page-btn{
+  color: #292c32 !important;
+}
+
+
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 :focus,
 :active {
   outline: none;
@@ -107,4 +131,3 @@ img {
   display: flex;
   flex-direction: column;
 }
-

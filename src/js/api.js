@@ -1,20 +1,24 @@
 import filmCardsTpl from '../templates/film-template.hbs';
 import NewApiService from './apiClass';
-import { debounce, toNumber } from 'lodash';
+// import { debounce, throttle } from 'lodash';
 import { refs } from './refs.js';
 import Notifications from './pNotify';
-import bindModalToFilmsCard from './modal';
-
-const { input, filmCards, loadMore, searchForm } = refs;
-const newApiService = new NewApiService();
-const filmsElements = filmCards.children;
-const notifications = new Notifications();
-
+import getFilmFullYear from './film-full-year';
+import FilmGenres from './film-genres';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import myCurrentPage from './currentPage';
 
-import myCurrentPage from './currentPage'
+const { input, filmCards, searchForm } = refs;
+const filmsElements = filmCards.children;
+
+const newApiService = new NewApiService();
+const notifications = new Notifications();
+const filmGenres = new FilmGenres();
+
 searchForm.addEventListener('submit', findFilmByWord);
+
+let formSubmitted = false;
 
 function findFilmByWord(e) {
   e.preventDefault();
@@ -23,13 +27,15 @@ function findFilmByWord(e) {
   filmCards.innerHTML = '';
   searchForm.reset();
 
+  formSubmitted = true;
+
   if (newApiService.query !== '') {
     newApiService.resetPage();
     fetchFilms();
     notifications.showSuccess();
   } else {
     getFilmsByDefault();
-    // error => console.log(error);
+    notifications.showNotice();
   }
 }
 
@@ -45,7 +51,11 @@ function findFilmById(e) {
 
 async function getFilmsByDefault() {
   try {
+    filmGenres.setFilmGenresList(await newApiService.fetchGenresList());
     appendFilmCardsMarkup(await newApiService.fetchTrends());
+
+    pagination.setTotalItems(newApiService.results);
+
     if (newApiService.query === '') {
       notifications.showTrends();
     } else {
@@ -65,21 +75,30 @@ async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
 
+    if (formSubmitted) {
+      pagination.reset(newApiService.results);
+    }
+    formSubmitted = false;
+
     if (filmsElements.length === 0) {
       error => console.log(error);
+      pagination.reset(0);
     }
   } catch {
     error => console.log(error);
   }
 }
 
-function appendFilmCardsMarkup(films) {
+async function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
-  getFilmGenres();
-  getFilmDate();
-  myCurrentPage(films)
-  console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
-  // bindModalToFilmsCard();
+  filmGenres.getFilmGenresList(refs.filmCards, '.js-film-genre');
+
+  myCurrentPage(films);
+
+  filmGenres.cutFilmGenres();
+  getFilmFullYear();
+
+  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 }
 
 /* ----- PAGINATION ------ */
@@ -90,8 +109,21 @@ const options = {
   visiblePages: 5,
   centerAlign: true,
   template: {
+    page: '<a href="#" class="tui-page-btn" style="color:#ff6b01;  broder:1px solid transparent; border-radius:5px; width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">{{page}}</a>',
     currentPage:
-      '<strong class="tui-page-btn tui-is-selected" style="background-color: #ff6b01; border-radius: 5px;">{{page}}</strong>',
+      '<strong class="tui-page-btn tui-is-selected" style="background-color: #ff6b01; broder:1px solid transparent;border-radius: 5px; font-size: 12px; width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}"style="background-color:#F7F7F7; border-radius:5px; border:none;width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">' +
+      '<span class="tui-ico-{{type}}" style="background-color:#F7F7F7; border:none">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}" style="background-color:#F7F7F7; border-radius:5px; width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">' +
+      '<span class="tui-ico-{{type}}" style="color:#F7F7F7; border:none">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}" style="border-radius:5px;color:black;width:40px; height:40px; display:none; align-items:center; justify-content:center;">' +
+      '<span class="tui-ico-ellip" style="border:none;">...</span>' +
+      '</a>',
   },
 };
 
@@ -99,58 +131,13 @@ const pagination = new Pagination('pagination', options);
 
 pagination.on('afterMove', function (eventData) {
   newApiService.page = eventData.page;
-  getFilmsByDefault();
+  if (newApiService.searchType === 'byName') {
+    fetchFilms();
+  } else {
+    getFilmsByDefault();
+  }
   filmCards.scrollIntoView({
     behavior: 'smooth',
     block: 'start',
   });
 });
-
-/* ----- GENRES ------ */
-async function getFilmGenres() {
-  const genresList = await newApiService.fetchGenresList();
-  const filmGenre = filmCards.querySelectorAll('.js-film-genre');
-  const filmGenresArray = [...filmGenre];
-  filmGenresArray.map(filmGenre => {
-    genresList.map(genreObject => {
-      if (toNumber(filmGenre.textContent) === genreObject.id) {
-        filmGenre.textContent = genreObject.name;
-      }
-    });
-  });
-
-  const filmGenres = filmCards.querySelectorAll('.js-film-genres');
-  const filmGenreArray = [...filmGenres];
-  filmGenreArray.map(genreArr => {
-    if (genreArr.children.length > 3) {
-      genreArr.children[2].textContent = 'Other';
-    }
-    if (genreArr.children.length === 4) {
-      genreArr.children[2].textContent = 'Other';
-      genreArr.children[3].textContent = '';
-    }
-    if (genreArr.children.length === 5) {
-      genreArr.children[2].textContent = 'Other';
-      genreArr.children[3].textContent = '';
-      genreArr.children[4].textContent = '';
-    }
-    if (genreArr.children.length === 6) {
-      genreArr.children[2].textContent = 'Other';
-      genreArr.children[3].textContent = '';
-      genreArr.children[4].textContent = '';
-      genreArr.children[5].textContent = '';
-    }
-  });
-}
-
-/* -------- YEAR -------- */
-
-function getFilmDate() {
-  const filmFullDate = filmCards.querySelectorAll('.js-film-release');
-  const filmDateArray = [...filmFullDate];
-  filmDateArray.map(releaseDate => {
-    const myDate = new Date(releaseDate.textContent);
-    const year = myDate.getFullYear();
-    isNaN(year) ? (releaseDate.textContent = '') : (releaseDate.textContent = year);
-  });
-}
