@@ -11,6 +11,9 @@ export const refs = {
   headerInput: document.querySelector('.js-input-wrapper'),
   libraryLink: document.querySelector('.js-link-library'),
   headerBtn: document.querySelector('.js-button-wrapper'),
+  logoLink: document.querySelector('.js-logo-link'),
+  headerQueueBtn: document.querySelector('.js-header-queue-btn'),
+  headerWatchedBtn: document.querySelector('.js-header-watched-btn'),
 
   backdrop: document.querySelector('.modal-overlay'),
   modal: document.querySelector('.modal-js'),

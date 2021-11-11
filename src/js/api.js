@@ -51,7 +51,7 @@ function findFilmById(e) {
   }
 }
 
-async function getFilmsByDefault() {
+export async function getFilmsByDefault() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
@@ -91,7 +91,7 @@ async function fetchFilms() {
   }
 }
 
-function appendFilmCardsMarkup(films) {
+export function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
   filmGenres.getFilmGenres();
   filmGenres.cutFilmGenres();
