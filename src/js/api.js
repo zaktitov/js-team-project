@@ -14,7 +14,7 @@ const filmsElements = filmCards.children;
 
 const newApiService = new NewApiService();
 const notifications = new Notifications();
-const filmGenres = new FilmGenres();
+export const filmGenres = new FilmGenres();
 
 searchForm.addEventListener('submit', findFilmByWord);
 
@@ -49,13 +49,13 @@ function findFilmById(e) {
   }
 }
 
-async function getFilmsByDefault() {
+export async function getFilmsByDefault() {
   try {
     filmGenres.setFilmGenresList(await newApiService.fetchGenresList());
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
     pagination.setTotalItems(newApiService.results);
-
+    newApiService.resetPage()
     if (newApiService.query === '') {
       notifications.showTrends();
     } else {
@@ -127,7 +127,7 @@ const options = {
   },
 };
 
-const pagination = new Pagination('pagination', options);
+export const pagination = new Pagination('pagination', options);
 
 pagination.on('afterMove', function (eventData) {
   newApiService.page = eventData.page;
