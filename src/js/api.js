@@ -16,8 +16,6 @@ const newApiService = new NewApiService();
 const notifications = new Notifications();
 export const filmGenres = new FilmGenres();
 
-
-
 searchForm.addEventListener('submit', findFilmByWord);
 
 let formSubmitted = false;
@@ -53,6 +51,7 @@ function findFilmById(e) {
 
 export async function getFilmsByDefault() {
   try {
+    filmGenres.setFilmGenresList(await newApiService.fetchGenresList());
     appendFilmCardsMarkup(await newApiService.fetchTrends());
 
     pagination.setTotalItems(newApiService.results);
@@ -76,10 +75,9 @@ async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
 
-
     if (formSubmitted) {
-      pagination.reset(newApiService.results)
-    } 
+      pagination.reset(newApiService.results);
+    }
     formSubmitted = false;
 
     if (filmsElements.length === 0) {
@@ -91,14 +89,16 @@ async function fetchFilms() {
   }
 }
 
-function appendFilmCardsMarkup(films) {
+async function appendFilmCardsMarkup(films) {
   filmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenres();
+  filmGenres.getFilmGenresList(refs.filmCards, '.js-film-genre');
+
+  myCurrentPage(films);
+
   filmGenres.cutFilmGenres();
   getFilmFullYear();
-  myCurrentPage(films);
-  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 
+  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
 }
 
 /* ----- PAGINATION ------ */
@@ -109,8 +109,21 @@ const options = {
   visiblePages: 5,
   centerAlign: true,
   template: {
+    page: '<a href="#" class="tui-page-btn" style="color:#ff6b01;  border:1px solid transparent; border-radius:5px; width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">{{page}}</a>',
     currentPage:
-      '<strong class="tui-page-btn tui-is-selected" style="background-color: #ff6b01; border-radius: 5px;">{{page}}</strong>',
+      '<strong class="tui-page-btn tui-is-selected" style="background-color: #ff6b01; border:1px solid transparent;border-radius: 5px; font-size: 12px; width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}"style="background-color:#F7F7F7; border-radius:5px; border:none;width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;">' +
+      '<span class="tui-ico-{{type}}" style="background-color:#F7F7F7; border:none">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}" style="background-color:#F7F7F7; border-radius:5px; width:40px; height:40px;display:inline-flex; align-items:center; justify-content:center;">' +
+      '<span class="tui-ico-{{type}}" style= border:none">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}" style="border-radius:5px;color:black;width:40px; height:40px; display:none;">' +
+      '<span class="tui-ico-ellip" style="border:none;">...</span>' +
+      '</a>',
   },
 };
 

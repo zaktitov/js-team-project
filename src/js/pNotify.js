@@ -1,4 +1,4 @@
-import { notice, error, success } from '@pnotify/core';
+import { notice, error, success, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
@@ -13,39 +13,117 @@ export default class Notifications {
       animateSpeed: 'fast',
       shadow: true,
       closer: true,
+      minHeight: 18,
     });
   }
 
   showError() {
     error({
-      text: 'Oops, something wrong!',
+      text: 'Oops, something wrong ❌!',
       hide: true,
       delay: 1000,
       animateSpeed: 'slow',
       closer: true,
+      minHeight: 25,
     });
   }
 
   showSuccess() {
     success({
-      text: 'Found awesome films for you 🎞️',
+      text: 'The films have been found 😃',
       delay: 1000,
       hide: true,
       animateSpeed: 'slow',
       closer: true,
       width: '280px',
+      minHeight: 18,
     });
   }
 
   showTrends() {
-    success({
+    info({
       text: 'Trends for today 🍿',
       delay: 1000,
       hide: true,
       animateSpeed: 'slow',
       closer: true,
-      width:"210px"
-      
+      width: '210px',
+      minHeight: 18,
     });
   }
+
+  addToWatched() {
+    success({
+      text: 'The film was added to watched 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+  removeFromwatched() {
+    error({
+      text: 'The film was removed from watched 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+  addToQueque() {
+    success({
+      text: 'The film was added to quequed 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+  removeFromQueque() {
+    error({
+      text: 'The film was removed from quequed 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+  alreadyInWatched() {
+    error({
+      text: 'This film is already in your Watched Library 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
+alreadyInQuequed() {
+    error({
+      text: 'This film is already in your Queued Library 📽️',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '250px',
+      minHeight: 18,
+    });
+  }
+
 }
+
+
