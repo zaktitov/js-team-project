@@ -25,7 +25,7 @@ body.dark {
   background-color: #292c32;
 }
 
-body.dark + h2 {
+body.dark h2 {
   color: #ffffff;
 }
 
