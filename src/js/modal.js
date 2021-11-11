@@ -9,7 +9,6 @@ const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
 
 window.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
-
 function onFilmCardClick(e) {
   const currentIndex = Number(e.target.id);
   const [currentFilmList] = JSON.parse(localStorage.getItem('CurrentPageFilmList'));
