@@ -8,24 +8,24 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  transition: background-color $animation;
+}
+
+body.light {
+  background-color: $mainBackgroundColor;
 }
 
 body.dark {
-  background-color: #292c32;
+  background-color: $darkThemeColor;
 }
 
-body.dark h2 {
-  color: white;
+body.dark + h2 {
+  color: $secondaryTextColor;
 }
 
 body.dark footer p {
-  color: white;
+  color: $secondaryTextColor;
 }
-
-body.dark.tui-page-btn{
-  color: #292c32 !important;
-}
-
 
 *:before,
 *:after {
