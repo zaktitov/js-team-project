@@ -36,7 +36,7 @@ export default function (data) {
       addToWatched.textContent = 'ADD TO WATCHED';
 
       setTimeout(e => {
-        notifications.removeFromwatched();
+        notifications.removeFromWatched();
       }, 1000);
 
       checkButton();
@@ -52,7 +52,7 @@ export default function (data) {
         checkButton();
       } else
         {setTimeout(e => {
-          notifications.alreadyInQuequed();
+          notifications.alreadyInQueued();
         }, 1000);
 }
   
@@ -64,7 +64,7 @@ export default function (data) {
       localStorage.setItem(`queueList`, JSON.stringify(queueList));
       addToQueue.textContent = 'ADD TO QUEUE';
       setTimeout(e => {
-        notifications.removeFromQueque();
+        notifications.removeFromQueue();
       }, 1000);
 
       checkButton();
@@ -74,7 +74,7 @@ export default function (data) {
         let queueStr = JSON.stringify(queueList);
         localStorage.setItem(`queueList`, queueStr);
         setTimeout(e => {
-          notifications.addToQueque();
+          notifications.addToQueue();
         }, 1000);
 
         checkButton();

@@ -64,7 +64,7 @@ export default class Notifications {
     });
   }
 
-  removeFromwatched() {
+  removeFromWatched() {
     error({
       text: 'The film was removed from watched 📽️',
       delay: 1000,
@@ -76,9 +76,9 @@ export default class Notifications {
     });
   }
 
-  addToQueque() {
+  addToQueue() {
     success({
-      text: 'The film was added to quequed 📽️',
+      text: 'The film was added to queue 📽️',
       delay: 1000,
       hide: true,
       animateSpeed: 'slow',
@@ -88,9 +88,9 @@ export default class Notifications {
     });
   }
 
-  removeFromQueque() {
+  removeFromQueue() {
     error({
-      text: 'The film was removed from quequed 📽️',
+      text: 'The film was removed from queue📽️',
       delay: 1000,
       hide: true,
       animateSpeed: 'slow',
@@ -112,7 +112,7 @@ export default class Notifications {
     });
   }
 
-alreadyInQuequed() {
+alreadyInQueued() {
     error({
       text: 'This film is already in your Queued Library 📽️',
       delay: 1000,

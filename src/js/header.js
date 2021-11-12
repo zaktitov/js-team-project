@@ -70,8 +70,10 @@ function onHeaderQueueBtnClick() {
 
 async function appendFilmCardsMarkup(films) {
   refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
 
+  filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
+  // filmGenres.cutFilmGenres();
+  // getFilmFullYear();
   myCurrentPage(films);
 
   filmGenres.cutFilmGenres();
