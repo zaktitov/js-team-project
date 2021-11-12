@@ -1,7 +1,8 @@
-.tui-pagination {
-  margin: 0;
-}
 
+.pagination_control-space {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 @media screen and (max-width: 768px) {
   .tui-prev-is-ellip {
     display: none !important;
