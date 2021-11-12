@@ -145,9 +145,6 @@
       @media screen and (min-width: $small) {
         min-width: 100%; 
       }
-          
-    
-      
       & .film-title {
         animation: textColor1 1800ms $animationTiming infinite;
         @keyframes textColor1 {
