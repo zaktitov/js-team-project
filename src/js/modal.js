@@ -7,10 +7,12 @@ import watchTrailer from './trailerFilm';
 
 const newApiService = new NewApiService();
 const filmGenres = new FilmGenres();
-const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
+const { filmCards, body, backdrop, modal, closeBtn, homeLink, main, libraryFilmCards } = refs;
 
 filmCards.addEventListener('click', onFilmCardClick);
+libraryFilmCards.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
+
 
 function onFilmCardClick(e) {
   e.preventDefault();
