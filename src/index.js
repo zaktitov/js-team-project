@@ -7,4 +7,5 @@ import './js/modal.js';
 import './js/currentPage';
 import './js/themeSwitcher';
 import './js/library';
-import "./js/preload"
+import './js/preload';
+import './js/scroll-btn';

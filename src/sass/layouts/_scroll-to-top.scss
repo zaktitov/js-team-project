@@ -1,0 +1,29 @@
+.scroll-btn {
+  border-radius: 5px;
+  font-size: 2rem;
+  background-color: transparent;
+  border: 1px solid $mainTextColor;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 900ms ease;
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+    background: linear-gradient(260deg, #ff0808aa, #ff6b08b5),
+      linear-gradient(120deg, #f3ff089b, #ff7f08ac);
+    color: white;
+  }
+}
+
+.show-scroll-btn {
+  transform: translateY(0);
+  opacity: 1;
+}
