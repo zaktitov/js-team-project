@@ -6,7 +6,6 @@ import myCurrentPage from './currentPage';
 import { getFilmsByDefault, pagination } from './api'
 
 const filmGenres = new FilmGenres();
-console.log(refs.libraryFilmCards)
 
 refs.homeLink.addEventListener('click', onChangeHomeLink);
 refs.libraryLink.addEventListener('click', onChangeLibraryLink);
@@ -28,7 +27,7 @@ function onChangeHomeLink(e) {
 
   
   getFilmsByDefault();
-  pagination.reset()
+  pagination.reset();
 
   refs.homePageContainer.classList.remove('visually-hidden');
   refs.libraryPageContainer.classList.add('visually-hidden');
@@ -68,12 +67,17 @@ function onHeaderQueueBtnClick() {
   appendFilmCardsMarkup(films);
 }
 
-function appendFilmCardsMarkup(films) {
+
+async function appendFilmCardsMarkup(films) {
   refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenresList(refs.filmCards, '.js-film-genre');
+
+  filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
   // filmGenres.cutFilmGenres();
   // getFilmFullYear();
   myCurrentPage(films);
+
+  filmGenres.cutFilmGenres();
+  getFilmFullYear('.js-film-release');
 }
 
 function getMoviesFromStorage(list) {
