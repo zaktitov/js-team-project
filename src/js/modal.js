@@ -3,12 +3,16 @@ import modalTemplate from '../templates/modal-template.hbs';
 import NewApiService from './apiClass';
 import addToLocalArray from './library';
 import FilmGenres from './film-genres';
+import watchTrailer from './trailerFilm';
+
 const newApiService = new NewApiService();
 const filmGenres = new FilmGenres();
-const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
+const { filmCards, body, backdrop, modal, closeBtn, homeLink, main, libraryFilmCards } = refs;
 
 filmCards.addEventListener('click', onFilmCardClick);
+libraryFilmCards.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
+
 
 function onFilmCardClick(e) {
   e.preventDefault();
@@ -22,6 +26,10 @@ function onFilmCardClick(e) {
       renderModalWindow(e);
     }
   });
+
+  //trailer
+  const trailerBtn = document.querySelector('.js-trailer-btn');
+  trailerBtn.addEventListener('click', getFilmTrailer);
 }
 
 function renderModalWindow(e) {
@@ -66,4 +74,10 @@ function onBackdropClick(e) {
 function toggleModal() {
   body.classList.toggle('is-open');
   backdrop.classList.toggle('is-hidden');
+}
+
+function getFilmTrailer(event) {
+  const id = event.target.dataset.id;
+  const name = event.target.dataset.name;
+  new watchTrailer(id, name).showTrailer();
 }

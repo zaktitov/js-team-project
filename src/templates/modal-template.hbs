@@ -37,12 +37,21 @@
  --}}
 
 <div class='modal__poster-container'>
-    <picture>
-        <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
-        <img class='modal__poster' src='https://image.tmdb.org/t/p/w342{{poster_path}}' alt='poster'/>
-    </picture>
-   
+  <picture>
+    <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
+    <img class='modal__poster' src='https://image.tmdb.org/t/p/w342{{poster_path}}' alt='poster' />
+  </picture>
+
+  <div class='modal__trailer-wrapper'>
+    <button
+      class='modal__trailer-btn js-trailer-btn'
+      type='button'
+      data-id='{{id}}'
+      data-name='{{original_title}}'
+    >
+    </button>
   </div>
+</div>
 <div class='modal__data-container'>
   {{#if title}}
     <h1 class='modal__main-title'>{{title}}</h1>

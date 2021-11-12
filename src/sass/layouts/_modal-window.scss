@@ -56,7 +56,6 @@
     @media screen and(max-width:767px) {
       min-width: 240px;
       min-height: 357px;
-      margin-bottom: 30px;
     }
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       min-width: 264px;
@@ -91,6 +90,7 @@
 
   &__data-container {
     // display: flex;
+    margin-top: 30px;
   }
 
   &__table-element {

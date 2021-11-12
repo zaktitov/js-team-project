@@ -79,16 +79,12 @@ async function fetchFilms() {
   }
 }
 
-async function appendFilmCardsMarkup(films) {
-  filmCards.innerHTML = filmCardsTpl(films);
+function appendFilmCardsMarkup(films) {
+  refs.filmCards.innerHTML = filmCardsTpl(films);
   filmGenres.getFilmGenresList(refs.filmCards, '.js-film-genre');
-
   myCurrentPage(films);
-
-  filmGenres.cutFilmGenres();
-  getFilmFullYear('.js-film-release');
-
-  // console.log(JSON.parse(localStorage.getItem('CurrentPageFilmList')))
+  filmGenres.cutFilmGenres(refs.filmCards);
+  getFilmFullYear(refs.filmCards, '.js-film-release');
 }
 
 /* ----- PAGINATION ------ */
