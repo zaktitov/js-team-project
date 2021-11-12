@@ -39,16 +39,6 @@ function findFilmByWord(e) {
   }
 }
 
-function findFilmById(e) {
-  newApiService.filmId = e.target.value;
-
-  if (newApiService.filmId !== '') {
-    newApiService.fetchFullInfo().catch(error => {
-      console.log(error);
-    });
-  }
-}
-
 export async function getFilmsByDefault() {
   try {
     filmGenres.setFilmGenresList(await newApiService.fetchGenresList());
