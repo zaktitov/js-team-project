@@ -70,9 +70,9 @@ function onHeaderQueueBtnClick() {
 
 function appendFilmCardsMarkup(films) {
   refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenres();
-  filmGenres.cutFilmGenres();
-  getFilmFullYear();
+  filmGenres.getFilmGenresList(refs.filmCards, '.js-film-genre');
+  // filmGenres.cutFilmGenres();
+  // getFilmFullYear();
   myCurrentPage(films);
 }
 
