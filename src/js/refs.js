@@ -11,9 +11,16 @@ export const refs = {
   headerInput: document.querySelector('.js-input-wrapper'),
   libraryLink: document.querySelector('.js-link-library'),
   headerBtn: document.querySelector('.js-button-wrapper'),
+  logoLink: document.querySelector('.js-logo-link'),
+  headerQueueBtn: document.querySelector('.js-header-queue-btn'),
+  headerWatchedBtn: document.querySelector('.js-header-watched-btn'),
 
   backdrop: document.querySelector('.modal-overlay'),
   modal: document.querySelector('.modal-js'),
   closeBtn: document.querySelector('.modal-close-js'),
-  main: document.querySelector('.wrapper')
+  main: document.querySelector('.wrapper'),
+
+  homePageContainer: document.querySelector('.js-home-page-container'),
+  libraryPageContainer: document.querySelector('.js-library-container'),
+  libraryFilmCards: document.querySelector('.js-library-film-cards'),
 };

@@ -1,6 +1,4 @@
-<div>
-    
-</div>
+{{!-- 
 
     <div class="modal__poster-container"><img class="modal__poster" src='https://image.tmdb.org/t/p/w342{{poster_path}}'
             alt='poster' /></div>
@@ -33,7 +31,63 @@
         </table>
         <h2 class="modal__annotation-title">About</h2>
         <p class="modal__annotation-description">{{overview}}</p>
-        <div class="modal__buttons-container"><button type="button" class="modal__watch-list">Add to watched</button><button
-                type="button" class="modal__queue-list">Add to queue</button></div>
+        <div class="modal__buttons-container"><button type="button" class="modal__watch-list">ADD TO WATCHED</button><button
+                type="button" class="modal__queue-list">ADD TO QUEUE</button></div>
+    </div>
+ --}}
+
+<div class='modal__poster-container'>
+    <picture>
+        <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
+        <img class='modal__poster' src='https://image.tmdb.org/t/p/w342{{poster_path}}' alt='poster'/>
+    </picture>
+   
+  </div>
+<div class='modal__data-container'>
+  {{#if title}}
+    <h1 class='modal__main-title'>{{title}}</h1>
+  {{else}}
+    {{#if name}}
+      <h1 class='modal__main-title'>{{name}}</h1>
+    {{/if}}
+  {{/if}}
+
+  <ul class='modal__table'>
+    <div class='modal__table-element'>
+      <li class='modal__data-title'>Vote&nbsp;/&nbsp;Votes</li>
+      <li><span
+          class='modal__data-description modal__data-description--average'
+        >{{vote_average}}</span>
+        /
+        <span
+          class='modal__data-description modal__data-description--count'
+        >{{vote_count}}</span></li>
+    </div>
+    <div class='modal__table-element'>
+      <li class='modal__data-title'>Popularity</li>
+      <li class='modal__data-description popularity-js'>{{popularity}}</li>
+    </div>
+    <div class='modal__table-element'>
+      <li class='modal__data-title'>Original Title</li>
+      {{#if original_title}}
+        <li class='modal__data-description modal__data-description--title'>{{original_title}}</li>
+      {{else}}
+        {{#if original_name}}
+          <li class='modal__data-description modal__data-description--title'>{{original_name}}</li>
+        {{/if}}
+      {{/if}}
+    </div>
+    <div class='modal__table-element'>
+      <li class='modal__data-title'>Genre</li>
+      {{#each genre_ids}}
+        <li class='modal__data-description modal__data-description--genre genre-js'>{{this}}</li>
+      {{/each}}
     </div>
 
+  </ul>
+  <h2 class='modal__annotation-title'>About</h2>
+  <p class='modal__annotation-description'>{{overview}}</p>
+  <div class='modal__buttons-container'><button type='button' class='modal__watch-list'>ADD TO
+      WATCHED</button><button type='button' class='modal__queue-list'>ADD TO QUEUE</button></div>
+
+</div>

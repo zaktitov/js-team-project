@@ -1,7 +1,4 @@
 import { refs } from './refs.js';
-import NewApiService from './apiClass';
-
-const newApiService = new NewApiService();
 
 export default class FilmGenres {
   constructor() {}
@@ -10,39 +7,57 @@ export default class FilmGenres {
     localStorage.setItem('filmGenresList', JSON.stringify(genre));
   }
 
-  async getFilmGenresList(sectionName, className) {
+  async getFilmGenresList(section, className) {
     const genresList = JSON.parse(localStorage.getItem('filmGenresList'));
-    const filmGenresArray = [...sectionName.querySelectorAll(className)];
-    filmGenresArray.map(filmGenre => {
-      genresList.map(genreObject => {
-        if (Number(filmGenre.textContent) === genreObject.id) {
-          filmGenre.textContent = genreObject.name;
+    const filmGenres = [...section.querySelectorAll(className)];
+
+    filmGenres.forEach(genre => {
+      genresList.forEach(el => {
+        if (Number(genre.textContent) === el.id) {
+          genre.textContent = el.name;
         }
       });
     });
   }
 
-  async cutFilmGenres() {
-    const filmGenreArray = [...refs.filmCards.querySelectorAll('.js-film-genres')];
-    filmGenreArray.map(genreArr => {
-      if (genreArr.children.length > 3) {
-        genreArr.children[2].textContent = 'Other';
+  cutFilmGenres() {
+    const filmGenres = [...refs.filmCards.querySelectorAll('.js-film-genres')];
+
+    filmGenres.forEach(el => {
+      const child = [...el.children];
+      const length = child.length;
+
+      if (length > 3) {
+        child[2].textContent = 'Other';
       }
-      if (genreArr.children.length === 4) {
-        genreArr.children[2].textContent = 'Other';
-        genreArr.children[3].textContent = '';
+      if (length === 4) {
+        child[2].textContent = 'Other';
+        child[3].style.display = 'none';
       }
-      if (genreArr.children.length === 5) {
-        genreArr.children[2].textContent = 'Other';
-        genreArr.children[3].textContent = '';
-        genreArr.children[4].textContent = '';
+      if (length === 5) {
+        child[2].textContent = 'Other';
+        child[3].style.display = 'none';
+        child[4].style.display = 'none';
       }
-      if (genreArr.children.length === 6) {
-        genreArr.children[2].textContent = 'Other';
-        genreArr.children[3].textContent = '';
-        genreArr.children[4].textContent = '';
-        genreArr.children[5].textContent = '';
+      if (length === 6) {
+        child[2].textContent = 'Other';
+        child[3].style.display = 'none';
+        child[4].style.display = 'none';
+        child[5].style.display = 'none';
       }
+      if (length === 7) {
+        child[2].textContent = 'Other';
+        child[3].style.display = 'none';
+        child[4].style.display = 'none';
+        child[5].style.display = 'none';
+        child[6].style.display = 'none';
+      }
+
+      child.forEach(el => {
+        if (el.textContent === 'Other') {
+          el.classList.add('other-hide');
+        }
+      });
     });
   }
 }

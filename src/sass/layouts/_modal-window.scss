@@ -8,7 +8,7 @@
   }
   @media screen and(max-width:767px) {
     min-width: 280px;
-
+    max-height: 100%;
     padding: 40px 20px;
   }
 
@@ -28,7 +28,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  overflow: auto;
   padding: 40px 30px;
 
   background-color: $mainBackgroundColor;
@@ -36,7 +36,7 @@
   &__close-btn {
     position: absolute;
     top: 10px;
-    right: 15px;
+    right: 10px;
     z-index: 999;
     width: 30px;
     height: 30px;
@@ -56,6 +56,7 @@
     @media screen and(max-width:767px) {
       min-width: 240px;
       min-height: 357px;
+      margin-bottom: 30px;
     }
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       min-width: 264px;
@@ -66,13 +67,16 @@
       min-height: 480px;
     }
     display: block;
-  }
-
-  &__data-container {
+    border-radius: 5px;
   }
 
   &__main-title {
+    @media screen and (max-width: 1023px) {
+      line-height: 1.15;
+    }
+    margin-bottom: 20px;
     text-align: left;
+    text-transform: uppercase;
     font-weight: 500;
     font-size: 30px;
     line-height: 1.67;
@@ -80,26 +84,41 @@
   }
 
   &__table {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
   }
 
+  &__data-container {
+    // display: flex;
+  }
+
+  &__table-element {
+    display: flex;
+    align-items: flex-start;
+  }
+  &__table-element:not(:last-child) {
+    margin-bottom: 10px;
+  }
   &__data-row {
   }
 
   &__data-title {
+    width: 70px;
+    margin-right: 40px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    padding-bottom: 10px;
+
     color: #8c8c8c;
   }
 
   &__data-description {
+    flex-shrink: 15;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    padding-bottom: 10px;
+
     color: #000000;
 
     &--title {
@@ -109,13 +128,17 @@
       color: $secondaryTextColor;
       background-color: $accentTextColor;
       border-radius: 5px;
-      padding: 1px 10px;
+      padding: 1px 9px;
     }
 
     &--count {
       background-color: $secondaryBackgroundColor;
       border-radius: 5px;
-      padding: 1px 10px;
+      padding: 1px 5px;
+    }
+
+    &--genre:not(:last-child) {
+      margin-right: 5px;
     }
   }
 
@@ -131,6 +154,7 @@
   }
 
   &__annotation-description {
+    margin-bottom: 20px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.67;
@@ -140,8 +164,9 @@
 
   &__buttons-container {
     display: flex;
-
-    margin-top: 20px;
+    @media screen and(max-width:767px) {
+      justify-content: center;
+    }
   }
 
   &__watch-list {
@@ -155,7 +180,8 @@
       min-width: 136px;
     }
     min-height: 44px;
-    margin-right: 10px;
+    margin-right: 15px;
+    padding: 10px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
@@ -177,6 +203,7 @@
       min-width: 136px;
     }
     min-height: 44px;
+    padding: 14px 10px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;

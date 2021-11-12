@@ -7,10 +7,14 @@ const newApiService = new NewApiService();
 const filmGenres = new FilmGenres();
 const { filmCards, body, backdrop, modal, closeBtn, homeLink, main } = refs;
 
-window.addEventListener('click', onFilmCardClick);
+filmCards.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
 
 function onFilmCardClick(e) {
+  e.preventDefault();
+
+  window.addEventListener('keydown', onEscClick);
+  backdrop.addEventListener('click', onBackdropClick);
   const currentIndex = Number(e.target.id);
   const [currentFilmList] = JSON.parse(localStorage.getItem('CurrentPageFilmList'));
   currentFilmList.forEach(e => {
@@ -18,25 +22,18 @@ function onFilmCardClick(e) {
       renderModalWindow(e);
     }
   });
-
-  //   if (e.target.nodeName === 'IMG') {
-  //      renderModalWindow()
-  //    }
 }
 
 function renderModalWindow(e) {
-  //   e.preventDefault();
+  modalMarkup(e);
 
-  //  newApiService.fetchTrends().then(response => {
-  const result = e;
-
-  modalMarkup(result);
   const popularity = document.querySelector('.popularity-js');
-  const closeButton = document.querySelector('.modal-close.js');
-  popularity.textContent = Math.round(popularity.textContent);
+  const popularityValue = Number(popularity.textContent).toFixed(1);
+
+  popularity.textContent = popularityValue;
   filmGenres.getFilmGenresList(document, '.genre-js');
 
-  addToLocalArray(result);
+  addToLocalArray(e);
   toggleModal();
 }
 
@@ -46,13 +43,24 @@ function modalMarkup(obj) {
 
 function onCloseButtonClick(e) {
   toggleModal();
-
-  // modal.innerHTML = '';
   const poster = document.querySelector('.modal__poster-container');
   const data = document.querySelector('.modal__data-container');
+  poster.remove();
+  data.remove();
+  window.removeEventListener('keydown', onEscClick);
+  backdrop.removeEventListener('click', onBackdropClick);
+}
 
-  poster.innerHTML = '';
-  data.innerHTML = '';
+function onEscClick(e) {
+  if (e.code === 'Escape') {
+    onCloseButtonClick();
+  }
+}
+
+function onBackdropClick(e) {
+  if (e.target === backdrop) {
+    onCloseButtonClick();
+  }
 }
 
 function toggleModal() {

@@ -1,7 +1,7 @@
 import { refs } from './refs.js';
 
-export default function getFilmDate() {
-  const filmDate = [...refs.filmCards.querySelectorAll('.js-film-release')];
+export default function getFilmDate(className) {
+  const filmDate = [...refs.filmCards.querySelectorAll(className)];
 
   filmDate.forEach(function (el) {
     const year = new Date(el.textContent).getFullYear();
