@@ -1,58 +1,128 @@
-.main-film-section {
-  padding-top: 20px;
-  padding-bottom: 40px;
-
-  @media screen and (min-width: 768px) {
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
-}
-
-.film-list-card {
+.list_space {
   padding-bottom: 46px;
-  display: grid;
-  place-items: center;
-  grid-gap: 20px;
-
-  @media screen and (min-width: 768px) {
+}
+.item-space_layout {
+  @media screen and (max-width: 767px) {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+// =============== GRID-PARENT =================
+.film-list-card {
+  @media screen and (min-width: $medium) {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 294px 294px;
+    grid-template-rows: repeat(10, 1fr);
     grid-gap: 30px;
-    grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+  @media screen and (min-width: $large) {
+    grid-template-columns: 274px 274px 274px;
+    grid-template-rows: repeat(7, 1fr);
   }
+  @media screen and (min-width: $full) {
+    grid-template-columns: 291px 291px 291px 291px;
+    grid-template-rows: repeat(5, 1fr); 
+  } 
 }
 
+// =============== GRID-ITEM ==================
 .film-item {
-  @media screen and (min-width: 768px) {
-    align-self: auto;
+  cursor: pointer;
+  // @media screen and (min-width: $medium) {
+  //   align-self: auto;
+  // }
+}
+.film-card {
+  border-radius: 5px;
+  transition: transform 900ms $animationTiming;
+  &::after {
+    content: "";
+    display: none;
+    opacity: 0;
+    transition: transform $animation;
   }
 }
 
+// --------------- PIC-WRAPPER ----------------
+.img-wrap {
+  margin-bottom: 10px;
+
+  overflow: hidden;
+  border-radius: 5px;
+  // ----------------- SPINER ----------------
+  background: url(https://media.giphy.com/media/TDXXa9DMTOGtBC4U81/giphy.gif);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+
+  @media screen and (max-width: 319px) {
+    width: 100%;
+    height: 100%;
+  }
+  @media screen and (min-width: $small) {
+    min-height: 402px;
+  }
+  @media screen and (min-width: $medium) {
+    min-height: 398px;
+  }
+}
+
+.film-image {
+  @media screen and (max-width: 319px) {
+    width: 100%;
+  }
+    width: 280px;
+
+  @media screen and (min-width: $small) {
+    height: 402px;
+  }
+  @media screen and (min-width: $medium) {
+    width: 294px;
+    height: 398px;
+  }
+  @media screen and (min-width: $large) {
+    width: 274px;
+  }
+  @media screen and (min-width: $full) {
+    width: 291px;
+  }
+}
+
+// >>>>>>>>>>>>>> HOVER-LINK <<<<<<<<<<<<<<<<
 .film-link {
-  height: 100%;
   &:hover,
   &:focus {
     & .film-card {
       position: relative;
       transform: scale(0.93);
       z-index: 0;
-      box-shadow: 0px 0px 8px 7px rgba(255, 107, 1, 0.2), 2px 2px 4px 7px rgba(255, 107, 1, 0.3);
+
+      box-shadow: 0px 0px 5.5px 7px rgba(255, 107, 1, 0.5),
+      2px 2px 4px 7px rgba(255, 107, 1, 0.45);
 
       &::after {
         position: absolute;
-        content: '';
-        top: 21.5px;
+        display: block;
+        content: "";
+        top: 20px;
+
         left: 0;
         right: 0;
         z-index: -1;
-        height: 90.5%;
+        height: 91.5%;
         width: 100%;
+        opacity: 1;
         margin: 0 auto;
-        transform: scale(1, 1.1);
-        filter: drop-shadow(0px 0px 20px rgba(255, 0, 0, 0.8));
-        background: linear-gradient(270deg, #98ff08ae, #ff6b08b5),
-          linear-gradient(120deg, #f3ff08b6, #ff7f089c);
+
+        border-radius: 5px;
+        transform: scale(1.0, 1.1);
+        filter: blur(8px);
+        // filter: drop-shadow(0px 0px 20px rgba(255, 102, 0, 0.8));
+        background: linear-gradient(260deg, #ff0808aa, #ff6b08b5),
+        linear-gradient(120deg, #f3ff089b, #ff7f08ac);
         background-size: 200% 200%;
         animation: animateGlow 900ms $animationTiming infinite;
         @keyframes animateGlow {
@@ -67,55 +137,70 @@
           }
         }
       }
-
       & .img-wrap {
+        margin-bottom: 0;
         border-radius: 5px 5px 1px 1px;
       }
     }
 
     & .film-content {
-      height: 50px;
-      min-width: 278px;
-      padding: 10px 1px 2px 3px;
-      background-color: #ff6b0871;
+      min-height: 46px;
+      width: 100%;
+      padding: 10px 1px 8px 2px;
 
+      border-radius: 0 0 5px 5px;
+      background-color: #ff6b086c;
+
+      @media screen and (min-width: $small) {
+        min-width: 100%; 
+      }
       & .film-title {
-        animation: textColor1 2000ms $animationTiming infinite;
+        animation: textColor1 1800ms $animationTiming infinite;
         @keyframes textColor1 {
           0% {
-            color: $placeHolderColor;
+
+            color: $darkThemeColor;
+            font-size: 12px; 
           }
           25% {
-            color: #c92a06e7;
+            color: $secondaryAccentColor;
+            font-size: 12.1px;
           }
           50% {
-            color: $mainTextColor;
+            color: $placeHolderColor;
+            font-size: 12.1px;
           }
           75% {
-            color: #c92a06e7;
-          }
+            color: $secondaryAccentColor;
+            font-size: 12.1px;
+          } 
           100% {
-            color: $placeHolderColor;
+            color: $darkThemeColor;
+            font-size: 12px;
           }
         }
       }
       & .film-descr,
-      & .film-vote-span {
-        animation: textColor 2000ms $animationTiming infinite;
+      & .film-vote-span {  
+       animation: textColor 1800ms $animationTiming infinite;
         @keyframes textColor {
           0% {
-            color: $secondaryAccentColor;
+            color: $secondaryAccentColor; 
+            font-size: 12px;
+
           }
           25% {
             color: #c92a06e7;
-            font-size: 12.5px;
+            font-size: 12.1px;
           }
           50% {
-            color: $mainTextColor;
+            color: $darkThemeColor;
+            font-size: 12.1px;
           }
           75% {
             color: #c92a06e7;
-          }
+            font-size: 12.1px;
+          } 
           100% {
             color: $secondaryAccentColor;
             font-size: 12px;
@@ -129,39 +214,19 @@
   }
 }
 
-.film-card {
-  border-radius: 5px;
-  transition: transform 900ms $animationTiming;
-}
-.img-wrap {
-  overflow: hidden;
-  border-radius: 5px;
-  background: url(https://media.giphy.com/media/TDXXa9DMTOGtBC4U81/giphy.gif);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 0;
-  @media screen and (min-width: 320px) {
-    min-height: 402px;
-  }
-  @media screen and (min-width: 768px) {
-    min-height: 398px;
-  }
-}
 
+// ============ FILM-DESCRIPTION =============
 .film-content {
-  padding: 10px 0 1px 1px;
+  padding: 0, 1px, 4px, 1px;
+ 
   border-radius: 0 0 5px 5px;
+  transition: border-radius $animation, 
+  background-color $animation;
 }
 
 .film-title {
-  padding-bottom: 2px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  @include large-text;
+  line-height: 1.33; 
   text-transform: uppercase;
   color: #000000;
   transition: color $animation;
@@ -169,31 +234,39 @@
 
 .film-descr {
   display: flex;
-  padding-bottom: 3px;
 
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  color: #ff6b08;
-  transition: color $animation, font-size $animation;
+
+  @include large-text;
+  line-height: 1.16; 
+  color: $secondaryAccentColor;
+  transition: color $animation,
+  font-size $animation;
+
 }
 
 .film-release {
   display: flex;
+  
   &::before {
     content: '';
     display: block;
     margin-right: 5px;
     width: 1px;
     height: 80%;
-    background-color: #ff6b08;
-    transition: background-color $animation, font-size $animation;
+    background-color: $secondaryAccentColor;
+    transition: background-color $animation,
+    font-size $animation;
   }
 }
-.film-descr-item:not(:last-child) {
-  margin-right: 5px;
+.film-descr-item {
+  &:not(:last-child) {
+    margin-right: 3px;
+  }
+  @media screen and (min-width: $medium) {
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
 }
 
 .film-genres {
@@ -201,10 +274,13 @@
 }
 
 .film-genre {
-  max-height: 15px;
-
+  // max-height: 15px;
   &:not(:last-child) {
-    margin-right: 5px;
+    margin-right: 3px;
+  }
+  @media screen and (min-width: $medium) {
+    &:not(:last-child) {
+      margin-right: 5px;
 
     &::after {
       content: ',';
@@ -223,11 +299,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 34px;
-  max-height: 16px;
+  min-width: 30px;
 
   text-transform: uppercase;
-  background-color: #ff6b01;
+  background-color: $accentTextColor;
   border-radius: 5px;
   transition: background-color $animation, font-size $animation;
 }
@@ -235,140 +310,8 @@
 .film-vote-span {
   padding: 0;
 
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.16;
-  color: #ffffff;
+  @include large-text;
+  line-height: 1.16; 
+  color: $secondaryTextColor; 
   transition: color $animation;
 }
-
-// ===============================================
-// .boxes_styling {
-//   display: flex;
-//   align-items: center;
-//   font-family: monospace;
-//   justify-content: center;
-//   background-color:darken(#252B37, 4%);
-// }
-
-// @mixin backlight($x, $y, $spread, $size, $colorA, $colorB, $duration) {
-//   &:after {
-//     position: absolute;
-//     content: "";
-//     top: $y;
-//     left: $x;
-//     right: 0;
-//     z-index: -1;
-//     height: 100%;
-//     width: 100%;
-//     margin: 0 auto;
-//     transform: scale($size);
-//     -webkit-filter: blur($spread);
-//     -moz-filter: blur($spread);
-//     -ms-filter: blur($spread);
-//     filter: blur($spread);
-//     background: linear-gradient(270deg, $colorA, $colorB);
-//     background-size: 200% 200%;
-//     animation: animateGlow $duration ease infinite;
-//     @keyframes animateGlow {
-//       0%{background-position:0% 50%}
-//       50%{background-position:100% 50%}
-//       100%{background-position:0% 50%}
-//     }
-//   }
-// }
-
-// .card {
-//   position: relative;
-//   width: 30vw;
-//   height: 30vw;
-//   line-height: 30vw;
-//   text-align: center;
-//   color: #252B37;
-//   background-color: #151823;
-//   animation: textColor 10s ease infinite;
-//   @include backlight(0, 5vw, 5vw, 0.75, #0fffc1, #7e0fff, 10s);
-//   @keyframes textColor {
-//     0% {
-//       color: #7e0fff;
-//     }
-//     50% {
-//       color: #0fffc1;
-//     }
-//     100% {
-//       color: #7e0fff;
-//     }
-//   }
-// }
-
-//   $rotate: 136deg;
-//   $card-height: 274px;
-//   $card-width: $card-height / 1.5;
-// .card {
-//   position: relative;
-//   border-radius: 6px;
-//   color: rgb(88 199 250 / 0%);
-//   cursor: pointer;
-//   z-index: 3;
-
-//   &:hover {
-//     color: rgb(88 199 250 / 100%);
-//     transition: color 1s;
-
-//     &:before, &:after {
-//       animation: none;
-//       opacity: 0;
-//     }
-//   }
-//   &::before {
-//     width: 104%;
-//     height: 102%;
-//     position: absolute;
-//     top: -1%;
-//     left: -2%;
-//     content: "";
-//     border-radius: 8px;
-//     background-image: linear-gradient($rotate, #5ddcff, #3c67e3 43%, #4e00c2);
-//     z-index: -1;
-//     animation: spin 2.5s linear infinite;
-//   }
-//   &::after {
-//     position: absolute;
-//     content: "";
-//     top: $card-height / 6;
-//     // top: 0;
-//     left: 0;
-//     right: 0;
-//     z-index: -1;
-//     height: 100%;
-//     width: 100%;
-//     margin: 0 auto;
-//     transform: scale(0.8);
-//     filter: blur($card-height / 6);
-//     background-image: linear-gradient($rotate, #5ddcff, #3c67e3 43%, #4e00c2);
-//     opacity: 1;
-//     transition: opacity 250ms;
-//     animation: spin 2.5s linear infinite;
-//   }
-// }
-
-// @keyframes spin {
-//   0% {
-//     transform:rotate(136deg)
-//   }
-//   // 25%  {$rotate: 90deg;}
-//   // 50%  {$rotate: 180deg;}
-//   // 75%  {$rotate: 210deg;}
-//   100% {
-//     transform:rotate(360deg)
-//   }
-// }
-// @keyframes mymove {
-// 0%   {top: 0px; left: 0px; background: #5ddcff;}
-// 25%  {top: 0px; left: 10px; background: #5ddcff;}
-// 50%  {top: 10px; left: 10px; background: #5ddcff;}
-// 75%  {top: 10px; left: 0px; background: #5ddcff;}
-// 100% {top: 0px; left: 0px; background: #5ddcff;}
-// }

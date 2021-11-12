@@ -6,6 +6,11 @@ $accentTextColor: #ff6b01;
 $secondaryAccentColor: #ff6b08;
 $placeHolderColor: rgba(255, 255, 255, 0.7);
 $darkThemeColor:#292c32;
-
+// Animation:
 $animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 $animationTiming: cubic-bezier(0.4, 0, 0.2, 1);
+// Media screen:
+$small: 320px; // mobile
+$medium: 768px; // tablet
+$large: 1024px; // desktop
+$full: 1400px; // desktop fullHD screen

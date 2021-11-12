@@ -1,19 +1,22 @@
 {{#each this}}
-  <li class='film-item js-film-item'>
-    <a class='film-link js-film-link' href='#'>
+  <li 
+  class='film-item 
+  js-film-item 
+  item-space_layout'
+  >
+    <a class='film-link js-film-link' href='#'> 
       <div class='film-card js-film-card'>
         <div class="img-wrap">
           <picture class='film-picture js-film-picture'>
-          <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
-          <img
-            class='film-image js-film-image'
-            src='https://image.tmdb.org/t/p/w342{{poster_path}}'
-            alt='{{tagline}}'
-            id={{id}}
-          />
-        </picture>
+            <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
+            <img
+              class='film-image js-film-image'
+              src='https://image.tmdb.org/t/p/w342{{poster_path}}'
+              alt='{{tagline}}'
+              id='{{id}}'
+            />
+          </picture>
         </div>
-        
 
         <div class='film-content js-film-content'>
           {{#if title}}
@@ -31,9 +34,18 @@
               {{/if}}
             {{/if}}
           {{/if}}
-          <ul class='film-descr js-film-descr list'>
+          <ul 
+          class='film-descr 
+          js-film-descr 
+          list'
+          >
             <li class='film-descr-item'>
-              <ul class='film-genres js-film-genres list'>
+              <ul 
+              class=
+              'film-genres 
+              js-film-genres 
+              list'
+              >
                 {{#each genre_ids}}
                   <li class='film-genre js-film-genre'>{{this}}</li>
                 {{/each}}
@@ -44,13 +56,12 @@
             {{else}}
               <li class='film-descr-item film-release js-film-release'>{{first_air_date}}</li>
             {{/if}}
-            <li class='film-descr-item film-vote js-film-vote'><span
-                class='film-vote-span'
-              >{{vote_average}}</span>
-            </li>
+              <li class='film-descr-item film-vote js-film-vote'>
+                <span class='film-vote-span'>{{vote_average}}</span>
+              </li>
           </ul>
-
         </div>
+        
       </div>
     </a>
   </li>
