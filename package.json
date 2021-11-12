@@ -24,6 +24,7 @@
     "@pnotify/core": "^5.2.0",
     "lod": "^0.1.0",
     "lodash.debounce": "^4.0.8",
+    "movie-trailer": "^2.1.0",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",
@@ -32,6 +33,7 @@
     "tui-pagination": "^3.4.1"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.4",
     "gh-pages": "^3.2.3"
   }
 }
