@@ -18,7 +18,7 @@ export default class watchTrailer {
   }
 
   embedPlayer(queryId) {
-    return `<iframe class="modal__trailer-video" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${queryId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    return `<iframe class="modal__trailer-video" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${queryId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" ></iframe>`;
   }
 
   createModalForTrailerMarkup(markup) {
