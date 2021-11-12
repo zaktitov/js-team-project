@@ -23,8 +23,8 @@
   }
   @media screen and (min-width: $full) {
     grid-template-columns: 291px 291px 291px 291px;
-    grid-template-rows: repeat(5, 1fr); 
-  } 
+    grid-template-rows: repeat(5, 1fr);
+  }
 }
 
 // =============== GRID-ITEM ==================
@@ -74,7 +74,7 @@
   @media screen and (max-width: 319px) {
     width: 100%;
   }
-    width: 280px;
+  width: 280px;
 
   @media screen and (min-width: $small) {
     height: 402px;
@@ -100,8 +100,7 @@
       transform: scale(0.93);
       z-index: 0;
 
-      box-shadow: 0px 0px 5.5px 7px rgba(255, 107, 1, 0.5),
-      2px 2px 4px 7px rgba(255, 107, 1, 0.45);
+      box-shadow: 0px 0px 5.5px 7px rgba(255, 107, 1, 0.5), 2px 2px 4px 7px rgba(255, 107, 1, 0.45);
 
       &::after {
         position: absolute;
@@ -118,11 +117,10 @@
         margin: 0 auto;
 
         border-radius: 5px;
-        transform: scale(1.0, 1.1);
+        transform: scale(1, 1.1);
         filter: blur(8px);
         // filter: drop-shadow(0px 0px 20px rgba(255, 102, 0, 0.8));
-        background: linear-gradient(260deg, #ff0808aa, #ff6b08b5),
-        linear-gradient(120deg, #f3ff089b, #ff7f08ac);
+        background: linear-gradient(260deg, #ff0808aa, #ff6b08b5), linear-gradient(120deg, #f3ff089b, #ff7f08ac);
         background-size: 200% 200%;
         animation: animateGlow 900ms $animationTiming infinite;
         @keyframes animateGlow {
@@ -152,15 +150,14 @@
       background-color: #ff6b086c;
 
       @media screen and (min-width: $small) {
-        min-width: 100%; 
+        min-width: 100%;
       }
       & .film-title {
         animation: textColor1 1800ms $animationTiming infinite;
         @keyframes textColor1 {
           0% {
-
             color: $darkThemeColor;
-            font-size: 12px; 
+            font-size: 12px;
           }
           25% {
             color: $secondaryAccentColor;
@@ -173,7 +170,7 @@
           75% {
             color: $secondaryAccentColor;
             font-size: 12.1px;
-          } 
+          }
           100% {
             color: $darkThemeColor;
             font-size: 12px;
@@ -181,13 +178,12 @@
         }
       }
       & .film-descr,
-      & .film-vote-span {  
-       animation: textColor 1800ms $animationTiming infinite;
+      & .film-vote-span {
+        animation: textColor 1800ms $animationTiming infinite;
         @keyframes textColor {
           0% {
-            color: $secondaryAccentColor; 
+            color: $secondaryAccentColor;
             font-size: 12px;
-
           }
           25% {
             color: #c92a06e7;
@@ -200,7 +196,7 @@
           75% {
             color: #c92a06e7;
             font-size: 12.1px;
-          } 
+          }
           100% {
             color: $secondaryAccentColor;
             font-size: 12px;
@@ -214,19 +210,17 @@
   }
 }
 
-
 // ============ FILM-DESCRIPTION =============
 .film-content {
   padding: 0, 1px, 4px, 1px;
- 
+
   border-radius: 0 0 5px 5px;
-  transition: border-radius $animation, 
-  background-color $animation;
+  transition: border-radius $animation, background-color $animation;
 }
 
 .film-title {
   @include large-text;
-  line-height: 1.33; 
+  line-height: 1.33;
   text-transform: uppercase;
   color: #000000;
   transition: color $animation;
@@ -235,27 +229,23 @@
 .film-descr {
   display: flex;
 
-
   @include large-text;
-  line-height: 1.16; 
+  line-height: 1.16;
   color: $secondaryAccentColor;
-  transition: color $animation,
-  font-size $animation;
-
+  transition: color $animation, font-size $animation;
 }
 
 .film-release {
   display: flex;
-  
+
   &::before {
-    content: '';
+    content: "";
     display: block;
     margin-right: 5px;
     width: 1px;
     height: 80%;
     background-color: $secondaryAccentColor;
-    transition: background-color $animation,
-    font-size $animation;
+    transition: background-color $animation, font-size $animation;
   }
 }
 .film-descr-item {
@@ -282,14 +272,15 @@
     &:not(:last-child) {
       margin-right: 5px;
 
-    &::after {
-      content: ',';
+      &::after {
+        content: ",";
+      }
     }
-  }
 
-  &.other-hide {
-    &::after {
-      display: none;
+    &.other-hide {
+      &::after {
+        display: none;
+      }
     }
   }
 }
@@ -311,7 +302,7 @@
   padding: 0;
 
   @include large-text;
-  line-height: 1.16; 
-  color: $secondaryTextColor; 
+  line-height: 1.16;
+  color: $secondaryTextColor;
   transition: color $animation;
 }
