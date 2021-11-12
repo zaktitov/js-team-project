@@ -20,8 +20,8 @@ export default class FilmGenres {
     });
   }
 
-  cutFilmGenres() {
-    const filmGenres = [...refs.filmCards.querySelectorAll('.js-film-genres')];
+  cutFilmGenres(section) {
+    const filmGenres = [...section.querySelectorAll('.js-film-genres')];
 
     filmGenres.forEach(el => {
       const child = [...el.children];
