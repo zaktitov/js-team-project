@@ -3,7 +3,7 @@ import filmCardsTpl from '../templates/film-template.hbs';
 import FilmGenres from './film-genres';
 import getFilmFullYear from './film-full-year';
 import myCurrentPage from './currentPage';
-import { getFilmsByDefault, pagination } from './api'
+import { getFilmsByDefault, pagination } from './api';
 
 const filmGenres = new FilmGenres();
 
@@ -13,9 +13,8 @@ refs.logoLink.addEventListener('click', onChangeHomeLink);
 refs.headerWatchedBtn.addEventListener('click', onHeaderWatchedBtnClick);
 refs.headerQueueBtn.addEventListener('click', onHeaderQueueBtnClick);
 
-
 function onChangeHomeLink(e) {
-  e.preventDefault()
+  e.preventDefault();
   refs.libraryLink.classList.remove('current');
   refs.homeLink.classList.add('current');
 
@@ -25,7 +24,6 @@ function onChangeHomeLink(e) {
   refs.header.classList.remove('header-library');
   refs.header.classList.add('header-home');
 
-  
   getFilmsByDefault();
   pagination.reset();
 
@@ -44,7 +42,7 @@ function onChangeLibraryLink(event) {
   refs.homeLink.classList.remove('current');
   refs.libraryLink.classList.add('current');
 
-  console.log(refs.homePageContainer)
+  // console.log(refs.homePageContainer);
   refs.homePageContainer.classList.add('visually-hidden');
   refs.libraryPageContainer.classList.remove('visually-hidden');
   refs.headerWatchedBtn.classList.remove('current');
@@ -67,19 +65,14 @@ function onHeaderQueueBtnClick() {
   appendFilmCardsMarkup(films);
 }
 
-
 async function appendFilmCardsMarkup(films) {
   refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-
   filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
-  // filmGenres.cutFilmGenres();
-  // getFilmFullYear();
   myCurrentPage(films);
-
-  filmGenres.cutFilmGenres();
-  getFilmFullYear('.js-film-release');
+  filmGenres.cutFilmGenres(refs.libraryFilmCards);
+  getFilmFullYear(refs.libraryFilmCards, '.js-film-release');
 }
 
 function getMoviesFromStorage(list) {
-  return JSON.parse(localStorage.getItem(list))
+  return JSON.parse(localStorage.getItem(list));
 }
