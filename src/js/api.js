@@ -12,7 +12,7 @@ import myCurrentPage from './currentPage';
 const { input, filmCards, searchForm } = refs;
 const filmsElements = filmCards.children;
 
-const newApiService = new NewApiService();
+export const newApiService = new NewApiService();
 const notifications = new Notifications();
 export const filmGenres = new FilmGenres();
 
