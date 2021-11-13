@@ -46,6 +46,13 @@
     outline: none;
   }
 
+  // &__genres {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: flex-start;
+  //   align-items: flex-start;
+  // }
+
   &__poster-container {
     @media screen and(min-width:768px) {
       margin-right: 30px;
@@ -179,6 +186,9 @@
     @media screen and(min-width:1024px) {
       min-width: 136px;
     }
+    overflow: hidden;
+    position: relative;
+    z-index: 20;
     min-height: 44px;
     margin-right: 15px;
     padding: 10px;
@@ -190,6 +200,31 @@
     background: $accentTextColor;
     border-radius: 5px;
     border-color: $accentTextColor;
+
+    &:after {
+      background: $mainBackgroundColor;
+      content: '';
+      height: 155px;
+      left: -75px;
+      opacity: 0.2;
+      position: absolute;
+      top: -50px;
+      transform: rotate(35deg);
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+      width: 50px;
+      z-index: -10;
+    }
+  }
+
+  &__watch-list:hover {
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 1.23;
+    transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+    &:after {
+      left: 120%;
+      transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
   }
 
   &__queue-list {
@@ -202,6 +237,9 @@
     @media screen and(min-width:1024px) {
       min-width: 136px;
     }
+    overflow: hidden;
+    position: relative;
+    z-index: 20;
     min-height: 44px;
     padding: 14px 10px;
     font-weight: 500;
@@ -213,5 +251,31 @@
     border: 1px solid $mainTextColor;
     box-sizing: border-box;
     border-radius: 5px;
+
+    &:after {
+      background: $secondaryAccentColor;
+      content: '';
+      height: 155px;
+      left: -75px;
+      opacity: 0.5;
+      position: absolute;
+      top: -50px;
+      transform: rotate(35deg);
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+      width: 50px;
+      z-index: -10;
+    }
+  }
+
+  &__queue-list:hover {
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 1.23;
+    transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+    &:after {
+      left: 120%;
+      transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
   }
 }
