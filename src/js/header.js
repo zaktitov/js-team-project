@@ -1,11 +1,10 @@
 import { refs } from './refs';
-import filmCardsTpl from '../templates/film-template.hbs';
-import FilmGenres from './film-genres';
-import getFilmFullYear from './film-full-year';
-import myCurrentPage from './currentPage';
+import moviesFromStorage from './get-movies-from-storage';
 import { getFilmsByDefault, pagination } from './api';
+import appendFilmCardsMarkup from './append-films-cards';
 
-const filmGenres = new FilmGenres();
+
+const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
 refs.homeLink.addEventListener('click', onChangeHomeLink);
 refs.libraryLink.addEventListener('click', onChangeLibraryLink);
@@ -47,32 +46,20 @@ function onChangeLibraryLink(event) {
   refs.libraryPageContainer.classList.remove('visually-hidden');
   refs.headerWatchedBtn.classList.remove('current');
   refs.headerQueueBtn.classList.add('current');
-  const films = getMoviesFromStorage('queueList');
-  appendFilmCardsMarkup(films);
+  const films = getMoviesFromQueueStorage();
+  appendFilmCardsMarkup(refs.libraryFilmCards, films);
 }
 
 function onHeaderWatchedBtnClick() {
   refs.headerWatchedBtn.classList.add('current');
   refs.headerQueueBtn.classList.remove('current');
-  const films = getMoviesFromStorage('watchedList');
-  appendFilmCardsMarkup(films);
+  const films = getMoviesFromWatchedStorage();
+  appendFilmCardsMarkup(refs.libraryFilmCards, films);
 }
 
 function onHeaderQueueBtnClick() {
   refs.headerQueueBtn.classList.add('current');
   refs.headerWatchedBtn.classList.remove('current');
-  const films = getMoviesFromStorage('queueList');
-  appendFilmCardsMarkup(films);
-}
-
-async function appendFilmCardsMarkup(films) {
-  refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
-  myCurrentPage(films);
-  filmGenres.cutFilmGenres(refs.libraryFilmCards);
-  getFilmFullYear(refs.libraryFilmCards, '.js-film-release');
-}
-
-function getMoviesFromStorage(list) {
-  return JSON.parse(localStorage.getItem(list));
+  const films = getMoviesFromQueueStorage();
+  appendFilmCardsMarkup(refs.libraryFilmCards, films);
 }

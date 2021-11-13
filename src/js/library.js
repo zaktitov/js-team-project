@@ -1,12 +1,7 @@
-import { refs } from './refs'
-import filmCardsTpl from '../templates/film-template.hbs'
-import FilmGenres from './film-genres'
-import getFilmFullYear from './film-full-year'
-import myCurrentPage from './currentPage'
 import Notifications from './pNotify'
 const notifications = new Notifications()
 
-const filmGenres = new FilmGenres()
+import reloadLibraryPage from './reload-library-page'
 
 export default function (data) {
   const addToWatched = document.querySelector('.modal__watch-list')
@@ -105,30 +100,3 @@ export default function (data) {
   addToQueue.addEventListener('click', addToLocalStorageQueue)
 
   }
-
-async function appendFilmCardsMarkup(films) {
-  refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
-  myCurrentPage(films);
-  filmGenres.cutFilmGenres(refs.libraryFilmCards);
-  getFilmFullYear(refs.libraryFilmCards, '.js-film-release');
-}
-
-function getMoviesFromStorage(list) {
-  return JSON.parse(localStorage.getItem(list));
-}
-
-function reloadLibraryPage() {
-  if (refs.libraryPageContainer.classList.contains('visually-hidden')) {
-    return
-  }
-  if (refs.headerQueueBtn.classList.contains('current')) {
-    const films = getMoviesFromStorage('queueList');
-    appendFilmCardsMarkup(films);
-    return
-  }
-  const films = getMoviesFromStorage('watchedList');
-  appendFilmCardsMarkup(films);
-}
-
-// console.log(reloadLibraryPage)
