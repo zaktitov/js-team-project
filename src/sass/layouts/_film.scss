@@ -12,7 +12,7 @@
 .film-list-card {
   @media screen and (min-width: $medium) {
     display: grid;
-    justify-content: center;
+    justify-content: space-between;
     grid-template-columns: 294px 294px;
     grid-template-rows: repeat(10, 1fr);
     grid-gap: 30px;
@@ -41,7 +41,7 @@
     content: "";
     display: none;
     opacity: 0;
-    transition: transform $animation;
+    transition: transform 900ms $animationTiming;
   }
 }
 
@@ -97,7 +97,7 @@
   &:focus {
     & .film-card {
       position: relative;
-      transform: scale(0.93);
+      transform: scale(0.94);
       z-index: 0;
 
       box-shadow: 0px 0px 5.5px 7px rgba(255, 107, 1, 0.5), 2px 2px 4px 7px rgba(255, 107, 1, 0.45);
@@ -106,23 +106,22 @@
         position: absolute;
         display: block;
         content: "";
-        top: 20px;
+        top: 18px;
 
-        left: 0;
-        right: 0;
+        left: 12px;
         z-index: -1;
-        height: 91.5%;
-        width: 100%;
+        height: 91.8%;
+        width: 92%;
         opacity: 1;
         margin: 0 auto;
 
         border-radius: 5px;
-        transform: scale(1, 1.1);
-        filter: blur(8px);
+        transform: scale(1.09, 1.09);
+        filter: blur(10px);
         // filter: drop-shadow(0px 0px 20px rgba(255, 102, 0, 0.8));
-        background: linear-gradient(260deg, #ff0808aa, #ff6b08b5), linear-gradient(120deg, #f3ff089b, #ff7f08ac);
+        background: linear-gradient(260deg, #ff4a08ac, #ff6b08b5), linear-gradient(120deg, #f3ff089b, #ff7f08ac);
         background-size: 200% 200%;
-        animation: animateGlow 900ms $animationTiming infinite;
+        animation: animateGlow 1000ms $animationTiming infinite;
         @keyframes animateGlow {
           0% {
             background-position: 0% 50%;
@@ -142,9 +141,9 @@
     }
 
     & .film-content {
-      min-height: 46px;
+      // min-height: 46px;
       width: 100%;
-      padding: 10px 1px 8px 2px;
+      padding: 10px 0 5px 4px;
 
       border-radius: 0 0 5px 5px;
       background-color: #ff6b086c;
@@ -161,15 +160,15 @@
           }
           25% {
             color: $secondaryAccentColor;
-            font-size: 12.1px;
+            font-size: 11.8px;
           }
           50% {
             color: $placeHolderColor;
-            font-size: 12.1px;
+            font-size: 11.8px;
           }
           75% {
             color: $secondaryAccentColor;
-            font-size: 12.1px;
+            font-size: 11.8px;
           }
           100% {
             color: $darkThemeColor;
@@ -187,15 +186,15 @@
           }
           25% {
             color: #c92a06e7;
-            font-size: 12.1px;
+            font-size: 11.8px;
           }
           50% {
             color: $darkThemeColor;
-            font-size: 12.1px;
+            font-size: 11.8px;
           }
           75% {
             color: #c92a06e7;
-            font-size: 12.1px;
+            font-size: 11.8px;
           }
           100% {
             color: $secondaryAccentColor;
@@ -212,7 +211,7 @@
 
 // ============ FILM-DESCRIPTION =============
 .film-content {
-  padding: 0, 1px, 4px, 1px;
+  padding: 0, 0, 5px, 1px;
 
   border-radius: 0 0 5px 5px;
   transition: border-radius $animation, background-color $animation;
