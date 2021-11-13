@@ -1,13 +1,10 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
 // Utils
-@import './utils/variables';
-@import './utils/mixins';
+@import "./utils/variables";
+@import "./utils/mixins";
 // Base
-@import './base/common';
+@import "./base/common";
 // Layouts
+
 @import './layouts/film';
 @import './layouts/footer';
 @import './layouts/body-main';
@@ -17,3 +14,4 @@
 @import './layouts/pagination';
 @import './layouts/trailer';
 @import './layouts/scroll-to-top';
+
