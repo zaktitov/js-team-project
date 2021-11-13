@@ -23,4 +23,6 @@ export const refs = {
   homePageContainer: document.querySelector('.js-home-page-container'),
   libraryPageContainer: document.querySelector('.js-library-container'),
   libraryFilmCards: document.querySelector('.js-library-film-cards'),
+
+  scrollBtn: document.querySelector('.js-scroll-btn'),
 };
