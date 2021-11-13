@@ -25,4 +25,5 @@ export const refs = {
   libraryFilmCards: document.querySelector('.js-library-film-cards'),
 
   scrollBtn: document.querySelector('.js-scroll-btn'),
+  preloadWrap: document.querySelector('.preload'),
 };
