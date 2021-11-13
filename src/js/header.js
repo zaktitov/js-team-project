@@ -1,7 +1,8 @@
 import { refs } from './refs';
 import moviesFromStorage from './get-movies-from-storage';
-import { getFilmsByDefault, pagination, newApiService } from './api';
+import { getFilmsByDefault, newApiService } from './api';
 import appendFilmCardsMarkup from './append-films-cards';
+import { pagination } from './pagination'
 
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
