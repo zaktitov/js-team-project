@@ -10,9 +10,9 @@ const filmGenres = new FilmGenres();
 const { filmCards, body, backdrop, modal, closeBtn, homeLink, main, libraryFilmCards } = refs;
 
 filmCards.addEventListener('click', onFilmCardClick);
+filmCards.addEventListener('click', onPosterBlackout);
 libraryFilmCards.addEventListener('click', onFilmCardClick);
 closeBtn.addEventListener('click', onCloseButtonClick);
-
 
 function onFilmCardClick(e) {
   e.preventDefault();
@@ -80,4 +80,10 @@ function getFilmTrailer(event) {
   const id = event.target.dataset.id;
   const name = event.target.dataset.name;
   new watchTrailer(id, name).showTrailer();
+}
+
+function onPosterBlackout() {
+  setTimeout(() => {
+    document.querySelector('.modal__trailer-wrapper').style.opacity = 1;
+  }, 500);
 }
