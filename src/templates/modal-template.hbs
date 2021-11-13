@@ -81,7 +81,7 @@
         <li class='modal__table-element' >
 
           <p class='modal__data-title'>Original Title</p>
-  {{#if original_title}}
+      {{#if original_title}}
           <p  class='modal__data-description modal__data-description--title'>{{original_title}}</p>
           {{else}}
           {{#if original_name}}
@@ -91,18 +91,17 @@
         </li>
     
         <li class='modal__table-element'>
-
           <p class='modal__data-title'>Genre</p>
           
               {{#each genre_ids}}
               <p class='modal__data-description modal__data-description--genre genre-js'>{{this}}</p>
               {{/each}}
-         
-        
         </li>
-    </ul>
-    <h2 class='modal__annotation-title'>About</h2>
-    <p class='modal__annotation-description'>{{overview}}</p>
-    <div class='modal__buttons-container'><button type='button' class='modal__watch-list'>ADD TO
-        WATCHED</button><button type='button' class='modal__queue-list'>ADD TO QUEUE</button></div>
+  </ul>
+
+  <h2 class='modal__annotation-title'>About</h2>
+  <p class='modal__annotation-description'>{{overview}}</p>
+    <div class='modal__buttons-container'>
+      <button type='button' class='modal__watch-list'>ADD TO WATCHED</button>
+      <button type='button' class='modal__queue-list'>ADD TO QUEUE</button>
   </div>

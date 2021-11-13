@@ -68,6 +68,15 @@
   align-items: center;
 }
 
+.header__item {
+  transition: transform $animation;
+}
+
+.header__item:hover,
+.header__item:focus {
+  transform: scale(1.2);
+}
+
 .header__item:not(:last-child) {
   margin-right: 40px;
 }
