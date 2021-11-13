@@ -1,12 +1,8 @@
 import { refs } from './refs';
-import filmCardsTpl from '../templates/film-template.hbs';
-import FilmGenres from './film-genres';
-import getFilmFullYear from './film-full-year';
-import myCurrentPage from './currentPage';
-import moviesFromStorage from './get-movies-from-storage'
+import moviesFromStorage from './get-movies-from-storage';
 import { getFilmsByDefault, pagination } from './api';
+import appendFilmCardsMarkup from './append-films-cards';
 
-const filmGenres = new FilmGenres();
 
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
@@ -51,27 +47,19 @@ function onChangeLibraryLink(event) {
   refs.headerWatchedBtn.classList.remove('current');
   refs.headerQueueBtn.classList.add('current');
   const films = getMoviesFromQueueStorage();
-  appendFilmCardsMarkup(films);
+  appendFilmCardsMarkup(refs.libraryFilmCards, films);
 }
 
 function onHeaderWatchedBtnClick() {
   refs.headerWatchedBtn.classList.add('current');
   refs.headerQueueBtn.classList.remove('current');
   const films = getMoviesFromWatchedStorage();
-  appendFilmCardsMarkup(films);
+  appendFilmCardsMarkup(refs.libraryFilmCards, films);
 }
 
 function onHeaderQueueBtnClick() {
   refs.headerQueueBtn.classList.add('current');
   refs.headerWatchedBtn.classList.remove('current');
   const films = getMoviesFromQueueStorage();
-  appendFilmCardsMarkup(films);
-}
-
-async function appendFilmCardsMarkup(films) {
-  refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
-  filmGenres.getFilmGenresList(refs.libraryFilmCards, '.js-film-genre');
-  myCurrentPage(films);
-  filmGenres.cutFilmGenres(refs.libraryFilmCards);
-  getFilmFullYear(refs.libraryFilmCards, '.js-film-release');
+  appendFilmCardsMarkup(refs.libraryFilmCards, films);
 }
