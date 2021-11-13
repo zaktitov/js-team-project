@@ -95,9 +95,11 @@
     margin-bottom: 20px;
   }
 
-  &__data-container {
-    // display: flex;
-    margin-top: 30px;
+  @media screen and(max-width:767px) {
+    &__data-container {
+      // display: flex;
+      margin-top: 30px;
+    }
   }
 
   &__table-element {

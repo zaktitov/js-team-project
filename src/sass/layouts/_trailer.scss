@@ -15,20 +15,29 @@
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
   opacity: 0;
-  transition: opacity $animation;
+  transition: opacity 250ms linear;
 }
 
-.modal__poster-container:hover .modal__trailer-wrapper {
-  opacity: 1;
-  transition: opacity $animation;
-}
+// .modal__poster-container:hover .modal__trailer-wrapper {
+//   opacity: 1;
+// }
 
 .modal__trailer-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 10px;
   border: none;
   background-color: transparent;
   transform: scale(1);
   transition: transform $animation;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  color: $accentTextColor;
 
   &:hover {
     transform: scale(1.5);

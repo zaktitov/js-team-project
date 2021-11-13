@@ -14,6 +14,7 @@ export default class watchTrailer {
       api_key: KEY,
       trailerId: this.trailerId,
     });
+
     return queryId;
   }
 
