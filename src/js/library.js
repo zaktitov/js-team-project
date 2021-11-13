@@ -42,9 +42,9 @@ export default function (data) {
       localStorage.setItem(`watchedList`, JSON.stringify(watchedList));
       addToWatched.textContent = 'ADD TO WATCHED';
 
-      setTimeout(e => {
-        notifications.removeFromWatched();
-      }, 1000);
+      // setTimeout(e => {
+      //   notifications.removeFromWatched();
+      // }, 1000);
       checkButton();
     } else
       if (addToQueue.textContent === 'ADD TO QUEUE') {
@@ -57,9 +57,9 @@ export default function (data) {
 
         checkButton();
       } else {
-        setTimeout(e => {
-          notifications.alreadyInQueued();
-        }, 1000);
+        // setTimeout(e => {
+        //   notifications.alreadyInQueued();
+        // }, 1000);
       }
     reloadLibraryPage();
   };
@@ -69,9 +69,9 @@ export default function (data) {
       queueList.splice(indexOfElQueue, 1);
       localStorage.setItem(`queueList`, JSON.stringify(queueList));
       addToQueue.textContent = 'ADD TO QUEUE';
-      setTimeout(e => {
-        notifications.removeFromQueue();
-      }, 1000);
+      // setTimeout(e => {
+      //   notifications.removeFromQueue();
+      // }, 1000);
 
       checkButton();
     } else
