@@ -1,8 +1,7 @@
 import { refs } from './refs';
 import moviesFromStorage from './get-movies-from-storage';
-import { getFilmsByDefault, pagination } from './api';
+import { getFilmsByDefault, pagination, newApiService } from './api';
 import appendFilmCardsMarkup from './append-films-cards';
-
 
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
@@ -23,6 +22,7 @@ function onChangeHomeLink(e) {
   refs.header.classList.remove('header-library');
   refs.header.classList.add('header-home');
 
+  newApiService.resetPage();
   getFilmsByDefault();
   pagination.reset();
 
