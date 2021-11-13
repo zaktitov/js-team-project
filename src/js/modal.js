@@ -12,6 +12,7 @@ const { filmCards, body, backdrop, modal, closeBtn, homeLink, main, libraryFilmC
 filmCards.addEventListener('click', onFilmCardClick);
 filmCards.addEventListener('click', onPosterBlackout);
 libraryFilmCards.addEventListener('click', onFilmCardClick);
+libraryFilmCards.addEventListener('click', onPosterBlackout);
 closeBtn.addEventListener('click', onCloseButtonClick);
 
 function onFilmCardClick(e) {
