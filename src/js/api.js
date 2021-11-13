@@ -8,6 +8,7 @@ import FilmGenres from './film-genres';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import myCurrentPage from './currentPage';
+import Preload from './preload';
 
 const { input, filmCards, searchForm } = refs;
 const filmsElements = filmCards.children;
@@ -15,6 +16,7 @@ const filmsElements = filmCards.children;
 const newApiService = new NewApiService();
 const notifications = new Notifications();
 export const filmGenres = new FilmGenres();
+const preload = new Preload();
 
 searchForm.addEventListener('submit', findFilmByWord);
 
@@ -29,7 +31,8 @@ function findFilmByWord(e) {
 
   formSubmitted = true;
 
-  if (newApiService.query !== '') {
+  if (newApiService.query !== '' && refs.preloadWrap.classList.contains('preload__end')) {
+    preload.deleteAddPreload();
     newApiService.resetPage();
     fetchFilms();
     notifications.showSuccess();
@@ -41,9 +44,9 @@ function findFilmByWord(e) {
 
 export async function getFilmsByDefault() {
   try {
+    preload.preloadAnimation();
     filmGenres.setFilmGenresList(await newApiService.fetchGenresList());
     appendFilmCardsMarkup(await newApiService.fetchTrends());
-
     pagination.setTotalItems(newApiService.results);
     newApiService.resetPage();
     if (newApiService.query === '') {
@@ -64,6 +67,9 @@ getFilmsByDefault();
 async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
+
+    preload.deleteAddPreload();
+
     if (formSubmitted) {
       pagination.reset(newApiService.results);
     }

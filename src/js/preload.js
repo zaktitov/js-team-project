@@ -1,14 +1,16 @@
 export default class Preload {
-  constructor() {}
+  constructor() {
+    this.preload = document.querySelector('.preload');
+  }
 
   preloadAnimation() {
-    const preload = document.querySelector('.preload');
-    preload.style.display = 'none';
+    window.addEventListener('load',
+      () => {
+        this.preload.classList.toggle('preload__end');
+      })
   }
 
-  windowListener() {
-    window.addEventListener('load', this.preloadAnimation);
+  deleteAddPreload() {
+    this.preload.classList.toggle('preload__end');
   }
 }
-const newPreload = new Preload();
-newPreload.windowListener();
