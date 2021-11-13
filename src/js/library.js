@@ -1,12 +1,12 @@
-import { refs } from './refs';
-import filmCardsTpl from '../templates/film-template.hbs';
-import FilmGenres from './film-genres';
-import getFilmFullYear from './film-full-year';
-import myCurrentPage from './currentPage';
-import Notifications from './pNotify';
-const notifications = new Notifications();
+import { refs } from './refs'
+import filmCardsTpl from '../templates/film-template.hbs'
+import FilmGenres from './film-genres'
+import getFilmFullYear from './film-full-year'
+import myCurrentPage from './currentPage'
+import Notifications from './pNotify'
+const notifications = new Notifications()
 
-const filmGenres = new FilmGenres();
+const filmGenres = new FilmGenres()
 
 export default function (data) {
   const addToWatched = document.querySelector('.modal__watch-list')
@@ -21,88 +21,84 @@ export default function (data) {
   function checkButton() {
     watchedList.forEach((element, i) => {
       if (element.id === data.id) {
-        addToWatched.textContent = 'REMOVE FROM WATCHED';
-        indexOfElWatched = i;
+        addToWatched.textContent = 'REMOVE FROM WATCHED'
+        indexOfElWatched = i
       }
-    });
+    })
 
     queueList.forEach((element, i) => {
       if (element.id === data.id) {
-        addToQueue.textContent = 'REMOVE FROM QUEUE';
-        indexOfElQueue = i;
+        addToQueue.textContent = 'REMOVE FROM QUEUE'
+        indexOfElQueue = i
       }
-    });
-  };
+    })
+  }
 
-  checkButton();
+  checkButton()
 
   function addToLocalStorageWatched() {
     if (addToWatched.textContent === 'REMOVE FROM WATCHED') {
-      watchedList.splice(indexOfElWatched, 1);
-      localStorage.setItem(`watchedList`, JSON.stringify(watchedList));
-      addToWatched.textContent = 'ADD TO WATCHED';
+      watchedList.splice(indexOfElWatched, 1)
+      localStorage.setItem(`watchedList`, JSON.stringify(watchedList))
+      addToWatched.textContent = 'ADD TO WATCHED'
 
       setTimeout(e => {
-        notifications.removeFromWatched();
-      }, 1000);
-      checkButton();
+        notifications.removeFromWatched()
+      }, 1000)
+      checkButton()
     } else
       if (addToQueue.textContent === 'ADD TO QUEUE') {
-        watchedList.push(data);
-        let watchedStr = JSON.stringify(watchedList);
-        localStorage.setItem(`watchedList`, watchedStr);
+        watchedList.push(data)
+        let watchedStr = JSON.stringify(watchedList)
+        localStorage.setItem(`watchedList`, watchedStr)
         setTimeout(e => {
-          notifications.addToWatched();
-        }, 1000);
+          notifications.addToWatched()
+        }, 1000)
 
-        checkButton();
+        checkButton()
       } else {
         setTimeout(e => {
-          notifications.alreadyInQueued();
-        }, 1000);
+          notifications.alreadyInQueued()
+        }, 1000)
       }
-    reloadLibraryPage();
-  };
+    reloadLibraryPage()
+  }
 
   function addToLocalStorageQueue() {
     if (addToQueue.textContent === 'REMOVE FROM QUEUE') {
-      queueList.splice(indexOfElQueue, 1);
-      localStorage.setItem(`queueList`, JSON.stringify(queueList));
-      addToQueue.textContent = 'ADD TO QUEUE';
+      queueList.splice(indexOfElQueue, 1)
+      localStorage.setItem(`queueList`, JSON.stringify(queueList))
+      addToQueue.textContent = 'ADD TO QUEUE'
       setTimeout(e => {
-        notifications.removeFromQueue();
-      }, 1000);
+        notifications.removeFromQueue()
+      }, 1000)
 
-      checkButton();
+      checkButton()
     } else
       if (addToWatched.textContent === 'ADD TO WATCHED') {
-        queueList.push(data);
-        let queueStr = JSON.stringify(queueList);
-        localStorage.setItem(`queueList`, queueStr);
+        queueList.push(data)
+        let queueStr = JSON.stringify(queueList)
+        localStorage.setItem(`queueList`, queueStr)
         setTimeout(e => {
-          notifications.addToQueue();
-        }, 1000);
+          notifications.addToQueue()
+        }, 1000)
 
-        checkButton();
+      checkButton()
       }
       else {
         setTimeout(e => {
-          notifications.alreadyInWatched();
-        }, 1000);
+          notifications.alreadyInWatched()
+        }, 1000)
 
       }
-    reloadLibraryPage();
-  };
+    reloadLibraryPage()
+  }
 
 
-  addToWatched.addEventListener(`click`, addToLocalStorageWatched);
-  addToQueue.addEventListener('click', addToLocalStorageQueue);
+  addToWatched.addEventListener(`click`, addToLocalStorageWatched)
+  addToQueue.addEventListener('click', addToLocalStorageQueue)
 
-
-  // console.log('watchedList:', watchedList);
-  // console.log('queueList:', queueList);
-
-}
+  }
 
 async function appendFilmCardsMarkup(films) {
   refs.libraryFilmCards.innerHTML = filmCardsTpl(films);
