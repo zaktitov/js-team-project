@@ -8,7 +8,7 @@ export default class NewApiService {
     this.movieId = '123';
     this.language = 'en-US';
     this.results = null;
-    this.searchType = ''; 
+    this.searchType = '';
   }
 
   async fetchTrends() {
@@ -19,7 +19,6 @@ export default class NewApiService {
     });
 
     const url = `${BASE_URL}/trending/movie/day?${searchParams}`;
-
     const response = await fetch(url);
     const data = await response.json();
 
@@ -46,7 +45,7 @@ export default class NewApiService {
     this.results = data.total_results;
     this.pages = data.total_pages;
 
-    this.searchType = 'byName'
+    this.searchType = 'byName';
 
     return data.results;
   }

@@ -64,7 +64,6 @@ getFilmsByDefault();
 async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
-
     if (formSubmitted) {
       pagination.reset(newApiService.results);
     }

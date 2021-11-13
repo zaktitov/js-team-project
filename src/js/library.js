@@ -42,10 +42,12 @@ export default function (data) {
       localStorage.setItem(`watchedList`, JSON.stringify(watchedList))
       addToWatched.textContent = 'ADD TO WATCHED'
 
+
       setTimeout(e => {
         notifications.removeFromWatched()
       }, 1000)
       checkButton()
+
     } else
       if (addToQueue.textContent === 'ADD TO QUEUE') {
         watchedList.push(data)
@@ -57,21 +59,25 @@ export default function (data) {
 
         checkButton()
       } else {
+
         setTimeout(e => {
           notifications.alreadyInQueued()
         }, 1000)
+
       }
     reloadLibraryPage()
   }
 
   function addToLocalStorageQueue() {
     if (addToQueue.textContent === 'REMOVE FROM QUEUE') {
+
       queueList.splice(indexOfElQueue, 1)
       localStorage.setItem(`queueList`, JSON.stringify(queueList))
       addToQueue.textContent = 'ADD TO QUEUE'
       setTimeout(e => {
         notifications.removeFromQueue()
       }, 1000)
+
 
       checkButton()
     } else
