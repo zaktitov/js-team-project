@@ -1,4 +1,4 @@
-
+import refs from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { getFilmsByDefault, newApiService } from './api';
@@ -17,12 +17,12 @@ const options = {
       '<span class="tui-ico-{{type}}" style="background-color:#F7F7F7; border:none">{{type}}</span>' +
       '</a>',
     disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}" style="background-color:#F7F7F7; border-radius:5px; width:40px; height:40px;display:inline-flex; align-items:center; justify-content:center;">' +
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}" style="background-color:#F7F7F7; border:1px solid transparent; border-radius:5px; width:40px; height:40px;display:inline-flex; align-items:center; justify-content:center;">' +
       '<span class="tui-ico-{{type}}" style= border:none">{{type}}</span>' +
       '</span>',
     moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}" style="border-radius:5px;color:black;width:40px; height:40px; display:none;">' +
-      '<span class="tui-ico-ellip" style="border:none;">...</span>' +
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}" style="display:none;">' +
+      '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
 };

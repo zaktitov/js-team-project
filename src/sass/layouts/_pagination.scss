@@ -2,40 +2,17 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-@media screen and (max-width: 768px) {
-  .tui-prev-is-ellip {
+
+@media screen and (max-width: 767px) {
+  .tui-page-btn {
+    width: 37px !important;
+  }
+
+  .custom-class-first {
     display: none !important;
   }
 
-  .tui-next-is-ellip {
+  .custom-class-last {
     display: none !important;
   }
-}
-
-.custom-move-btn {
-  background-color: #f7f7f7;
-  border-radius: 5px;
-  border: none;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-// .custom-move-btn-icon {
-//   background-color: #f7f7f7;
-//   border: none;
-// }
-
-.custom-current-page-btn {
-  background-color: #ff6b01;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  font-size: 12px;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
