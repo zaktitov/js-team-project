@@ -1,26 +1,32 @@
 .scroll-btn {
   border-radius: 5px;
-  font-size: 2rem;
-  background-color: transparent;
-  border: 1px solid $accentTextColor;
+  font-size: 1.5rem;
+  background-color: #f7f7f752;
+  border: 1px solid transparent;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   position: fixed;
   bottom: 50px;
-  right: 50px;
-  z-index: 100;
+  right: 10px;
+  // z-index: 100;
   opacity: 0;
   transform: translateY(100px);
   transition: all 900ms ease;
   color: $accentTextColor;
 
+  @media screen and (min-width: $medium) {
+    font-size: 2rem;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+  }
+
   &:hover,
   &:focus {
-    border: 1px solid transparent;
     background: linear-gradient(260deg, #ff0808aa, #ff6b08b5),
       linear-gradient(120deg, #f3ff089b, #ff7f08ac);
-    color: white;
+    color: #f4f4f4;
   }
 }
 

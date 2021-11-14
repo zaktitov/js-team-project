@@ -1,15 +1,18 @@
-
 .pagination_control-space {
   margin-top: 0;
   margin-bottom: 0;
 }
-@media screen and (max-width: 768px) {
-  .tui-prev-is-ellip {
+
+@media screen and (max-width: 767px) {
+  .tui-page-btn {
+    width: 37px !important;
+  }
+
+  .custom-class-first {
     display: none !important;
   }
 
-  .tui-next-is-ellip {
+  .custom-class-last {
     display: none !important;
   }
 }
-

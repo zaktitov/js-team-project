@@ -55,11 +55,22 @@ body {
 }
 
 body.light {
-  background-color: $mainBackgroundColor;
+  background: $mainBackgroundColor;
 }
 
 body.dark {
-  background-color: $darkThemeColor;
+// background:
+// radial-gradient(black 15%, transparent 16%) 0 0,
+// radial-gradient(black 15%, transparent 16%) 8px 8px,
+// radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+// radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+// background-color:#282828;
+// background-size:16px 16px;
+
+background-color: #292C32;
+opacity: 0.8;
+background: radial-gradient(circle, transparent 20%, #292C32 20%, #292C32 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #292C32 20%, #292C32 80%, transparent 80%, transparent) 10px 10px, linear-gradient(#383838 0.8px, transparent 0.8px) 0 -0.4px, linear-gradient(90deg, #383838 0.8px, #292C32 0.8px) -0.4px 0;
+background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
 }
 
 body.dark h2 {

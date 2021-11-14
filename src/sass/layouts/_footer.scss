@@ -81,7 +81,7 @@
 
   @media screen and (min-width: 1024px) {
     width: 879px;
-    height: 600px;
+    height: 650px;
   }
 }
 
@@ -97,6 +97,34 @@
   border: none;
   background-color: transparent;
   outline: none;
+}
+
+//dark theme styles
+
+.footer-lightbox-window.dark {
+  background-color: $mainTextColor;
+
+  .footer-lightbox-close-btn {
+    fill: $mainBackgroundColor;
+  }
+
+  .team-list-item {
+    box-shadow: 0px 1px 3px rgba(255, 251, 251, 0.12), 0px 1px 1px rgba(248, 243, 243, 0.14),
+      0px 2px 1px rgba(243, 239, 239, 0.2);
+
+    &:hover {
+      transform: scale(1.1);
+      transition: transform $animation;
+    }
+  }
+
+  .team-list-content-title {
+    color: $mainBackgroundColor;
+  }
+
+  .team-list-content-text {
+    color: $accentTextColor;
+  }
 }
 
 /* ---- Team ------ */
@@ -117,6 +145,7 @@
 
   @media screen and (min-width: 768px) {
     margin: -5px;
+    justify-content: center;
   }
 }
 
@@ -127,6 +156,11 @@
 
   &:not(:last-child) {
     margin-bottom: 15px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform $animation;
   }
 
   @media screen and (min-width: 768px) {
