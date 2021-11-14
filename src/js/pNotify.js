@@ -112,7 +112,7 @@ export default class Notifications {
     });
   }
 
-alreadyInQueued() {
+  alreadyInQueued() {
     error({
       text: 'This film is already in your Queued Library 📽️',
       delay: 1000,
@@ -124,6 +124,27 @@ alreadyInQueued() {
     });
   }
 
+  startListening() {
+    info({
+      text: 'listening, please speak...',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '210px',
+      minHeight: 18,
+    });
+  }
+
+  stopListening() {
+    info({
+      text: 'stopped listening, hope you are done...',
+      delay: 1000,
+      hide: true,
+      animateSpeed: 'slow',
+      closer: true,
+      width: '210px',
+      minHeight: 18,
+    });
+  }
 }
-
-

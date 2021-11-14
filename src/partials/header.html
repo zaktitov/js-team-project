@@ -8,8 +8,6 @@
         <span class="header-logo__text">Filmoteka</span>
       </a>
 
-
-
       <ul class="header__list">
         <li class="header__item">
           <a class="header__link current js-link-home" href="">Home</a>
@@ -22,11 +20,24 @@
 
     <div class="js-input-wrapper header__input-wrapper">
       <form id="search-form">
-        <input class="header__input" type="text" id="input" name="query" autocomplete="off" 
-        placeholder="Find a movie" required minlength="1"/>
-          <label for="input" class="header__label" data-content="Find a movie">
-            <span class="visually-hidden">Find a movie...</span>
-          </label>
+        <button type="button" class="header__speech-btn js-speech-btn">
+          <svg class="header__input-icon" width="20" height="20">
+            <use href="../src/images/sprite.svg#mic"></use>
+          </svg>
+        </button>
+        <input
+          class="header__input"
+          type="text"
+          id="input"
+          name="query"
+          autocomplete="off"
+          placeholder="Find a movie"
+          required
+          minlength="1"
+        />
+        <label for="input" class="header__label" data-content="Find a movie">
+          <span class="visually-hidden">Find a movie...</span>
+        </label>
         <button class="header__input-btn js-input-btn" type="submit">
           <svg class="header__input-icon" width="18" height="18">
             <use href="../src/images/sprite.svg#loupe"></use>
@@ -36,13 +47,14 @@
     </div>
 
     <div class="switcher switcher__wrapper">
-      <input type="checkbox" name="input" id="checkbox" class="switcher__checkbox">
+      <input type="checkbox" name="input" id="checkbox" class="switcher__checkbox" />
       <label for="checkbox" class="switcher__label label">
         <svg class="label__moon" width="24" height="24">
           <use href="../src/images/sprite.svg#sun7"></use>
         </svg>
         <svg class="label__sun" width="24" height="24">
-          <use href="../src/images/sprite.svg#moon1"></use>>
+          <use href="../src/images/sprite.svg#moon1"></use>
+          >
         </svg>
         <div class="ball ball__wrapper"></div>
       </label>
@@ -53,5 +65,4 @@
       <button type="button" class="header__btn js-header-queue-btn">queue</button>
     </div>
   </div>
-
 </header>
