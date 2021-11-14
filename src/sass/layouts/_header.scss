@@ -99,7 +99,7 @@
   position: relative;
   margin: 0 auto;
   margin-top: 38px;
-  text-align: center;
+  // text-align: center;
 }
 
 .header__input {
@@ -109,15 +109,99 @@
   padding-right: 25px;
   font-size: 15px;
   border: none;
+
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 2px 2px 16px 3px rgba(0, 0, 0, 0.4);
   border-bottom: 0.5px solid $mainBackgroundColor;
   background-color: transparent;
   color: $secondaryTextColor;
+  
+  transition: border-color $animation,
+  box-shadow $animation;
+
+  &:hover,
+  &:focus {
+    border-color: $accentTextColor;
+    box-shadow: 0px 7px 10px -6px #ff6b08cd ;
+    
+  }   
 
   &::placeholder {
-    color: $placeHolderColor;
-    font-size: 14px;
-    line-height: 1.14;
+    color: $mainTextColor;
+    filter: blur(10px);
   }
+
+  // &:required:focus:not(:placeholder-shown):valid {
+  //   border-left: 1px solid $accentTextColor;
+  // }
+  // &:required:focus:not(:placeholder-shown):invalid {
+  //   border-left: 1px solid red;
+  // }
+}
+
+.header__label {
+  display: block;
+  position: relative;
+  max-height: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  pointer-events: none;
+
+  &::before {
+    display: inline-block;
+    position: relative;
+    left: 4px;
+    top: -18px;
+    content: attr(data-content);
+    color: $placeHolderColor;
+    filter: blur(0);
+    
+    backface-visibility: hidden;
+    transform-origin: left top;
+    transition: transform $animation;
+  }
+
+  &::after {
+    width: 98%;
+    height: 0.5px;
+    margin-top: -0.1px;
+    position: absolute;
+    left: 3px;
+    top: 100%;
+    bottom: 1px;
+    content: "";
+    opacity: 0;
+    transform: scale3d(0, 1, 1);
+    background-color: $accentTextColor;
+
+    transition: transform $animation,
+    opacity $animation, 
+    background-color $animation;
+  }
+}
+
+.header__input:focus + 
+.header__label::after {
+  transform: scale3d(1, 1, 1);
+  opacity: 1;
+}
+
+.header__input:placeholder-shown + 
+.header__label::before {
+  transform: translate3d(0, -3px, 0) scale3d(1, 1, 1);
+}
+
+.header__input:focus + 
+.header__label::before {
+  color: $secondaryAccentColor;
+}
+
+.header__label::before,
+.header__input:focus + 
+.header__label::before {
+  transform: translate3d(0, -23px, 0) scale3d(0.92, 0.92, 1);
 }
 
 .header__input-btn {
@@ -128,12 +212,12 @@
   right: -10px;
   background-color: transparent;
   border: none;
-  transition: transfrom $animation;
-}
+  transition: transform $animation;
 
-.header__input-btn:hover,
-.header__input-btn:focus {
-  transform: scale(1.1);
+  &:hover,
+  &:focus {
+    transform: scale(1.105);
+  }
 }
 
 .header__btn-wrapper {
@@ -327,7 +411,7 @@
   border-radius: 50%;
   top: 3px;
   left: 3px;
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 400ms $animationTiming;
   border: solid 2px #292c32;
   // &__wrapper {
   // }
