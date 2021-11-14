@@ -1,4 +1,4 @@
-import refs from './refs';
+import { refs } from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { getFilmsByDefault, newApiService } from './api';
