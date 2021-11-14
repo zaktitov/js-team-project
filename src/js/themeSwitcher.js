@@ -32,4 +32,6 @@ if (localStorage.getItem('theme') === currentTheme.DARK) {
   checkbox.checked = true;
   body.classList.toggle('dark');
   body.classList.toggle('light');
+  modalWindow.classList.toggle('dark');
+    modalWindow.classList.toggle('light');
 }
