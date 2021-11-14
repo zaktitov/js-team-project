@@ -10,9 +10,7 @@ const filmGenres = new FilmGenres();
 const { filmCards, body, backdrop, modal, closeBtn, homeLink, main, libraryFilmCards } = refs;
 
 filmCards.addEventListener('click', onFilmCardClick);
-filmCards.addEventListener('click', onPosterBlackout);
 libraryFilmCards.addEventListener('click', onFilmCardClick);
-libraryFilmCards.addEventListener('click', onPosterBlackout);
 closeBtn.addEventListener('click', onCloseButtonClick);
 
 function onFilmCardClick(e) {
@@ -25,12 +23,9 @@ function onFilmCardClick(e) {
   currentFilmList.forEach(e => {
     if (currentIndex === e.id) {
       renderModalWindow(e);
+      onPosterBlackout();
     }
   });
-
-  //trailer
-  const trailerBtn = document.querySelector('.js-trailer-btn');
-  trailerBtn.addEventListener('click', getFilmTrailer);
 }
 
 function renderModalWindow(e) {
@@ -44,6 +39,10 @@ function renderModalWindow(e) {
 
   addToLocalArray(e);
   toggleModal();
+
+  //trailer
+  const trailerBtn = document.querySelector('.js-trailer-btn');
+  trailerBtn.addEventListener('click', getFilmTrailer);
 }
 
 function modalMarkup(obj) {
