@@ -50,7 +50,7 @@ export default function (data) {
         localStorage.setItem(`watchedList`, watchedStr)
         setTimeout(e => {
           notifications.addToWatched()
-        }, 1000)
+        }, 500)
 
         checkButton()
       } else {
@@ -82,7 +82,7 @@ export default function (data) {
         localStorage.setItem(`queueList`, queueStr)
         setTimeout(e => {
           notifications.addToQueue()
-        }, 1000)
+        }, 500)
 
       checkButton()
       }

@@ -55,7 +55,7 @@ export default class Notifications {
   addToWatched() {
     success({
       text: 'The film was added to watched 📽️',
-      delay: 1000,
+      delay: 600,
       hide: true,
       animateSpeed: 'slow',
       closer: true,
@@ -79,7 +79,7 @@ export default class Notifications {
   addToQueue() {
     success({
       text: 'The film was added to queue 📽️',
-      delay: 1000,
+      delay: 600,
       hide: true,
       animateSpeed: 'slow',
       closer: true,
