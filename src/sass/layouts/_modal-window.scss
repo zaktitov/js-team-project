@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     min-width: 618px;
-    min-height: 562px;
+    max-height: 100%;
   }
   @media screen and(min-width:1024px) {
     display: flex;
@@ -23,6 +23,7 @@
     min-height: 568px;
   }
   position: absolute;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -211,9 +212,8 @@
   &__watch-list:hover {
     -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
     box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-    font-size: 13px;
-    line-height: 1.23;
-    transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    transition: box-shadow 1200ms cubic-bezier(0.19, 1, 0.22, 1);
 
     &:after {
       left: 120%;
@@ -264,9 +264,8 @@
   &__queue-list:hover {
     -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
     box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-    font-size: 13px;
-    line-height: 1.23;
-    transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    transition: box-shadow 1200ms cubic-bezier(0.19, 1, 0.22, 1);
     &:after {
       left: 120%;
       transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
