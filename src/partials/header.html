@@ -22,8 +22,11 @@
 
     <div class="js-input-wrapper header__input-wrapper">
       <form id="search-form">
-        <input class="header__input" type="text" id="input" name="query" autocomplete="off"
-          placeholder="Find a movie" />
+        <input class="header__input" type="text" id="input" name="query" autocomplete="off" 
+        placeholder="Find a movie" required minlength="1"/>
+          <label for="input" class="header__label" data-content="Find a movie">
+            <span class="visually-hidden">Find a movie...</span>
+          </label>
         <button class="header__input-btn js-input-btn" type="submit">
           <svg class="header__input-icon" width="18" height="18">
             <use href="../src/images/sprite.svg#loupe"></use>
