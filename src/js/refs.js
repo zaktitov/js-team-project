@@ -1,5 +1,6 @@
 export const refs = {
   body: document.querySelector('body'),
+  checkbox: document.getElementById('checkbox'),
   input: document.getElementById('input'),
   searchForm: document.getElementById('search-form'),
   filmCards: document.querySelector('.js-film-cards'),
@@ -26,4 +27,10 @@ export const refs = {
 
   scrollBtn: document.querySelector('.js-scroll-btn'),
   preloadWrap: document.querySelector('.preload'),
+
+      footerLightbox: document.querySelector('.js-footer-light-box'),
+    footerLightboxOverlay: document.querySelector('.js-footer-light-box-overlay'),
+    footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
+    footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
+    footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
 };

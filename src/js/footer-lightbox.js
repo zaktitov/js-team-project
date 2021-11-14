@@ -1,26 +1,22 @@
-const refs = {
-    footerLightbox: document.querySelector('.js-footer-light-box'),
-    footerLightboxOverlay: document.querySelector('.js-footer-light-box-overlay'),
-    footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
-    footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
-    footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
-}
+import { refs } from './refs.js'
+const{footerLightbox,footerLightboxOverlay, footerLightboxWindow, footerLightboxOpenBtn,   footerLightboxCloseBtn}=refs
 
-refs.footerLightboxOpenBtn.addEventListener('click', onOpenModal);
-refs.footerLightboxCloseBtn.addEventListener('click', onCloseModal);
-refs.footerLightboxOverlay.addEventListener('click', onLightBoxOverlayClick)
+
+footerLightboxOpenBtn.addEventListener('click', onOpenModal);
+footerLightboxCloseBtn.addEventListener('click', onCloseModal);
+footerLightboxOverlay.addEventListener('click', onLightBoxOverlayClick)
 
 
 function onOpenModal(e) {
         e.preventDefault();
         window.addEventListener('keydown', onEscBtnPress);
-        refs.footerLightboxCloseBtn.addEventListener('click', onCloseModal)
-        refs.footerLightbox.classList.add("is-open");
+        footerLightboxCloseBtn.addEventListener('click', onCloseModal)
+        footerLightbox.classList.add("is-open");
 }
 
 function onCloseModal() {
     window.removeEventListener('keydown', onEscBtnPress)
-    refs.footerLightbox.classList.remove("is-open");
+    footerLightbox.classList.remove("is-open");
 }
 
 function onCloseBtnClick() {
