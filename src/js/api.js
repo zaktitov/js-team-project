@@ -35,10 +35,14 @@ function findFilmByWord(e) {
     preload.deleteAddPreload();
     newApiService.resetPage();
     fetchFilms();
-    notifications.showSuccess();
+    setTimeout(() => {
+      notifications.showSuccess();
+    }, 500);
   } else {
     getFilmsByDefault();
-    notifications.showNotice();
+    setTimeout(() => {
+      notifications.showSuccess();
+    }, 500);
   }
 }
 
@@ -50,9 +54,13 @@ export async function getFilmsByDefault() {
     pagination.setTotalItems(newApiService.results);
     newApiService.resetPage();
     if (newApiService.query === '') {
-      notifications.showTrends();
+      setTimeout(() => {
+        notifications.showTrends();
+      }, 500);
     } else {
-      notifications.showSuccess();
+      setTimeout(() => {
+        notifications.showSuccess();
+      }, 500);
     }
 
     if (filmsElements.length === 0) {
@@ -93,5 +101,3 @@ function appendFilmCardsMarkup(films) {
 }
 
 /* ----- PAGINATION ------ */
-
-
