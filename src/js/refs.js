@@ -5,7 +5,7 @@ export const refs = {
   searchForm: document.getElementById('search-form'),
   filmCards: document.querySelector('.js-film-cards'),
 
-  loadMore: document.getElementById('js-load-more'),
+  speechBtn: document.querySelector('.js-speech-btn'),
 
   header: document.getElementById('header'),
   homeLink: document.querySelector('.js-link-home'),
@@ -28,9 +28,9 @@ export const refs = {
   scrollBtn: document.querySelector('.js-scroll-btn'),
   preloadWrap: document.querySelector('.preload'),
 
-      footerLightbox: document.querySelector('.js-footer-light-box'),
-    footerLightboxOverlay: document.querySelector('.js-footer-light-box-overlay'),
-    footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
-    footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
-    footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
+  footerLightbox: document.querySelector('.js-footer-light-box'),
+  footerLightboxOverlay: document.querySelector('.js-footer-light-box-overlay'),
+  footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
+  footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
+  footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
 };
