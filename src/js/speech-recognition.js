@@ -8,16 +8,14 @@ function onSpeechRec() {
   SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
 
-  recognition.onstart = function () {
-    notifications.startListening();
-  };
+  recognition.onstart = () => notifications.startListening();
 
-  recognition.onspeechend = function () {
+  recognition.onspeechend = () => {
     notifications.stopListening();
     recognition.stop();
   };
 
-  recognition.onresult = function (event) {
+  recognition.onresult = event => {
     const transcript = event.results[0][0].transcript;
     refs.input.value = transcript;
   };
