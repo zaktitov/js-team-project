@@ -1,7 +1,7 @@
 .scroll-btn {
   border-radius: 5px;
   font-size: 1.5rem;
-  background-color: #f7f7f752;
+  background-color: #f7f7f7;
   border: 1px solid transparent;
   cursor: pointer;
   width: 40px;
@@ -9,11 +9,14 @@
   position: fixed;
   bottom: 50px;
   right: 10px;
-  // z-index: 100;
   opacity: 0;
   transform: translateY(100px);
   transition: all 900ms ease;
   color: $accentTextColor;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media screen and (min-width: $medium) {
     font-size: 2rem;
