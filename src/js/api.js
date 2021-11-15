@@ -72,11 +72,12 @@ export async function getFilmsByDefault() {
 }
 getFilmsByDefault();
 
-async function fetchFilms() {
+export async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
 
     preload.deleteAddPreload();
+    
 
     if (formSubmitted) {
       pagination.reset(newApiService.results);
