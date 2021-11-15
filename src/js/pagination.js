@@ -2,6 +2,9 @@ import { refs } from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { getFilmsByDefault, newApiService } from './api';
+import { fetchFilms } from './api';
+import Preload from './preload';
+const preload = new Preload();
 
 const options = {
   totalItems: 20000,
@@ -33,6 +36,7 @@ pagination.on('afterMove', function (eventData) {
   newApiService.page = eventData.page;
   if (newApiService.searchType === 'byName') {
     fetchFilms();
+    preload.deleteAddPreload()
   } else {
     getFilmsByDefault();
   }
