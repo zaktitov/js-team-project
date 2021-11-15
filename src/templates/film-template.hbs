@@ -1,68 +1,53 @@
 {{#each this}}
-  <li 
-  class='film-item 
-  js-film-item 
-  item-space_layout'
-  >
-    <a class='film-link js-film-link' href='#'> 
-      <div class='film-card js-film-card'>
-        <div class="img-wrap">
-          <picture class='film-picture js-film-picture'>
-            <source loding="lazy" srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
-            <img loding="lazy"
-              class='film-image js-film-image'
-              src='https://image.tmdb.org/t/p/w342{{poster_path}}'
-              alt='{{title}}'
-              id='{{id}}'
-            />
-          </picture>
-        </div>
-
-        <div class='film-content js-film-content'>
-          {{#if title}}
-            <h2 class='film-title js-film-title'>{{title}}</h2>
-          {{else}}
-            {{#if original_title}}
-              <h2 class='film-title js-film-title'>{{original_title}}</h2>
-            {{else}}
-              {{#if name}}
-                <h2 class='film-title js-film-title'>{{name}}</h2>
-              {{else}}
-                {{#if original_name}}
-                  <h2 class='film-title js-film-title'>{{original_name}}</h2>
-                {{/if}}
-              {{/if}}
-            {{/if}}
+<li class="film-item js-film-item item-space_layout">
+  <a class="film-link js-film-link" href="#">
+    <div class="film-card js-film-card">
+      <div class="img-wrap">
+        <picture class="film-picture js-film-picture">
+          {{!--
+          <source loading="lazy" srcset="https://image.tmdb.org/t/p/w500{{poster_path}}" />
+          --}} 
+          <img loading='lazy' 
+          class='film-image js-film-image' 
+          {{#if poster_path}}
+          src='https://image.tmdb.org/t/p/w342{{poster_path}}' 
+          {{else}} 
+          src='/3.89c1bd72.jpg' 
           {{/if}}
-          <ul 
-          class='film-descr 
-          js-film-descr 
-          list'
-          >
-            <li class='film-descr-item'>
-              <ul 
-              class=
-              'film-genres 
-              js-film-genres 
-              list'
-              >
-                {{#each genre_ids}}
-                  <li class='film-genre js-film-genre'>{{this}}</li>
-                {{/each}}
-              </ul>
-            </li>
-            {{#if release_date}}
-              <li class='film-descr-item film-release js-film-release'>{{release_date}}</li>
-            {{else}}
-              <li class='film-descr-item film-release js-film-release'>{{first_air_date}}</li>
-            {{/if}}
-              <li class='film-descr-item film-vote js-film-vote'>
-                <span class='film-vote-span'>{{vote_average}}</span>
-              </li>
-          </ul>
-        </div>
-        
+          alt='{{title}}' 
+          id='{{id}}' />
+        </picture>
       </div>
-    </a>
-  </li>
+
+      <div class="film-content js-film-content">
+        {{#if title}}
+        <h2 class="film-title js-film-title">{{title}}</h2>
+        {{else}} {{#if original_title}}
+        <h2 class="film-title js-film-title">{{original_title}}</h2>
+        {{else}} {{#if name}}
+        <h2 class="film-title js-film-title">{{name}}</h2>
+        {{else}} {{#if original_name}}
+        <h2 class="film-title js-film-title">{{original_name}}</h2>
+        {{/if}} {{/if}} {{/if}} {{/if}}
+        <ul class="film-descr js-film-descr list">
+          <li class="film-descr-item">
+            <ul class="film-genres js-film-genres list">
+              {{#each genre_ids}}
+              <li class="film-genre js-film-genre">{{this}}</li>
+              {{/each}}
+            </ul>
+          </li>
+          {{#if release_date}}
+          <li class="film-descr-item film-release js-film-release">{{release_date}}</li>
+          {{else}}
+          <li class="film-descr-item film-release js-film-release">{{first_air_date}}</li>
+          {{/if}}
+          <li class="film-descr-item film-vote js-film-vote">
+            <span class="film-vote-span">{{vote_average}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </a>
+</li>
 {{/each}}
