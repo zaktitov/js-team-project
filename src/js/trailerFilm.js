@@ -1,6 +1,8 @@
 import movieTrailer from 'movie-trailer';
 const basicLightbox = require('basiclightbox');
 import { KEY } from './apiClass';
+import Notifications from './pNotify';
+const notifications = new Notifications();
 
 export default class watchTrailer {
   constructor(trailerId, trailerTitle) {
@@ -15,7 +17,7 @@ export default class watchTrailer {
       trailerId: this.trailerId,
     });
 
-    return queryId;
+    return queryId !== null ? queryId : notifications.showNotFound();
   }
 
   embedPlayer(queryId) {
