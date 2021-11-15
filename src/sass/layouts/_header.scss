@@ -103,17 +103,18 @@
 
 .header__speech-btn {
   position: absolute;
-  left: -30px;
+  right: -5px;
   display: block;
   cursor: pointer;
   background-color: transparent;
   fill: $secondaryBackgroundColor;
   border: none;
-  transition: transform $animation;
+  transition: transform $animation, fill $animation;
 
   &:hover,
   &:focus {
-    transform: scale(1.105);
+    transform: scale(1.2);
+    fill: #ff6b01;
   }
 }
 
@@ -207,21 +208,21 @@
   transform: translate3d(0, -23px, 0) scale3d(0.92, 0.92, 1);
 }
 
-.header__input-btn {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: -6px;
-  right: -10px;
-  background-color: transparent;
-  border: none;
-  transition: transform $animation;
+// .header__input-btn {
+//   position: absolute;
+//   width: 40px;
+//   height: 40px;
+//   top: -6px;
+//   right: -10px;
+//   background-color: transparent;
+//   border: none;
+//   transition: transform $animation;
 
-  &:hover,
-  &:focus {
-    transform: scale(1.105);
-  }
-}
+//   &:hover,
+//   &:focus {
+//     transform: scale(1.105);
+//   }
+// }
 
 .header__btn-wrapper {
   display: flex;
