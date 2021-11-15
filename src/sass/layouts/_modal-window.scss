@@ -100,8 +100,8 @@
   &__table-element:not(:last-child) {
     margin-bottom: 10px;
   }
-  &__data-row {
-  }
+  // &__data-row {
+  // }
 
   &__data-title {
     width: 70px;
@@ -196,7 +196,7 @@
 
     &:after {
       background: $mainBackgroundColor;
-      content: '';
+      content: "";
       height: 155px;
       left: -75px;
       opacity: 0.2;
@@ -248,7 +248,7 @@
 
     &:after {
       background: $secondaryAccentColor;
-      content: '';
+      content: "";
       height: 155px;
       left: -75px;
       opacity: 0.5;
@@ -280,6 +280,13 @@
 
   .modal__close-btn {
     fill: $mainBackgroundColor;
+    transition: all 500ms ease;
+
+    &:hover,
+    &:focus {
+      fill: $accentTextColor;
+      transform: rotate(90deg) scale(0.9);
+    }
   }
 
   .modal__main-title {

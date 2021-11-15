@@ -51,19 +51,8 @@
   }
 }
 
-.footer-lightbox-overlay {
-  display: none;
-  // position: absolute;
-
-  // top: 0;
-  // left: 0;
-  // width: 100vw;
-  // height: 100vh;
-  // background-color: rgba(0, 0, 0, 0.8);
-}
-
 .footer-lightbox-window {
-  background-color: white;
+  background-color: $mainBackgroundColor;
   position: absolute;
   bottom: 50%;
   right: 50%;
@@ -107,10 +96,16 @@
 //dark theme styles
 
 .footer-lightbox-window.dark {
-  background-color: $mainTextColor;
+  background-color: $darkThemeColor;
 
   .footer-lightbox-close-btn {
     fill: $mainBackgroundColor;
+    transition: all 500ms ease;
+
+    &:hover {
+      fill: $accentTextColor;
+      transform: rotate(90deg) scale(0.9);
+    }
   }
 
   .team-list-item {
