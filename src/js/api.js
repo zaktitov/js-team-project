@@ -16,7 +16,7 @@ const notifications = new Notifications();
 export const filmGenres = new FilmGenres();
 const preload = new Preload();
 
-searchForm.addEventListener('input', debounce(findFilmByWord, 500));
+searchForm.addEventListener('input', debounce(findFilmByWord, 1000));
 
 let formSubmitted = false;
 
@@ -33,9 +33,10 @@ export function findFilmByWord() {
     preload.deleteAddPreload();
     newApiService.resetPage();
     fetchFilms();
-    setTimeout(() => {
-      notifications.showSuccess();
-    }, 500);
+    if (filmCards.children.length === 0) {
+      notifications.showNotFound();
+    }
+
   } else {
     getFilmsByDefault();
     setTimeout(() => {
@@ -61,6 +62,8 @@ export async function getFilmsByDefault() {
       }, 500);
     }
 
+    refs.homePageContainer.classList.remove('notice');
+
     if (filmCards.children.length === 0) {
       error => console.log(error);
     }
@@ -73,8 +76,10 @@ getFilmsByDefault();
 export async function fetchFilms() {
   try {
     appendFilmCardsMarkup(await newApiService.fetchByKeyWord());
-
     preload.deleteAddPreload();
+    if (refs.homePageContainer.classList.contains('notice')) {
+      refs.homePageContainer.classList.remove('notice');
+    }
 
     if (refs.paginationContainer.classList.contains('visually-hidden')) {
       refs.paginationContainer.classList.remove('visually-hidden');
@@ -86,6 +91,8 @@ export async function fetchFilms() {
     formSubmitted = false;
 
     if (filmCards.children.length === 0) {
+      // getFilmsByDefault();
+      refs.homePageContainer.classList.add('notice');
       error => console.log(error);
       refs.paginationContainer.classList.add('visually-hidden');
       pagination.reset(0);
