@@ -74,12 +74,6 @@ function onBackdropClick(e) {
 function toggleModal() {
   body.classList.toggle('is-open');
   backdrop.classList.toggle('is-hidden');
-
-  if (body.classList.contains('is-open')) {
-    body.style.overflow = 'hidden';
-  } else {
-    body.style.overflow = 'auto';
-  }
 }
 
 function getFilmTrailer(event) {

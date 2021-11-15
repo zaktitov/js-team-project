@@ -17,13 +17,13 @@ function onOpenModal(e) {
   window.addEventListener('keydown', onEscBtnPress);
   footerLightboxCloseBtn.addEventListener('click', onCloseModal);
   footerLightbox.classList.add('is-open');
-  body.style.overflow = 'hidden';
+  body.classList.add('is-open');
 }
 
 function onCloseModal() {
   window.removeEventListener('keydown', onEscBtnPress);
   footerLightbox.classList.remove('is-open');
-  body.style.overflow = 'auto';
+  body.classList.remove('is-open');
 }
 
 function onCloseBtnClick() {
