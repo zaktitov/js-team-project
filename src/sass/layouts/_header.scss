@@ -366,6 +366,8 @@
     top: 0;
     left: 55px;
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
     @media screen and (min-width: 768px) {
       top: 53px;
@@ -398,6 +400,7 @@
     align-items: center;
     background-color: $accentTextColor;
     border-radius: 50px;
+    cursor: pointer;
 
     padding: 5px;
     width: 65px;

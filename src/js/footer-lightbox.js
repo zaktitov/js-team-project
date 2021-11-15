@@ -1,40 +1,47 @@
-import { refs } from './refs.js'
-const{footerLightbox,footerLightboxOverlay, footerLightboxWindow, footerLightboxOpenBtn,   footerLightboxCloseBtn}=refs
-
+import { refs } from './refs.js';
+const {
+  footerLightbox,
+  footerLightboxOverlay,
+  footerLightboxWindow,
+  footerLightboxOpenBtn,
+  footerLightboxCloseBtn,
+  body,
+} = refs;
 
 footerLightboxOpenBtn.addEventListener('click', onOpenModal);
 footerLightboxCloseBtn.addEventListener('click', onCloseModal);
-footerLightboxOverlay.addEventListener('click', onLightBoxOverlayClick)
-
+footerLightboxOverlay.addEventListener('click', onLightBoxOverlayClick);
 
 function onOpenModal(e) {
-        e.preventDefault();
-        window.addEventListener('keydown', onEscBtnPress);
-        footerLightboxCloseBtn.addEventListener('click', onCloseModal)
-        footerLightbox.classList.add("is-open");
+  e.preventDefault();
+  window.addEventListener('keydown', onEscBtnPress);
+  footerLightboxCloseBtn.addEventListener('click', onCloseModal);
+  footerLightbox.classList.add('is-open');
+  body.style.overflow = 'hidden';
 }
 
 function onCloseModal() {
-    window.removeEventListener('keydown', onEscBtnPress)
-    footerLightbox.classList.remove("is-open");
+  window.removeEventListener('keydown', onEscBtnPress);
+  footerLightbox.classList.remove('is-open');
+  body.style.overflow = 'auto';
 }
 
 function onCloseBtnClick() {
-    window.addEventListener('keydown', onEscBtnPress);
-    onCloseModal();
+  window.addEventListener('keydown', onEscBtnPress);
+  onCloseModal();
 }
 
 function onLightBoxOverlayClick(e) {
-    if (e.currentTarget === e.target) {
-        onCloseModal();
-    }
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+  }
 }
 
 function onEscBtnPress(e) {
-    if (e.code === 'Escape') {
-        onCloseModal();
-    }
-} 
+  if (e.code === 'Escape') {
+    onCloseModal();
+  }
+}
 
 // class Modal {
 //     constructor({ modalWindowSelector, modalOpenBtnSelector, modalCloseBtnSelector, modalOverlaySelector }) {
@@ -72,8 +79,6 @@ function onEscBtnPress(e) {
 //         }
 //     }
 // }
-
-
 
 // const modalWindow = new Modal({
 //     modalWindowSelector: '.footer-modal-window',
