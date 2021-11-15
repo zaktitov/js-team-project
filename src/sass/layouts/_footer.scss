@@ -91,6 +91,14 @@
   border: none;
   background-color: transparent;
   outline: none;
+
+  fill: black;
+  transition: all 500ms ease;
+
+  &:hover {
+    fill: $accentTextColor;
+    transform: rotate(90deg) scale(0.9);
+  }
 }
 
 //dark theme styles
