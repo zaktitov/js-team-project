@@ -79,7 +79,6 @@ function onEscBtnPress(e) {
 //         }
 //     }
 // }
-
 // const modalWindow = new Modal({
 //     modalWindowSelector: '.footer-modal-window',
 //     modalOpenBtnSelector: '.footer-modal-open',
