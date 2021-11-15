@@ -10,7 +10,7 @@ const {
 
 footerLightboxOpenBtn.addEventListener('click', onOpenModal);
 footerLightboxCloseBtn.addEventListener('click', onCloseModal);
-footerLightboxOverlay.addEventListener('click', onLightBoxOverlayClick);
+footerLightbox.addEventListener('click', onLightBoxOverlayClick);
 
 function onOpenModal(e) {
   e.preventDefault();

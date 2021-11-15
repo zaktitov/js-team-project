@@ -69,11 +69,12 @@
   right: 50%;
   border-radius: 4px;
   padding: 15px;
-  padding-top: 18px;
-  padding-bottom: 18px;
+  padding-top: 24px;
+  padding-bottom: 40px;
   overflow: auto;
   width: 214px;
   height: 100vh;
+  z-index: 22;
 
   transform: translate(50%, 50%);
 
@@ -142,16 +143,15 @@
   line-height: 1.2;
   text-align: center;
 
-  @media screen and (min-width:768px){
+  @media screen and (min-width: 768px) {
     font-size: 30px;
   }
-  
 }
 
 .team-list {
   display: grid;
-  grid-template-columns:repeat( 1, 1fr);
-  grid-gap:10px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
