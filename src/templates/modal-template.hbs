@@ -38,8 +38,20 @@
 
   <div class='modal__poster-container'>
     <picture>
-      <source srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' />
-      <img class='modal__poster' src='https://image.tmdb.org/t/p/w342{{poster_path}}' alt='poster' />
+      <source 
+      {{#if poster_path}}
+      srcset='https://image.tmdb.org/t/p/w500{{poster_path}}' media="(min-width: 1200px)"
+      {{else}}
+      srcset='/3.89c1bd72.jpg' 
+      {{/if}}
+       />
+      <img class='modal__poster' 
+      {{#if poster_path}}
+      src='https://image.tmdb.org/t/p/w342{{poster_path}}' 
+      {{else}}
+      src='/3.89c1bd72.jpg' 
+      {{/if}}
+      alt='poster' />
     </picture>
 
       <div class='modal__trailer-wrapper'>
