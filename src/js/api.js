@@ -21,10 +21,12 @@ searchForm.addEventListener('input', debounce(findFilmByWord, 500));
 let formSubmitted = false;
 
 export function findFilmByWord() {
+  // e.preventDefault();
   newApiService.query = input.value.trim();
   // newApiService.query = e.currentTarget.elements.query.value;
   filmCards.innerHTML = '';
   // searchForm.reset();
+
   formSubmitted = true;
 
   if (newApiService.query !== '' && preloadWrap.classList.contains('preload__end')) {
