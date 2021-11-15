@@ -147,4 +147,15 @@ export default class Notifications {
       minHeight: 18,
     });
   }
+
+  showNotFound() {
+    error({
+      text: 'Sorry, video not found ❌!',
+      hide: true,
+      delay: 1000,
+      animateSpeed: 'slow',
+      closer: true,
+      minHeight: 25,
+    });
+  }
 }
