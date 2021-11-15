@@ -43,6 +43,14 @@
     background-color: transparent;
     border: none;
     outline: none;
+    transition: all 500ms ease;
+    fill: black;
+
+    &:hover,
+    &:focus {
+      fill: $accentTextColor;
+      transform: rotate(90deg) scale(0.9);
+    }
   }
 
   &__poster-container {
