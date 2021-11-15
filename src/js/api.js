@@ -22,8 +22,9 @@ let formSubmitted = false;
 
 export function findFilmByWord() {
   newApiService.query = input.value.trim();
+  // newApiService.query = e.currentTarget.elements.query.value;
   filmCards.innerHTML = '';
-
+  // searchForm.reset();
   formSubmitted = true;
 
   if (newApiService.query !== '' && preloadWrap.classList.contains('preload__end')) {
