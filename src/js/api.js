@@ -73,6 +73,10 @@ export async function fetchFilms() {
 
     preload.deleteAddPreload();
 
+    if (refs.paginationContainer.classList.contains('visually-hidden')) {
+      refs.paginationContainer.classList.remove('visually-hidden');
+    }
+
     if (formSubmitted) {
       pagination.reset(newApiService.results);
     }
@@ -80,6 +84,7 @@ export async function fetchFilms() {
 
     if (filmCards.children.length === 0) {
       error => console.log(error);
+      refs.paginationContainer.classList.add('visually-hidden');
       pagination.reset(0);
     }
   } catch {

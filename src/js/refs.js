@@ -28,6 +28,8 @@ export const refs = {
   scrollBtn: document.querySelector('.js-scroll-btn'),
   preloadWrap: document.querySelector('.preload'),
 
+  paginationContainer: document.querySelector('.js-pagination'),
+
   footerLightbox: document.querySelector('.js-footer-light-box'),
   footerLightboxOverlay: document.querySelector('.js-footer-light-box-overlay'),
   footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
