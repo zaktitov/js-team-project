@@ -2,7 +2,7 @@ import { refs } from './refs';
 import moviesFromStorage from './get-movies-from-storage';
 import { getFilmsByDefault, newApiService } from './api';
 import appendFilmCardsMarkup from './append-films-cards';
-import { pagination } from './pagination'
+import { pagination } from './pagination';
 
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
@@ -26,6 +26,7 @@ function onChangeHomeLink(e) {
   newApiService.resetPage();
   getFilmsByDefault();
   pagination.reset();
+  refs.searchForm.reset();
 
   refs.homePageContainer.classList.remove('visually-hidden');
   refs.libraryPageContainer.classList.add('visually-hidden');
