@@ -101,4 +101,3 @@ function appendFilmCardsMarkup(films) {
   getFilmFullYear(refs.filmCards, '.js-film-release');
 }
 
-/* ----- PAGINATION ------ */
