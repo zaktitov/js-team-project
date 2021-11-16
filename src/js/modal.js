@@ -39,7 +39,7 @@ function renderModalWindow(e) {
 
   addToLocalArray(e);
   toggleModal();
-
+  
   //trailer
   const trailerBtn = document.querySelector('.js-trailer-btn');
   trailerBtn.addEventListener('click', getFilmTrailer);
