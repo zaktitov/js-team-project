@@ -16,7 +16,8 @@ const notifications = new Notifications();
 export const filmGenres = new FilmGenres();
 const preload = new Preload();
 
-searchForm.addEventListener('input', debounce(findFilmByWord, 1000));
+window.addEventListener('keydown', blockEnterReset);
+searchForm.addEventListener('input', debounce(findFilmByWord, 800));
 
 let formSubmitted = false;
 
@@ -36,7 +37,6 @@ export function findFilmByWord() {
     if (filmCards.children.length === 0) {
       notifications.showNotFound();
     }
-
   } else {
     getFilmsByDefault();
     setTimeout(() => {
@@ -108,4 +108,10 @@ function appendFilmCardsMarkup(films) {
   myCurrentPage(films);
   filmGenres.cutFilmGenres(filmCards);
   getFilmFullYear(filmCards, '.js-film-release');
+}
+
+function blockEnterReset(e) {
+  if (e.code === 'Enter') {
+    e.preventDefault();
+  }
 }
