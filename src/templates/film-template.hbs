@@ -3,7 +3,7 @@
   <a class="film-link js-film-link" href="#">
     <div class="film-card js-film-card">
       <div class="img-wrap">
-        <picture class="film-picture js-film-picture">
+        {{!-- <picture class="film-picture js-film-picture"> --}}
           {{!--
           <source loading="lazy" srcset="https://image.tmdb.org/t/p/w500{{poster_path}}" />
           --}} 
@@ -12,11 +12,11 @@
           {{#if poster_path}}
           src='https://image.tmdb.org/t/p/w342{{poster_path}}' 
           {{else}} 
-          src='/3.89c1bd72.jpg' 
+          src='https://static.vecteezy.com/system/resources/previews/002/144/831/large_2x/404-error-with-alien-spaceship-page-is-lost-and-not-found-message-free-vector.jpg' 
           {{/if}}
           alt='{{title}}' 
           id='{{id}}' />
-        </picture>
+        {{!-- </picture> --}}
       </div>
 
       <div class="film-content js-film-content">
