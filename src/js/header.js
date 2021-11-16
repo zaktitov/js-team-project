@@ -3,6 +3,7 @@ import moviesFromStorage from './get-movies-from-storage';
 import { getFilmsByDefault, newApiService } from './api';
 import appendFilmCardsMarkup from './append-films-cards';
 import { pagination } from './pagination';
+import libraryImg from '../images/library.png';
 
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
@@ -49,19 +50,35 @@ function onChangeLibraryLink(event) {
   refs.headerWatchedBtn.classList.remove('current');
   refs.headerQueueBtn.classList.add('current');
   const films = getMoviesFromQueueStorage();
-  appendFilmCardsMarkup(refs.libraryFilmCards, films);
+  onLibraryCards(films);
 }
 
 function onHeaderWatchedBtnClick() {
   refs.headerWatchedBtn.classList.add('current');
   refs.headerQueueBtn.classList.remove('current');
   const films = getMoviesFromWatchedStorage();
-  appendFilmCardsMarkup(refs.libraryFilmCards, films);
+  onLibraryCards(films);
 }
 
 function onHeaderQueueBtnClick() {
   refs.headerQueueBtn.classList.add('current');
   refs.headerWatchedBtn.classList.remove('current');
   const films = getMoviesFromQueueStorage();
-  appendFilmCardsMarkup(refs.libraryFilmCards, films);
+  onLibraryCards(films);
+}
+
+function onLibraryCards(films) {
+  if (films.length === 0 || films === []) {
+    onEmptyLibrary();
+  } else {
+    refs.libraryFilmCards.classList.remove('empty-library');
+    appendFilmCardsMarkup(refs.libraryFilmCards, films);
+  }
+}
+
+function onEmptyLibrary() {
+  const markupLibrary = `<h2 class='empty-library__title'>Please return to main page and add movie....</h2>
+<img class='empty-library__img' src='${libraryImg}' alt="It's empty in here" />`;
+  refs.libraryFilmCards.innerHTML = markupLibrary;
+  refs.libraryFilmCards.classList.add('empty-library');
 }
