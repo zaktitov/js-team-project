@@ -18,19 +18,19 @@ export default function (data) {
       if (element.id === data.id) {
         addToWatched.textContent = 'REMOVE FROM WATCHED'
         indexOfElWatched = i
-      }
+      } 
     })
 
     queueList.forEach((element, i) => {
       if (element.id === data.id) {
         addToQueue.textContent = 'REMOVE FROM QUEUE'
         indexOfElQueue = i
-      }
+    } 
     })
   }
 
   checkButton()
-
+  chekBtnStatus()
   function addToLocalStorageWatched() {
     if (addToWatched.textContent === 'REMOVE FROM WATCHED') {
       watchedList.splice(indexOfElWatched, 1)
@@ -41,8 +41,8 @@ export default function (data) {
       // setTimeout(e => {
       //   notifications.removeFromWatched()
       // }, 1000)
-      // checkButton()
-
+      checkButton()
+chekBtnStatus()
     } else
       if (addToQueue.textContent === 'ADD TO QUEUE') {
         watchedList.push(data)
@@ -53,8 +53,8 @@ export default function (data) {
         }, 500)
 
         checkButton()
+        chekBtnStatus()
       } else {
-
         // setTimeout(e => {
         //   notifications.alreadyInQueued()
         // }, 1000)
@@ -69,12 +69,14 @@ export default function (data) {
       queueList.splice(indexOfElQueue, 1)
       localStorage.setItem(`queueList`, JSON.stringify(queueList))
       addToQueue.textContent = 'ADD TO QUEUE'
+      
       // setTimeout(e => {
       //   notifications.removeFromQueue()
       // }, 1000)
 
 
       checkButton()
+    chekBtnStatus()
     } else
       if (addToWatched.textContent === 'ADD TO WATCHED') {
         queueList.push(data)
@@ -85,6 +87,7 @@ export default function (data) {
         }, 500)
 
       checkButton()
+      chekBtnStatus()
       }
       else {
         
@@ -96,7 +99,23 @@ export default function (data) {
     reloadLibraryPage()
   }
 
-
+  function chekBtnStatus() {
+    if ((addToQueue.textContent === 'ADD TO QUEUE') && (addToWatched.textContent === 'REMOVE FROM WATCHED')) {
+      addToQueue.setAttribute('disabled', true)
+      addToQueue.style.cursor = 'not-allowed'
+    } else {
+      addToQueue.removeAttribute('disabled', false)
+      addToQueue.style.cursor = 'pointer'
+    }
+    if ((addToWatched.textContent === 'ADD TO WATCHED') && (addToQueue.textContent === 'REMOVE FROM QUEUE')) {
+      addToWatched.setAttribute('disabled', true)
+      addToWatched.style.cursor = 'not-allowed'
+    } else {
+      addToWatched.removeAttribute('disabled', false)
+      addToWatched.style.cursor = 'pointer'
+    }
+  }
+  
   addToWatched.addEventListener(`click`, addToLocalStorageWatched)
   addToQueue.addEventListener('click', addToLocalStorageQueue)
 
