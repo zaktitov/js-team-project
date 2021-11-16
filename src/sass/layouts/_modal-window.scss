@@ -19,7 +19,7 @@
   @media screen and(min-width:1024px) {
     display: flex;
     justify-content: center;
-    max-width: 882px;
+    width: 882px;
     min-height: 568px;
   }
   position: absolute;
@@ -204,7 +204,7 @@
 
     &:after {
       background: $mainBackgroundColor;
-      content: "";
+      content: '';
       height: 155px;
       left: -75px;
       opacity: 0.2;
@@ -256,7 +256,7 @@
 
     &:after {
       background: $secondaryAccentColor;
-      content: "";
+      content: '';
       height: 155px;
       left: -75px;
       opacity: 0.5;
