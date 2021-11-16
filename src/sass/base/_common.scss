@@ -53,18 +53,24 @@ body {
     padding: 0 70px;
   }
 
-  &.notice{
-    background: url("../images/background/nocontent.png") center no-repeat;
+  &.notice {
+    background: center no-repeat;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.1),rgba(0,0,0,0.2)),
+      url("../images/background/nocontent.png");
     height: 300px;
-    width: 80%;
+    width: 300px;
     border: 1px transparent solid;
     border-radius: 3%;
-    
-
-    @media screen and (min-width:1024px){
-      height: 500px;
+    @media screen and (min-width:768px){
+      height: 400px;
+      width: 600px;
     }
     
+
+    @media screen and (min-width: 1024px) {
+      height: 500px;
+      width: 700px;
+    }
   }
 }
 

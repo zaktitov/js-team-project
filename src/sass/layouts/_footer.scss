@@ -25,8 +25,14 @@
 }
 
 .modal-open-btn {
+  display: inline-block;
   color: inherit;
   text-decoration: underline;
+
+  &:focus,
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 /*------ MODAL WINDOW -----*/
@@ -59,16 +65,16 @@
   border-radius: 4px;
   padding: 15px;
   padding-top: 24px;
-  padding-bottom: 40px;
+  padding-bottom: 24px;
   overflow: auto;
-  width: 214px;
+  width: 275px;
   height: 100vh;
   z-index: 22;
 
   transform: translate(50%, 50%);
 
   @media screen and (min-width: 768px) {
-    width: 659px;
+    width: 760px;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -155,18 +161,17 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 10px;
+  align-items: center;
+  justify-content: center;
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    // display: flex;
-    // flex-wrap: wrap;
-    // margin: -5px;
-    // justify-content: center;
+    grid-template: repeat(3, 1fr) / repeat(3, 180px);
+    grid-gap: 10px;
   }
 }
 
 .team-list-item {
-  border-radius: 0px 0px 4px 4px;
+  overflow: hidden;
+  border-radius: 4px 4px 4px 4px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
 
   &:not(:last-child) {
@@ -209,4 +214,14 @@
 
   font-size: 14px;
   line-height: 1.19;
+}
+
+.team__link {
+  display: block;
+  margin-top: 5px;
+  color: $accentTextColor;
+}
+
+.team__icon{
+  fill: currentColor;
 }
