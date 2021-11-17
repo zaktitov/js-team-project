@@ -37,9 +37,6 @@ export default class watchTrailer {
   }
 
   showTrailer() {
-    this.fetchTrailer()
-      .then(this.embedPlayer)
-      .then(this.createModalForTrailerMarkup)
-      .catch(error => console.log(error));
+    this.fetchTrailer().then(this.embedPlayer).then(this.createModalForTrailerMarkup);
   }
 }
