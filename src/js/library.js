@@ -48,6 +48,7 @@ chekBtnStatus()
         watchedList.push(data)
         let watchedStr = JSON.stringify(watchedList)
         localStorage.setItem(`watchedList`, watchedStr)
+
         setTimeout(e => {
           notifications.addToWatched()
         }, 500)
@@ -103,16 +104,24 @@ chekBtnStatus()
     if ((addToQueue.textContent === 'ADD TO QUEUE') && (addToWatched.textContent === 'REMOVE FROM WATCHED')) {
       addToQueue.setAttribute('disabled', true)
       addToQueue.style.cursor = 'not-allowed'
+      addToQueue.classList.remove('modal__queue-list')
+      addToQueue.classList.add('disabled')
     } else {
       addToQueue.removeAttribute('disabled', false)
       addToQueue.style.cursor = 'pointer'
+       addToQueue.classList.remove('disabled')
+      addToQueue.classList.add('modal__queue-list')
     }
     if ((addToWatched.textContent === 'ADD TO WATCHED') && (addToQueue.textContent === 'REMOVE FROM QUEUE')) {
       addToWatched.setAttribute('disabled', true)
       addToWatched.style.cursor = 'not-allowed'
+       addToWatched.classList.remove('modal__watch-list')
+      addToWatched.classList.add('disabled')
     } else {
       addToWatched.removeAttribute('disabled', false)
       addToWatched.style.cursor = 'pointer'
+       addToWatched.classList.remove('disabled')
+      addToWatched.classList.add('modal__watch-list')
     }
   }
   
