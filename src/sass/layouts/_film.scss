@@ -211,8 +211,11 @@
 
 // ============ FILM-DESCRIPTION =============
 .film-content {
-  max-height: 42px;
-  padding: 0, 0, 5px, 1px;
+  @media screen and (max-width: 319px) {
+    min-height: 42px;
+  }
+  min-height: 40px;
+  padding-left: 2px;
   border-radius: 0 0 5px 5px;
   transition: border-radius $animation, background-color $animation;
 }
@@ -254,12 +257,13 @@
 }
 .film-genres {
   display: flex;
+  flex-wrap: wrap;
 }
 .film-genre {
-  max-height: 12px;
-  &:not(:last-child) {
-    margin-right: 3px;
-  }
+  // max-height: 12px;
+  // &:not(:last-child) {
+  //   margin-right: 3px;
+  // }
 
   // @media screen and (min-width: $medium) {
   &:not(:last-child) {
@@ -283,8 +287,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 36px;
-  min-height: 16px;
+  min-width: 33px;
+  max-height: 14px;
 
   text-transform: uppercase;
   background-color: $accentTextColor;
