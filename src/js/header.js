@@ -5,6 +5,7 @@ import appendFilmCardsMarkup from './append-films-cards';
 import { pagination } from './pagination';
 import libraryImg from '../images/library.png';
 
+
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
 refs.homeLink.addEventListener('click', onChangeHomeLink);
@@ -73,10 +74,11 @@ function onLibraryCards(films) {
   } else {
     refs.libraryFilmCards.classList.remove('empty-library');
     appendFilmCardsMarkup(refs.libraryFilmCards, films);
+  
   }
 }
 
-function onEmptyLibrary() {
+export default function onEmptyLibrary() {
   const markupLibrary = `<h2 class='empty-library__title'>Please return to the main page and add a movie...</h2>
   <img class='empty-library__img' src='${libraryImg}' alt="It's empty in here" />`;
   refs.libraryFilmCards.innerHTML = markupLibrary;
