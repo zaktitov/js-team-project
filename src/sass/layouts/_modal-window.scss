@@ -76,7 +76,7 @@
     &:hover,
     &:focus {
       fill: $accentTextColor;
-      transform: rotate(90deg) scale(0.9);
+      transform:scale(0.8);
     }
   }
 
@@ -321,7 +321,7 @@
     &:hover,
     &:focus {
       fill: $accentTextColor;
-      transform: rotate(90deg) scale(0.9);
+      transform: scale(0.8);
     }
   }
 

@@ -36,3 +36,4 @@ export const refs = {
   footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
   footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
 };
+

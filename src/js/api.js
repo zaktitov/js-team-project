@@ -34,14 +34,16 @@ export function findFilmByWord() {
     preload.deleteAddPreload();
     newApiService.resetPage();
     fetchFilms();
-    if (filmCards.children.length === 0) {
-      notifications.showNotFound();
-    }
+
+    setTimeout(() => {
+      if (filmCards.children.length === 0) {
+        notifications.showNotFound();
+      } else {
+        notifications.showSuccess();
+      }
+    }, 250);
   } else {
     getFilmsByDefault();
-    setTimeout(() => {
-      notifications.showSuccess();
-    }, 500);
   }
 }
 
