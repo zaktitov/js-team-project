@@ -68,7 +68,7 @@ function onHeaderQueueBtnClick() {
 }
 
 function onLibraryCards(films) {
-  if (films.length === 0 || films === []) {
+  if (!films || films.length === 0) {
     onEmptyLibrary();
   } else {
     refs.libraryFilmCards.classList.remove('empty-library');
@@ -77,8 +77,8 @@ function onLibraryCards(films) {
 }
 
 function onEmptyLibrary() {
-  const markupLibrary = `<h2 class='empty-library__title'>Please return to main page and add movie....</h2>
-<img class='empty-library__img' src='${libraryImg}' alt="It's empty in here" />`;
+  const markupLibrary = `<h2 class='empty-library__title'>Please return to the main page and add a movie...</h2>
+  <img class='empty-library__img' src='${libraryImg}' alt="It's empty in here" />`;
   refs.libraryFilmCards.innerHTML = markupLibrary;
   refs.libraryFilmCards.classList.add('empty-library');
 }
