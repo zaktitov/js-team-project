@@ -15,7 +15,12 @@ export default class FilmGenres {
       genresList.forEach(el => {
         if (Number(genre.textContent) === el.id) {
           genre.textContent = el.name;
+
+             if (el.id === 878) {
+          genre.textContent='Sci-Fi'
         }
+        }
+     
       });
     });
   }
