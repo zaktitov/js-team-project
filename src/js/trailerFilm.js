@@ -17,11 +17,19 @@ export default class watchTrailer {
       trailerId: this.trailerId,
     });
 
-    return queryId !== null ? queryId : notifications.showNotFound();
+    if (queryId !== null) {
+      return queryId;
+    }
   }
 
   embedPlayer(queryId) {
-    return `<iframe class="modal__trailer-video" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${queryId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" ></iframe>`;
+    if (queryId !== undefined) {
+      return `<iframe class="modal__trailer-video" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${queryId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" ></iframe>`;
+    } else {
+      // notifications.showNotFound();
+      const trailerBtn = document.querySelector('.js-trailer-btn');
+      trailerBtn.textContent = 'Sorry, trailer not found';
+    }
   }
 
   createModalForTrailerMarkup(markup) {
