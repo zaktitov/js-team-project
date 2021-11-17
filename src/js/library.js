@@ -3,6 +3,8 @@ const notifications = new Notifications()
 
 import reloadLibraryPage from './reload-library-page'
 
+import onEmptyLibrary from './header'
+
 export default function (data) {
   const addToWatched = document.querySelector('.modal__watch-list')
   const addToQueue = document.querySelector('.modal__queue-list')
@@ -62,6 +64,7 @@ chekBtnStatus()
 
       }
     reloadLibraryPage()
+    onEmptyLibrary()
   }
 
   function addToLocalStorageQueue() {
@@ -98,6 +101,7 @@ chekBtnStatus()
 
       }
     reloadLibraryPage()
+    onEmptyLibrary()
   }
 
   function chekBtnStatus() {
