@@ -37,7 +37,7 @@ export function findFilmByWord() {
 
     setTimeout(() => {
       if (filmCards.children.length === 0) {
-        notifications.showNotFound();
+        notifications.showNotFilms();
       } else {
         notifications.showSuccess();
       }
