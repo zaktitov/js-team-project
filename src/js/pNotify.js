@@ -158,6 +158,15 @@ export default class Notifications {
       minHeight: 25,
     });
   }
+
+  showNotFilms() {
+    error({
+      text: 'Sorry, films not found ❌!',
+      hide: true,
+      delay: 1000,
+      animateSpeed: 'slow',
+      closer: true,
+      minHeight: 25,
+    });
+  }
 }
-
-
