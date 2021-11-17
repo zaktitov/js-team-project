@@ -16,7 +16,7 @@ const notifications = new Notifications();
 export const filmGenres = new FilmGenres();
 const preload = new Preload();
 
-searchForm.addEventListener('input', debounce(findFilmByWord, 1000));
+searchForm.addEventListener('input', debounce(findFilmByWord, 1200));
 searchForm.addEventListener('keydown', blockEnterReset);
 
 let formSubmitted = false;
