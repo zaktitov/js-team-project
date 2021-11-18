@@ -44,7 +44,7 @@ export default function (data) {
       //   notifications.removeFromWatched()
       // }, 1000)
       checkButton()
-chekBtnStatus()
+      chekBtnStatus()
     } else
       if (addToQueue.textContent === 'ADD TO QUEUE') {
         watchedList.push(data)
@@ -63,9 +63,8 @@ chekBtnStatus()
         // }, 1000)
 
       }
-    reloadLibraryPage()
-    onEmptyLibrary()
-  }
+      reloadLibraryPage()
+     }
 
   function addToLocalStorageQueue() {
     if (addToQueue.textContent === 'REMOVE FROM QUEUE') {
@@ -100,9 +99,8 @@ chekBtnStatus()
         // }, 1000)
 
       }
-    reloadLibraryPage()
-    onEmptyLibrary()
-  }
+      reloadLibraryPage()
+     }
 
   function chekBtnStatus() {
     if ((addToQueue.textContent === 'ADD TO QUEUE') && (addToWatched.textContent === 'REMOVE FROM WATCHED')) {
