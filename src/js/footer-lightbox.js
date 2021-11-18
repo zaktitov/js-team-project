@@ -1,8 +1,10 @@
+import appendTeamCardsMarkup from './team.js';
+import students from '../team.json';
 import { refs } from './refs.js';
 const {
   footerLightbox,
-  footerLightboxOverlay,
-  footerLightboxWindow,
+  // footerLightboxOverlay,
+  // footerLightboxWindow,
   footerLightboxOpenBtn,
   footerLightboxCloseBtn,
   body,
@@ -18,6 +20,7 @@ function onOpenModal(e) {
   footerLightboxCloseBtn.addEventListener('click', onCloseModal);
   footerLightbox.classList.add('is-open');
   body.classList.add('is-open');
+  appendTeamCardsMarkup(students);
 }
 
 function onCloseModal() {
@@ -26,10 +29,10 @@ function onCloseModal() {
   body.classList.remove('is-open');
 }
 
-function onCloseBtnClick() {
-  window.addEventListener('keydown', onEscBtnPress);
-  onCloseModal();
-}
+// function onCloseBtnClick() {
+//   window.addEventListener('keydown', onEscBtnPress);
+//   onCloseModal();
+// }
 
 function onLightBoxOverlayClick(e) {
   if (e.currentTarget === e.target) {

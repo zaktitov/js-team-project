@@ -11,3 +11,4 @@ import './js/preload';
 import './js/scroll-btn';
 import './js/lazy_load';
 import './js/speech-recognition';
+import './js/team.js';

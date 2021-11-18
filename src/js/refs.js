@@ -35,5 +35,5 @@ export const refs = {
   footerLightboxWindow: document.querySelector('.js-footer-lightbox-window'),
   footerLightboxOpenBtn: document.querySelector('.modal-open-btn'),
   footerLightboxCloseBtn: document.querySelector('.footer-lightbox-close-btn'),
+  teamList: document.querySelector('.js-team-list'),
 };
-
