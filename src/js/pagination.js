@@ -21,7 +21,7 @@ const options = {
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}" style="background-color:#F7F7F7; border:1px solid transparent; border-radius:5px; width:40px; height:40px;display:inline-flex; align-items:center; justify-content:center;">' +
-      '<span class="tui-ico-{{type}}" style= border:none">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}" style="border:none;">{{type}}</span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}" style="display:none;">' +

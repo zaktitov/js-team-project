@@ -12,7 +12,7 @@ const onSpeechRec = () => {
   recognition.onstart = () => notifications.startListening();
 
   recognition.onspeechend = () => {
-    notifications.stopListening();
+    // notifications.stopListening();
     recognition.stop();
     setTimeout(() => {
       findFilmByWord();
