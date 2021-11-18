@@ -1,0 +1,65 @@
+[
+  {
+    "id": 0,
+    "name": "Zakhar Titov",
+    "title": "Team Lead",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/zaktitov"],
+    "icon": [""]
+  },
+  {
+    "id": 1,
+    "name": "Dmytro Litvinenko",
+    "title": "Scrum master",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/DimaLitvinenko"],
+    "icon": [""]
+  },
+  {
+    "id": 2,
+    "name": "Oleksandr Palatniy",
+    "title": "Front-end developer",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/oleksandrpalatniy"],
+    "icon": [""]
+  },
+  {
+    "id": 3,
+    "name": "Olena Semeshyna",
+    "title": "Front-end developer",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/LenaXmi"],
+    "icon": [""]
+  },
+  {
+    "id": 4,
+    "name": "Pavlo Kravchuk",
+    "title": "Front-end developer",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/pavlykravlyk"],
+    "icon": [""]
+  },
+  {
+    "id": 5,
+    "name": "Dmytro Shvets",
+    "title": "Front-end developer",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/Dima-Shvets"],
+    "icon": [""]
+  },
+  {
+    "id": 6,
+    "name": "Yulia Novakovskaya",
+    "title": "Front-end developer",
+    "description": "",
+    "image": "",
+    "links": ["https://github.com/novakovskaya"],
+    "icon": [""]
+  }
+]

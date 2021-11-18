@@ -1,0 +1,26 @@
+{{#each this}}
+    <li class="team-list-item">
+        <div class="img-team">
+          <img src="{{image}}" alt="{{name}}" />
+        </div>
+
+        <div class="team-list-content">
+          <h3 class="team-list-content-title">{{name}}</h3>
+          <p class="team-list-content-text" lang="en">{{title}}</p>
+          <a
+          {{#each links}}
+            href="{{this}}"
+            {{/each}}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="team__link"
+          >
+            <img class="team__icon"
+            {{!-- {{#each icons}} --}}
+            src="{{icon}}"
+            {{!-- {{/each}} --}}
+            alt="GitHub" width="30" height="30" />
+          </a>
+        </div>
+    </li>
+{{/each}}
