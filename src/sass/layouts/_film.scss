@@ -13,26 +13,29 @@
   @media screen and (min-width: $medium) {
     display: grid;
     justify-content: space-between;
-    grid-template-columns: 294px 294px;
-    grid-template-rows: repeat(10, 1fr);
+    // grid-template-columns: 294px 294px;
+    // grid-template-rows: repeat(10, 1fr);
     grid-gap: 30px;
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
   }
   @media screen and (min-width: $large) {
-    grid-template-columns: 274px 274px 274px;
-    grid-template-rows: repeat(7, 1fr);
+    // grid-template-columns: 274px 274px 274px;
+    // grid-template-rows: repeat(7, 1fr);
+    grid-template-columns: repeat(3, minmax(auto, 1fr));
   }
   @media screen and (min-width: $full) {
-    grid-template-columns: 291px 291px 291px 291px;
-    grid-template-rows: repeat(5, 1fr);
+    // grid-template-columns: 291px 291px 291px 291px;
+    // grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(auto, 1fr));
   }
 }
 
 // =============== GRID-ITEM ==================
 .film-item {
   cursor: pointer;
-  // @media screen and (min-width: $medium) {
-  //   align-self: auto;
-  // }
+  @media screen and (min-width: $medium) {
+    align-self: auto;
+  }
 }
 .film-card {
   border-radius: 5px;
@@ -61,33 +64,33 @@
     width: 100%;
     height: 100%;
   }
-  @media screen and (min-width: $small) {
-    min-height: 402px;
-  }
-  @media screen and (min-width: $medium) {
-    min-height: 398px;
-  }
+  // @media screen and (min-width: $small) {
+  //   min-height: 402px;
+  // }
+  // @media screen and (min-width: $medium) {
+  //   min-height: 398px;
+  // }
 }
 
 .film-image {
   @media screen and (max-width: 319px) {
     width: 100%;
   }
-  width: 280px;
-
+ 
   @media screen and (min-width: $small) {
+    width: 280px;
     height: 402px;
   }
   @media screen and (min-width: $medium) {
-    width: 294px;
-    height: 398px;
+    width: 100%;
+    min-height: 100%;
   }
-  @media screen and (min-width: $large) {
-    width: 274px;
-  }
-  @media screen and (min-width: $full) {
-    width: 291px;
-  }
+  // @media screen and (min-width: $large) {
+  //   width: 274px;
+  // }
+  // @media screen and (min-width: $full) {
+  //   width: 291px;
+  // }
 }
 
 // >>>>>>>>>>>>>> HOVER-LINK <<<<<<<<<<<<<<<<
@@ -212,14 +215,19 @@
 // ============ FILM-DESCRIPTION =============
 .film-content {
   @media screen and (max-width: 319px) {
-    min-height: 42px;
+    min-height: 40px;
   }
-  min-height: 40px;
+ @media screen and (min-width: $medium) {
+    min-height: 32px;
+ }
   padding-left: 2px;
   border-radius: 0 0 5px 5px;
   transition: border-radius $animation, background-color $animation;
 }
 .film-title {
+  @media screen and (max-width: 319px) {
+    margin-bottom: 3px;
+  }
   @include large-text;
   line-height: 1.33;
   text-transform: uppercase;
