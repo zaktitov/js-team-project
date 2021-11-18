@@ -292,7 +292,7 @@
   border: 1px solid transparent;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $medium) {
   .header-home {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/header/home-tablet.jpeg);
   }
@@ -322,9 +322,9 @@
   }
 }
 
-@media (min-device-pixel-ratio: 2) and (min-width: 768px),
-  (min-resolution: 192dpi) and (min-width: 768px),
-  (min-resolution: 2dppx) and (min-width: 768px) {
+@media (min-device-pixel-ratio: 2) and (min-width: $medium),
+  (min-resolution: 192dpi) and (min-width: $medium),
+  (min-resolution: 2dppx) and (min-width: $medium) {
   .header-home {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/header/home-tablet@2x.jpeg);
@@ -375,17 +375,17 @@
     align-items: center;
 
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $medium) {
       top: 53px;
       left: 613px;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $large) {
       top: 53px;
       left: 874px;
     }
 
-    @media screen and (min-width: 1390px) {
+    @media screen and (min-width: $full) {
       left: 1250px;
     }
   }
