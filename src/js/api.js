@@ -55,6 +55,10 @@ export async function getFilmsByDefault() {
     appendFilmCardsMarkup(await newApiService.fetchTrends());
     pagination.setTotalItems(newApiService.results);
     newApiService.resetPage();
+
+    if (refs.paginationContainer.classList.contains('visually-hidden')) {
+      refs.paginationContainer.classList.remove('visually-hidden');
+    }
     if (newApiService.query === '') {
       setTimeout(() => {
         notifications.showTrends();
