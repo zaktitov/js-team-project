@@ -73,6 +73,7 @@ export async function getFilmsByDefault() {
   } catch {
     error => console.log(error);
   }
+  pagination.reset();
 }
 getFilmsByDefault();
 
