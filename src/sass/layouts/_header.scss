@@ -52,8 +52,7 @@
   transition: transform $animation;
 }
 
-.header-logo:hover,
-.header-logo:focus {
+.header-logo:hover {
   transform: scale(1.1);
 }
 
