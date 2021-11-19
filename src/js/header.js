@@ -26,7 +26,7 @@ function onChangeHomeLink(e) {
 
   newApiService.resetPage();
   getFilmsByDefault();
-  pagination.reset();
+  pagination.reset(1000);
   refs.searchForm.reset();
 
   refs.homePageContainer.classList.remove('visually-hidden');

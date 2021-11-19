@@ -44,6 +44,7 @@ export function findFilmByWord() {
     }, 250);
   } else {
     getFilmsByDefault();
+    pagination.reset(1000);
   }
 }
 
@@ -62,7 +63,6 @@ export async function getFilmsByDefault() {
       setTimeout(() => {
         notifications.showSuccess();
       }, 500);
-      pagination.reset();
     }
 
     refs.homePageContainer.classList.remove('notice');
@@ -95,6 +95,7 @@ export async function fetchFilms() {
 
     if (filmCards.children.length === 0) {
       // getFilmsByDefault();
+      pagination.reset();
       refs.homePageContainer.classList.add('notice');
       error => console.log(error);
       refs.paginationContainer.classList.add('visually-hidden');
