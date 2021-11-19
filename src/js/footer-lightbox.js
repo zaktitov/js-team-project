@@ -11,19 +11,22 @@ const {
 } = refs;
 
 footerLightboxOpenBtn.addEventListener('click', onOpenModal);
-footerLightboxCloseBtn.addEventListener('click', onCloseModal);
-footerLightbox.addEventListener('click', onLightBoxOverlayClick);
+// footerLightboxCloseBtn.addEventListener('click', onCloseModal);
+// footerLightbox.addEventListener('click', onLightBoxOverlayClick);
 
 function onOpenModal(e) {
   e.preventDefault();
   window.addEventListener('keydown', onEscBtnPress);
   footerLightboxCloseBtn.addEventListener('click', onCloseModal);
+  footerLightbox.addEventListener('click', onLightBoxOverlayClick);
   footerLightbox.classList.add('is-open');
   body.classList.add('is-open');
   appendTeamCardsMarkup(students);
 }
 
 function onCloseModal() {
+  footerLightboxCloseBtn.removeEventListener('click', onCloseModal);
+  footerLightbox.removeEventListener('click', onLightBoxOverlayClick);
   window.removeEventListener('keydown', onEscBtnPress);
   footerLightbox.classList.remove('is-open');
   body.classList.remove('is-open');
