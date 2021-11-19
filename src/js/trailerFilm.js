@@ -24,7 +24,7 @@ export default class watchTrailer {
 
   embedPlayer(queryId) {
     if (queryId !== undefined) {
-      return `<iframe class="modal__trailer-video" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${queryId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" ></iframe>`;
+      return `<iframe class="modal__trailer-video" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/${queryId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen"></iframe>`;
     } else {
       // notifications.showNotFound();
       const trailerBtn = document.querySelector('.js-trailer-btn');
@@ -39,4 +39,18 @@ export default class watchTrailer {
   showTrailer() {
     this.fetchTrailer().then(this.embedPlayer).then(this.createModalForTrailerMarkup);
   }
+
+  // closeBtn() {
+  // const trailerContainer = document.querySelector('.basicLightbox--iframe');
+  // trailerContainer.insertAdjacentHTML(
+  //   'beforeend',
+  //   `<button type="button" class="trailer-video__btn js-trailer-close-btn"></button>`,
+  // );
+
+  // const closeBtnTrailer = document.querySelector('.js-trailer-close-btn');
+  // closeBtnTrailer.addEventListener('click', e => {
+  //   const trailerLightbox = document.querySelector('.basicLightbox');
+  //   trailerLightbox.remove();
+  // });
+  // }
 }
