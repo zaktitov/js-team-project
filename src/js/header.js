@@ -5,7 +5,6 @@ import appendFilmCardsMarkup from './append-films-cards';
 import { pagination } from './pagination';
 import libraryImg from '../images/library.png';
 
-
 const { getMoviesFromQueueStorage, getMoviesFromWatchedStorage } = moviesFromStorage;
 
 refs.homeLink.addEventListener('click', onChangeHomeLink);
@@ -27,7 +26,7 @@ function onChangeHomeLink(e) {
 
   newApiService.resetPage();
   getFilmsByDefault();
-  pagination.reset();
+  pagination.reset(1000);
   refs.searchForm.reset();
 
   refs.homePageContainer.classList.remove('visually-hidden');
@@ -74,7 +73,6 @@ function onLibraryCards(films) {
   } else {
     refs.libraryFilmCards.classList.remove('empty-library');
     appendFilmCardsMarkup(refs.libraryFilmCards, films);
-  
   }
 }
 

@@ -39,7 +39,7 @@ function renderModalWindow(e) {
 
   addToLocalArray(e);
   toggleModal();
-  
+
   //trailer
   const trailerBtn = document.querySelector('.js-trailer-btn');
   trailerBtn.addEventListener('click', getFilmTrailer);
@@ -53,6 +53,7 @@ function onCloseButtonClick(e) {
   toggleModal();
   const poster = document.querySelector('.modal__poster-container');
   const data = document.querySelector('.modal__data-container');
+
   poster.remove();
   data.remove();
   window.removeEventListener('keydown', onEscClick);
@@ -62,6 +63,7 @@ function onCloseButtonClick(e) {
 function onEscClick(e) {
   if (e.code === 'Escape') {
     onCloseButtonClick();
+    closeTrailer();
   }
 }
 
@@ -86,4 +88,9 @@ function onPosterBlackout() {
   setTimeout(() => {
     document.querySelector('.modal__trailer-wrapper').style.opacity = 1;
   }, 500);
+}
+
+function closeTrailer() {
+  const trailerLightbox = document.querySelector('.basicLightbox');
+  trailerLightbox.remove();
 }

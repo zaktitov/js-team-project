@@ -56,6 +56,27 @@
   }
 }
 
+.trailer-video__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url(../images/close.svg);
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: all 500ms ease;
+  z-index: 999;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+  }
+}
+
 // basicLightbox
 .basicLightbox {
   position: fixed;
