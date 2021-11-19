@@ -62,6 +62,7 @@ export async function getFilmsByDefault() {
       setTimeout(() => {
         notifications.showSuccess();
       }, 500);
+      pagination.reset();
     }
 
     refs.homePageContainer.classList.remove('notice');
