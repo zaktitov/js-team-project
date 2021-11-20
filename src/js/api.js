@@ -41,7 +41,7 @@ export function findFilmByWord() {
       } else {
         notifications.showSuccess();
       }
-    }, 250);
+    }, 1000);
   } else {
     getFilmsByDefault();
     pagination.reset(1000);
